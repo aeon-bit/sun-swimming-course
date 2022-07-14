@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_dashboard">
+
+    <fragment
+        android:id="@+id/nav_dashboard"
+        android:name="com.yasinta.kesehatankucing.ui.dashboard.DashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/nav_tes_kesehatan"
+        android:name="com.yasinta.kesehatankucing.ui.teskesehatan.TesKesehatanFragment"
+        android:label="Tes Kesehatan Kucing"
+        tools:layout="@layout/fragment_tes_kesehatan" />
+
+    <fragment
+        android:id="@+id/nav_jenis_penyakit"
+        android:name="com.yasinta.kesehatankucing.ui.jenispenyakit.JenisPenyakitFragment"
+        android:label="Jenis Penyakit"
+        tools:layout="@layout/fragment_jenis_penyakit" />
+
+    <fragment
+        android:id="@+id/nav_booking_jadwal"
+        android:name="com.yasinta.kesehatankucing.ui.bookingjadwal.BookingJadwalFragment"
+        android:label="Booking Jadwal"
+        tools:layout="@layout/fragment_booking_jadwal" />
+
+    <fragment
+        android:id="@+id/nav_chat"
+        android:name="com.yasinta.kesehatankucing.ui.chat.ChatFragment"
+        android:label="Chat Dokter"
+        tools:layout="@layout/fragment_chat" />
+
+    <fragment
+        android:id="@+id/nav_history"
+        android:name="com.yasinta.kesehatankucing.ui.history.HistoryFragment"
+        android:label="Histori Periksa"
+        tools:layout="@layout/fragment_history" />
+
+    <fragment
+        android:id="@+id/nav_tentang"
+        android:name="com.yasinta.kesehatankucing.ui.tentang.TentangFragment"
+        android:label="Tentang Aplikasi"
+        tools:layout="@layout/fragment_tentang" />
+</navigation>

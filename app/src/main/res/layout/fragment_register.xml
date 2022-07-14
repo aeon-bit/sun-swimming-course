@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:background="@drawable/ic_bg_intro"
+    tools:context="ui.auth.RegisterFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="64dp"
+                android:textSize="28dp"
+                android:textAlignment="center"
+                android:layout_marginHorizontal="58dp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="Register"
+                android:textColor="@color/teal_700" />
+
+
+            <!--FORM-->
+            <EditText
+                android:id="@+id/et_nameRegisterForm"
+                android:layout_width="250dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/xmlbg_input_outline"
+                android:fontFamily="@font/nunitto_semibold"
+                android:hint="Nama"
+                android:textColorHint="@color/text_hint"
+                android:paddingHorizontal="10dp"
+                android:singleLine="true"
+                android:textColor="@color/text"
+                android:textSize="16dp" />
+
+
+            <EditText
+                android:id="@+id/et_alamatRegisterForm"
+                android:layout_width="250dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/xmlbg_input_outline"
+                android:hint="Alamat"
+                android:textColorHint="@color/text_hint"
+                android:inputType="text"
+                android:paddingHorizontal="10dp"
+                android:singleLine="true"
+                android:textColor="@color/text"
+                android:textSize="16dp" />
+
+<!--            <RadioGroup-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="14dp"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:gravity="center">-->
+<!--                <RadioButton-->
+<!--                    android:id="@+id/rb_laki"-->
+<!--                    android:layout_width="28dp"-->
+<!--                    android:layout_height="28dp"/>-->
+<!--                <TextView-->
+<!--                    android:layout_width="80dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Laki-laki"-->
+<!--                    android:fontFamily="@font/nunitto_semibold"-->
+<!--                    android:textColor="@color/text"-->
+<!--                    android:layout_marginLeft="4dp"/>-->
+<!--                <RadioButton-->
+<!--                    android:id="@+id/rb_perempuan"-->
+<!--                    android:layout_width="28dp"-->
+<!--                    android:layout_height="28dp"/>-->
+<!--                <TextView-->
+<!--                    android:layout_width="80dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Perempuan"-->
+<!--                    android:fontFamily="@font/nunitto_semibold"-->
+<!--                    android:textColor="@color/text"-->
+<!--                    android:layout_marginLeft="4dp"/>-->
+<!--                <EditText-->
+<!--                    android:id="@+id/rb_errorMsg"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="0dp"/>-->
+<!--            </RadioGroup>-->
+
+            <EditText
+                android:id="@+id/et_noHpRegisterForm"
+                android:layout_width="250dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/xmlbg_input_outline"
+                android:hint="Nomor Hp"
+                android:textColorHint="@color/text_hint"
+                android:inputType="phone"
+                android:paddingHorizontal="10dp"
+                android:singleLine="true"
+                android:textColor="@color/text"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/et_namaKucingRegisterForm"
+                android:layout_width="250dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/xmlbg_input_outline"
+                android:hint="Nama Kucing"
+                android:textColorHint="@color/text_hint"
+                android:paddingHorizontal="10dp"
+                android:singleLine="true"
+                android:textColor="@color/text"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/et_jenisKucingRegisterForm"
+                android:layout_width="250dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/xmlbg_input_outline"
+                android:hint="Jenis Kucing"
+                android:textColorHint="@color/text_hint"
+                android:paddingHorizontal="10dp"
+                android:singleLine="true"
+                android:textColor="@color/text"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/et_emailRegisterForm"
+                android:layout_width="250dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/xmlbg_input_outline"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:textColorHint="@color/text_hint"
+                android:paddingHorizontal="10dp"
+                android:singleLine="true"
+                android:textColor="@color/text"
+                android:textSize="16dp" />
+
+
+            <EditText
+                android:id="@+id/et_passwordRegisterForm"
+                android:layout_width="250dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="14dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/xmlbg_input_outline"
+                android:hint="Password"
+                android:textColorHint="@color/text_hint"
+                android:inputType="textPassword"
+                android:paddingHorizontal="10dp"
+                android:singleLine="true"
+                android:textColor="@color/text" />
+
+            <EditText
+                android:id="@+id/et_cPasswordRegisterForm"
+                android:layout_width="250dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="14dp"
+                android:layout_gravity="center_horizontal"
+                android:hint="Konfirm Password"
+                android:textColorHint="@color/text_hint"
+                android:inputType="textPassword"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/text"
+                android:background="@drawable/xmlbg_input_outline"/>
+
+            <ProgressBar
+                android:id="@+id/pb_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:visibility="gone" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_btnPerformRegister"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="46dp"
+                android:clickable="true"
+                android:elevation="12dp"
+                android:focusable="true"
+                android:foreground="?android:selectableItemBackground"
+                app:cardBackgroundColor="@color/secondary"
+                app:cardCornerRadius="24dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_passwordLogin">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:gravity="center"
+                    android:text="Daftar"
+                    android:textColor="@color/white" />
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/ly_txtLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitto_semibold"
+                    android:text="Sudah punya akun? "
+                    android:textColor="@color/text" />
+
+                <TextView
+                    android:id="@+id/tv_btnLoginNow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="Login sekarang"
+                    android:textColor="@color/secondary" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

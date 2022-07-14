@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:background="@drawable/ic_bg_intro"
+    tools:context="ui.auth.LoginFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg"/>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ly_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_txtLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nunito_bold"
+                android:text="Login"
+                android:textSize="28dp"
+                android:textColor="@color/teal_700"
+                app:layout_constraintBottom_toTopOf="@id/ly_input"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/et_emailLogin"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/xmlbg_input_outline"
+                android:fontFamily="@font/nunitto_semibold"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:paddingHorizontal="10dp"
+                android:singleLine="true"
+                android:textColorHint="@color/text_hint" />
+
+            <EditText
+                android:id="@+id/et_passwordLogin"
+                android:layout_width="250dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/xmlbg_input_outline"
+                android:fontFamily="@font/nunitto_semibold"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:paddingHorizontal="10dp"
+                android:singleLine="true"
+                android:textColorHint="@color/text_hint" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_loginPerformLogin"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="46dp"
+                android:clickable="true"
+                android:elevation="12dp"
+                android:focusable="true"
+                android:foreground="?android:selectableItemBackground"
+                app:cardBackgroundColor="@color/secondary"
+                app:cardCornerRadius="24dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_passwordLogin">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:text="Login"
+                    android:textColor="@color/white" />
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/ly_txtLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitto_semibold"
+                    android:text="Belum punya akun? "
+                    android:textColor="@color/text" />
+
+                <TextView
+                    android:id="@+id/tv_btnRegisterNow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="Daftar sekarang"
+                    android:textColor="@color/secondary" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="32dp"-->
+        <!--            android:layout_marginBottom="734dp"-->
+        <!--            android:gravity="center_horizontal"-->
+        <!--            android:orientation="horizontal"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/ly_input">-->
+
+        <!--            <TextView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_gravity="center_horizontal"-->
+        <!--                android:fontFamily="@font/nunito_sans_semibold"-->
+        <!--                android:paddingHorizontal="4dp"-->
+        <!--                android:text="Belum punya akun?" />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/tvBtn_loginNow"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_gravity="center_horizontal"-->
+        <!--                android:fontFamily="@font/nunito_sans_bold"-->
+        <!--                android:paddingHorizontal="4dp"-->
+        <!--                android:text="Daftar Sekarang"-->
+        <!--                android:textColor="@color/colorBtnBlue" />-->
+        <!--        </LinearLayout>-->
+
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/ly_input"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_gravity="center_horizontal"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</RelativeLayout>

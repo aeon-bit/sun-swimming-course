@@ -1,0 +1,23 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Diagnosa Penyakit Kucing</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_dashboard">Dashboard</string>
+    <string name="menu_tes_kesehatan">Tes Kesehatan Kucing</string>
+    <string name="menu_jenis_penyakit">Jenis Penyakit</string>
+    <string name="menu_booking_jadwal">Booking Jadwal</string>
+    <string name="menu_chat">Chat Dokter</string>
+    <string name="menu_history">Histori Periksa</string>
+    <string name="menu_tentang">Tentang Aplikasi</string>
+    <string name="menu_auth">Login</string>
+
+    <string name="pref_file">com.wisnu.preference_file</string>
+    <string name="pref_login_status">com.wisnu.preference_login_status</string>
+    <string name="pref_nama_user">com.wisnu.preference_nama_user</string>
+
+</resources>

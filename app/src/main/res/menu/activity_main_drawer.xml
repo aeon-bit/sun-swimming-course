@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+<!--    <group-->
+<!--        android:id="@+id/headMenu"-->
+<!--        android:checkableBehavior="single">-->
+<!--        <item-->
+<!--            android:id="@+id/nav_dashboard"-->
+<!--            android:icon="@drawable/ic_dashboard"-->
+<!--            android:title="Dashboard" />-->
+<!--    </group>-->
+    <group
+        android:id="@+id/topMenu"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_dashboard"
+            android:title="Dashboard" />
+        <item
+            android:id="@+id/nav_tes_kesehatan"
+            android:icon="@drawable/ic_teskesehatan"
+            android:title="Tes Kesehatan Kucing" />
+        <item
+            android:id="@+id/nav_jenis_penyakit"
+            android:icon="@drawable/ic_jenispenyakit"
+            android:title="Jenis Penyakit" />
+        <item
+            android:id="@+id/nav_booking_jadwal"
+            android:icon="@drawable/ic_bookingjadwal"
+            android:title="Booking Jadwal Periksa" />
+        <item
+            android:id="@+id/nav_chat"
+            android:icon="@drawable/ic_chat"
+            android:title="Chat Dokter" />
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_history"
+            android:title="Histori Periksa" />
+        <item
+            android:id="@+id/nav_tentang"
+            android:icon="@drawable/ic_tentang"
+            android:title="Tentang" />
+    </group>
+
+    <group
+        android:id="@+id/botMenu"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_auth"
+            android:icon="@drawable/ic_account"
+            android:title="Akun" />
+    </group>
+</menu>
