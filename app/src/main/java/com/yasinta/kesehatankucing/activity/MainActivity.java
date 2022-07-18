@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.shape.CornerFamily;
+import com.google.android.material.shape.MaterialShapeDrawable;
 import com.yasinta.kesehatankucing.R;
 import com.yasinta.kesehatankucing.ui.teskesehatan.TesKesehatanFragment;
 import com.yasinta.kesehatankucing.ui.auth.LoginFragment;
@@ -65,6 +68,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
+
+//        float radius = getResources().getDimension(R.dimen.toolbar_corner); //32dp
+//        MaterialToolbar materialToolbar = findViewById(R.id.toolbar);
+//
+//        MaterialShapeDrawable materialShapeDrawable = (MaterialShapeDrawable)materialToolbar.getBackground();
+//        toolbar.setShapeAppearanceModel(toolbar.getShapeAppearanceModel()
+//                .toBuilder()
+//                .setAllCorners(CornerFamily.ROUNDED,radius)
+//                .build());
 
         navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

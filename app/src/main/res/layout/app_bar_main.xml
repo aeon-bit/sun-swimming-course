@@ -9,15 +9,18 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:elevation="0dp"
+        android:background="@drawable/xmlbg_toolbar"
         android:theme="@style/Theme.MPASI.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:background="@drawable/xmlbg_toolbar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
             app:popupTheme="@style/Theme.MPASI.PopupOverlay" />
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_main" />

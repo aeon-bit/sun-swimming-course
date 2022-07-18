@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:paddingHorizontal="12dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_itemListHistoriPeriksa"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="6dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?selectableItemBackground"
+        android:layout_marginVertical="12dp"
+        app:cardBackgroundColor="@color/secondary"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:paddingHorizontal="24dp"
+            android:layout_marginVertical="8dp">
+            <TextView
+                android:id="@+id/tv_namaKucingItemHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:maxLines="1"
+                android:text="Nama Kucing"
+                android:ellipsize="end"
+                android:fontFamily="@font/visvy_bold"
+                android:textColor="@color/white"
+                android:gravity="center_vertical"
+                android:textSize="18dp"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="2dp"
+                android:background="@color/white"/>
+            <TextView
+                android:id="@+id/tv_tanggalKucingItemHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:maxLines="1"
+                android:scrollbarSize="12dp"
+                android:text="tanggal"
+                android:ellipsize="end"
+                android:fontFamily="@font/visbt_med"
+                android:textColor="@color/white"
+                android:gravity="center_vertical"
+                android:textSize="18dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

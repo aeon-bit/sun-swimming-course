@@ -1,6 +1,7 @@
 package com.yasinta.kesehatankucing.ui.auth;
 
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,6 +10,7 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -56,7 +58,7 @@ public class RegisterFragment extends Fragment {
         et_namaKucingRegisterForm = view.findViewById(R.id.et_namaKucingRegisterForm);
         et_jenisKucingRegisterForm = view.findViewById(R.id.et_jenisKucingRegisterForm);
         et_emailRegisterForm = view.findViewById(R.id.et_emailRegisterForm);
-//        et_usernameRegisterForm = view.findViewById(R.id.et_usernameRegisterForm);
+        et_usernameRegisterForm = view.findViewById(R.id.et_usernameRegisterForm);
         et_passwordRegisterForm = view.findViewById(R.id.et_passwordRegisterForm);
         et_cPasswordRegisterForm = view.findViewById(R.id.et_cPasswordRegisterForm);
 
@@ -83,7 +85,7 @@ public class RegisterFragment extends Fragment {
                 String sNoHp = et_noTelpRegisterForm.getText().toString().trim();
                 String sNamaKucing = et_namaKucingRegisterForm.getText().toString();
                 String sJenis = et_jenisKucingRegisterForm.getText().toString();
-//                String sUsername = et_usernameRegisterForm.getText().toString().trim().toLowerCase();
+                String sUsername = et_usernameRegisterForm.getText().toString().trim().toLowerCase();
                 String sEmail = et_emailRegisterForm.getText().toString();
                 String sPassword = et_passwordRegisterForm.getText().toString();
                 String sCPassword = et_cPasswordRegisterForm.getText().toString();
@@ -103,10 +105,12 @@ public class RegisterFragment extends Fragment {
                     et_alamatRegisterForm.setError("Masukkan alamat");
 //                } else if (!rb_laki.isChecked() && !rb_perempuan.isChecked()) {
 //                    rb_errorMsg.setError("isi jenis kelamin");
-//                } else if (sUsername.isEmpty() || sUsername == null) {
-//                    et_usernameRegisterForm.setError("isi username");
+                } else if (sUsername.isEmpty() || sUsername == null) {
+                    et_usernameRegisterForm.setError("Masukkan username");
                 } else if (sNoHp.isEmpty()) {
                     et_noTelpRegisterForm.setError("Masukkan No Hp");
+                } else if (sNoHp.length() < 11) {
+                    et_noTelpRegisterForm.setError("Minimal 11 karakter");
                 } else if (sNamaKucing.isEmpty()) {
                     et_namaKucingRegisterForm.setError("Masukkan Nama Kucing");
                 } else if (sJenis.isEmpty()) {
@@ -115,12 +119,15 @@ public class RegisterFragment extends Fragment {
                     et_emailRegisterForm.setError("Masukkan Email");
                 } else if (sPassword.isEmpty()) {
                     et_passwordRegisterForm.setError("isi password");
+                } else if (sPassword.length() < 6) {
+                    et_passwordRegisterForm.setError("Minimal 6 karakter");
                 } else if (!sCPassword.equals(sPassword)) {
                     et_cPasswordRegisterForm.setError("password tidak sesuai");
                 }else if (!isValidEmail(sEmail)) {
                     et_emailRegisterForm.setError("Format Email salah");
                 } else {
-                    performRegistration(sNama, sAlamat, sNoHp, sNamaKucing, sJenis, sEmail, sPassword, sCPassword);
+                    performRegistration(sNama, sAlamat, sNoHp, sNamaKucing, sJenis, sUsername, sEmail, sPassword, sCPassword);
+                    hideKeyboard();
 //                    Log.d("daftar", sNama + "\n");
 //                    Log.d("daftar", sJk + "\n");
 //                    Log.d("daftar", sUsername + "\n");
@@ -134,11 +141,22 @@ public class RegisterFragment extends Fragment {
         return view;
     }
 
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = getActivity().getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(getActivity());
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
     public static boolean isValidEmail(CharSequence target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
-    public void performRegistration(String sNama, String sAlamat, String sNoHp, String sNamaKucing, String sJenis, String sEmail, String sPassword, String sCPassword) {
+    public void performRegistration(String sNama, String sAlamat, String sNoHp, String sNamaKucing, String sJenis, String sUsername, String sEmail, String sPassword, String sCPassword) {
 
 
         Call<Registers> call = MainActivity.apiInterface.performRegistration(
@@ -150,7 +168,7 @@ public class RegisterFragment extends Fragment {
 //                "email@email.com",
 //                "123",
 //                "123"
-                sNama, sAlamat, sNoHp, sNamaKucing, sJenis, sEmail, sPassword, sCPassword
+                sNama, sAlamat, sNoHp, sNamaKucing, sJenis, sUsername, sEmail, sPassword, sCPassword
                 );
         call.enqueue(new Callback<Registers>() {
             @Override

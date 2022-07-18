@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yasinta.kesehatankucing">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.yasinta.kesehatankucing.utils.AppQu"
+        android:name=".utils.AppQu"
         android:allowBackup="true"
         android:icon="@drawable/icon_256"
         android:label="@string/app_name"
@@ -14,12 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MPASI.NoActionBar">
         <activity
-            android:name="com.yasinta.kesehatankucing.activity.MainActivity"
+            android:name=".activity.DetailJenisPenyakit"
+            android:exported="false" />
+        <activity
+            android:name=".activity.MainActivity"
             android:theme="@style/Theme.MPASI.NoActionBar" />
         <activity
-            android:name="com.yasinta.kesehatankucing.activity.Splashscreen"
-            android:theme="@style/Theme.MPASI.NoActionBar"
-            android:exported="true">
+            android:name=".activity.Splashscreen"
+            android:exported="true"
+            android:theme="@style/Theme.MPASI.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

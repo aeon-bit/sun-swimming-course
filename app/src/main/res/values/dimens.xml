@@ -8,5 +8,7 @@
 
     <dimen
         tools:override="true"
-        name="navigation_separator">20dp</dimen>
+        name="navigation_separator">20dp
+    </dimen>
+    <dimen name="toolbar_corner">32dp</dimen>
 </resources>

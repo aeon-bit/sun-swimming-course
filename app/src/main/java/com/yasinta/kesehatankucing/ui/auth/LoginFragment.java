@@ -11,6 +11,7 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -101,6 +102,8 @@ public class LoginFragment extends Fragment {
     }
 
     private void performLogin(){
+        hideKeyboard();
+
         String sEmail = et_emailLogin.getText().toString().trim();
         String sPassword = et_passwordLogin.getText().toString().trim();
 
@@ -108,7 +111,7 @@ public class LoginFragment extends Fragment {
         call.enqueue(new Callback<Logins>() {
             @Override
             public void onResponse(Call<Logins> call, Response<Logins> response) {
-                Log.d("respon", "onResponse: " + response.body().toString());
+                Log.d("respon", "onResponse: " + response.body().getResponse());
                 if (response.body().getResponse().equals("ok")){
                     SessionManager.login(response.body().getUsers(),
                             response.body().getToken());
@@ -143,7 +146,7 @@ public class LoginFragment extends Fragment {
             public void onFailure(Call<Logins> call, Throwable t) {
                 Log.d("nores", t.getMessage());
 //                Toast.makeText(getActivity(), "ERROR : " +t.getMessage(), Toast.LENGTH_LONG);
-                Toast toast = Toast.makeText(getActivity(), "Terjadi Kesalahan !", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getActivity(), "Email / Password salah !", Toast.LENGTH_LONG);
                 View view = toast.getView();
                 view.setPadding(42, 16, 42, 16);
                 view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
@@ -159,6 +162,17 @@ public class LoginFragment extends Fragment {
         et_emailLogin.setText("");
         et_passwordLogin.setText("");
         pb_loading.setVisibility(View.GONE);
+    }
+
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = getActivity().getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(getActivity());
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     private void callToast(String msg, int i) {

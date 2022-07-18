@@ -12,7 +12,7 @@
         android:id="@+id/line1"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="12dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -310,10 +310,12 @@
         android:fontFamily="@font/nunito_bold"
         android:textColor="@color/secondary"/>
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_arrtikelHome"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="140dp"
         app:layout_constraintTop_toBottomOf="@id/line3"
         android:layout_marginTop="36dp"
-        android:layout_marginHorizontal="24dp"/>
+        android:layout_marginHorizontal="24dp"
+        tools:listitem="@layout/item_list_artikel_home"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
