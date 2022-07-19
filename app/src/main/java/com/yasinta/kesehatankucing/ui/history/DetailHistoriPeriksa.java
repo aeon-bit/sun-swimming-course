@@ -120,6 +120,12 @@ public class DetailHistoriPeriksa extends Fragment {
 
                                 listHistori.add(model);
                                 rvAdapter.notifyDataSetChanged();
+
+
+                                TextView tv_namaKucingDetailHistory = getView().findViewById(R.id.tv_namaKucingDetailHistory);
+
+                                tv_namaKucingDetailHistory.setText(histories.getJSONObject("user").getString("nama_kucing"));
+                                Log.d("detail", "nama_kucing: " + histories.getJSONObject("user").getString("nama_kucing"));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
