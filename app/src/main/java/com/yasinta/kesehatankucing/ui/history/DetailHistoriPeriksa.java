@@ -47,9 +47,13 @@ public class DetailHistoriPeriksa extends Fragment {
     RequestQueue requestQueue;
     List<Histories> listHistori;
 
+    TextView tv_namaKucingDetailHistory;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_detail_history_periksa, container, false);
+
+        tv_namaKucingDetailHistory = root.findViewById(R.id.tv_namaKucingDetailHistory);
 
         rv_gejalaDetail = root.findViewById(R.id.rv_gejalaDetail);
         requestQueue = Volley.newRequestQueue(getContext());
@@ -121,8 +125,6 @@ public class DetailHistoriPeriksa extends Fragment {
                                 listHistori.add(model);
                                 rvAdapter.notifyDataSetChanged();
 
-
-                                TextView tv_namaKucingDetailHistory = getView().findViewById(R.id.tv_namaKucingDetailHistory);
 
                                 tv_namaKucingDetailHistory.setText(histories.getJSONObject("user").getString("nama_kucing"));
                                 Log.d("detail", "nama_kucing: " + histories.getJSONObject("user").getString("nama_kucing"));

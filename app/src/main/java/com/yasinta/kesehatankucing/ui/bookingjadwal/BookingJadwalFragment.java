@@ -63,7 +63,7 @@ public class BookingJadwalFragment extends Fragment {
         EditText et_namaPemilikBook = root.findViewById(R.id.et_namaPemilikBook);
         EditText et_noHpBook = root.findViewById(R.id.et_noHpBook);
         EditText et_alamatBook = root.findViewById(R.id.et_alamatBook);
-        EditText et_hasilDiagnosisBook = root.findViewById(R.id.et_hasilDiagnosisBook);
+//        EditText et_hasilDiagnosisBook = root.findViewById(R.id.et_hasilDiagnosisBook);
         EditText et_tglBook = root.findViewById(R.id.et_tglBook);
         CardView cv_btnPerformBuatJadwal = root.findViewById(R.id.cv_btnPerformBuatJadwal);
 
