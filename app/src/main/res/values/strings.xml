@@ -20,6 +20,11 @@
     <string name="pref_login_status">com.wisnu.preference_login_status</string>
     <string name="pref_nama_user">com.wisnu.preference_nama_user</string>
 
-    <string name="add_pull_git">com.wisnu.preference_nama_user</string>
+    <string name="add_pull_git">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    </string>
+    <string name="warning_diagnosa">Hasil tes kesehatan kucing tidak 100% akurat.\n
+    Maka diperlukan pemeriksaan fisik serta penunjang lebih lanjut oleh dokter hewan.</string>
 
 </resources>

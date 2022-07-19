@@ -117,8 +117,8 @@ public class DetailHistoriPeriksa extends Fragment {
                 tv_jenisKucingDetailHistory.setText(response.body().getData().getUser().getJenis_kucing());
                 tv_namaPemilikDetailHistory.setText(response.body().getData().getUser().getNama_pemilik());
                 tv_tglPeriksaDetailHistory.setText(response.body().getData().getTanggal());
-                tv_hasilDiagnosaDetailHistory.setText(response.body().getData().getHasil_diagnosa());
-                tv_saranDetailHistory.setText(response.body().getData().getSaran_pengobatan());
+                tv_hasilDiagnosaDetailHistory.setText(response.body().getData().getHasil_diagnosa() + "\n ");
+                tv_saranDetailHistory.setText(response.body().getData().getSaran_pengobatan() + "\n ");
 
 //                tv_namaKucingHasilD.setText(response.body().getData().getUser().getNama_kucing());
 //                tv_jenisKucingHasilD.setText(response.body().getData().getUser().getJenis_kucing());
