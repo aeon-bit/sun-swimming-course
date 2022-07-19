@@ -9,6 +9,7 @@ public class ResponseBookingJadwals {
     @SerializedName("status")
     private String status;
 
+
     public JadwalPeriksas getData() {
         return data;
     }
@@ -24,4 +25,5 @@ public class ResponseBookingJadwals {
     public void setStatus(String status) {
         this.status = status;
     }
+
 }

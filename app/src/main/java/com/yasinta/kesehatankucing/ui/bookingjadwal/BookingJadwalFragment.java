@@ -32,6 +32,7 @@ import java.util.Calendar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BookingJadwalFragment extends Fragment {
     DatePickerDialog datePickerDialog;
@@ -105,7 +106,7 @@ public class BookingJadwalFragment extends Fragment {
 //                    et_tglBook.setError("Masukkan tanggal booking");
 //                } else {
 
-                if (tv_dateSelected.getText().toString().isEmpty()){
+                if (tv_dateSelected.getText().toString().isEmpty()) {
                     Toast toast = Toast.makeText(getActivity(), "Masukkan tanggal booking", Toast.LENGTH_LONG);
                     View view = toast.getView();
                     view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
@@ -131,7 +132,7 @@ public class BookingJadwalFragment extends Fragment {
         return root;
     }
 
-//    private void performBuatJadwal(String sNamaKucing, String sJenis, String sUsia, String sNamaPemilik, String sNoHp, String sAlamat, String sHasilD, String dateToUp) {
+    //    private void performBuatJadwal(String sNamaKucing, String sJenis, String sUsia, String sNamaPemilik, String sNoHp, String sAlamat, String sHasilD, String dateToUp) {
     private void performBuatJadwal() {
 //                    Log.d("performup", "nama kucing: " + sNamaKucing);
 //                    Log.d("performup", "jenis: " + sJenis);
@@ -140,28 +141,33 @@ public class BookingJadwalFragment extends Fragment {
 //                    Log.d("performup", "nohp: " + sNoHp);
 //                    Log.d("performup", "alamat: " + sAlamat);
 //                    Log.d("performup", "hasilk: " + sHasilD);
-                    Log.d("performup", "date: " + selectedDate);
+//        Log.d("performup", "date: " + selectedDate);
         Call<ResponseBookingJadwals> call = MainActivity.apiInterface.performBookingJadwal(
                 "Bearer " + SessionManager.getToken(), selectedDate
         );
 
-//        Fragment self = this;
+        Fragment self = this;
         call.enqueue(new Callback<ResponseBookingJadwals>() {
             @Override
-            public void onResponse(Call<ResponseBookingJadwals> call, retrofit2.Response<ResponseBookingJadwals> response) {
-                Log.d("respon", "onResponse Booking: " + response.body().toString());
+            public void onResponse(Call<ResponseBookingJadwals> call, Response<ResponseBookingJadwals> response) {
+                if (response.body() != null) {
 
-                if (response.body().getStatus().equals("success")) {
+                    Log.d("respon", "onResponse Booking: " + response.toString());
 
-                    Toast toast = Toast.makeText(getActivity(), "Booking Jadwal Berhasil", Toast.LENGTH_LONG);
-                    View view = toast.getView();
-                    view.setBackgroundResource(R.drawable.xmlbg_toast_success);
-                    TextView textView = view.findViewById(android.R.id.message);
-                    textView.setTextColor(Color.WHITE);
-                    toast.show();
+                    if (response.body().getStatus().equals("success")) {
 
-//                    getActivity().getSupportFragmentManager().beginTransaction()
-//                            .remove(self).commit();
+                        Toast toast = Toast.makeText(getActivity(), "Booking Jadwal Berhasil", Toast.LENGTH_LONG);
+                        View view = toast.getView();
+                        view.setBackgroundResource(R.drawable.xmlbg_toast_success);
+                        TextView textView = view.findViewById(android.R.id.message);
+                        textView.setTextColor(Color.WHITE);
+                        toast.show();
+
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .remove(self).commit();
+                    }
+                } else {
+                    Log.d("respon", "onResponse Booking: NULL");
                 }
             }
 

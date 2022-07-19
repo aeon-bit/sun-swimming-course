@@ -1,6 +1,8 @@
 package com.yasinta.kesehatankucing.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,10 +10,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.yasinta.kesehatankucing.R;
 import com.yasinta.kesehatankucing.model.Histories;
+import com.yasinta.kesehatankucing.ui.history.DetailHistoriPeriksa;
+import com.yasinta.kesehatankucing.ui.jenispenyakit.DetailJenisPenyakitFragment;
 
 import java.util.List;
 
@@ -38,7 +44,7 @@ public class AdapterListHistoryPeriksa extends
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HolderItem holderItem, int position) {
+    public void onBindViewHolder(@NonNull HolderItem holderItem, @SuppressLint("RecyclerView") int position) {
         //memasukan data ke objek yg sudah dikenalkan di HolderItem
         final Histories historiPeriksa = listHistories.get(position);
 
@@ -48,7 +54,15 @@ public class AdapterListHistoryPeriksa extends
         holderItem.cv_itemListHistoriPeriksa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Fragment detailHistoriPeriksa = new DetailHistoriPeriksa();
+                Bundle bundle = new Bundle();
+                bundle.putString("id", listHistories.get(position).getId());
+                detailHistoriPeriksa.setArguments(bundle);
 
+                ((FragmentActivity)context).getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.nav_host_fragment_content_main, detailHistoriPeriksa).addToBackStack("fromDetailHistoriPeriksa")
+                        .commit();
             }
         });
     }

@@ -12,6 +12,9 @@ public class JadwalPeriksas {
     @SerializedName("status_periksa")
     private String status_periksa;
 
+    @SerializedName("user")
+    private Users user;
+
     public String getId() {
         return id;
     }
@@ -34,5 +37,13 @@ public class JadwalPeriksas {
 
     public void setStatus_periksa(String status_periksa) {
         this.status_periksa = status_periksa;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
     }
 }

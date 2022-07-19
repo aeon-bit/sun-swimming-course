@@ -13,7 +13,6 @@ public class Logins {
     private Users users;
 
 
-
     public String getResponse() {
         return response;
     }
@@ -37,4 +36,5 @@ public class Logins {
     public void setUsers(Users users) {
         this.users = users;
     }
+
 }

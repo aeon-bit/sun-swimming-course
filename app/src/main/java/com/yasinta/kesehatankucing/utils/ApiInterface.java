@@ -63,7 +63,7 @@ public interface ApiInterface {
     );
 
     @FormUrlEncoded
-    @POST("data-jadwal-periksa/tambha-data")
+    @POST("data-jadwal-periksa/tambah-data")
     Call <ResponseBookingJadwals> performBookingJadwal(
             @Header("Authorization") String token,
             @Field("tanggal_periksa") String tanggal_periksa

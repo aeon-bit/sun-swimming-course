@@ -41,8 +41,9 @@ public class LoginFragment extends Fragment {
 
     OnLoginFormActivityListener loginFormActivityListener;
 
-    public  interface OnLoginFormActivityListener{
+    public interface OnLoginFormActivityListener {
         public void performRegister();
+
         public void performLogin(String username);
     }
 
@@ -67,11 +68,11 @@ public class LoginFragment extends Fragment {
         cv_loginPerformLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (et_emailLogin.getText().toString().isEmpty()){
+                if (et_emailLogin.getText().toString().isEmpty()) {
                     et_emailLogin.setError("Masukkan email");
-                } else if (et_passwordLogin.getText().toString().isEmpty()){
+                } else if (et_passwordLogin.getText().toString().isEmpty()) {
                     et_passwordLogin.setError("Masukkan password");
-                } else if (!isValidEmail(et_emailLogin.getText().toString())){
+                } else if (!isValidEmail(et_emailLogin.getText().toString())) {
                     et_emailLogin.setError("Format Email salah");
                 } else {
                     performLogin();
@@ -83,7 +84,7 @@ public class LoginFragment extends Fragment {
         tv_btnRegisterNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).SwitchFrag(8);
+                ((MainActivity) getActivity()).SwitchFrag(8);
             }
         });
 
@@ -101,7 +102,7 @@ public class LoginFragment extends Fragment {
         loginFormActivityListener = (OnLoginFormActivityListener) activity;
     }
 
-    private void performLogin(){
+    private void performLogin() {
         hideKeyboard();
 
         String sEmail = et_emailLogin.getText().toString().trim();
@@ -111,48 +112,19 @@ public class LoginFragment extends Fragment {
         call.enqueue(new Callback<Logins>() {
             @Override
             public void onResponse(Call<Logins> call, Response<Logins> response) {
-                Log.d("respon", "onResponse: " + response.body().getResponse());
                 if (response.body().getResponse().equals("ok")){
+                    callToast("Login berhasil", 1);
                     SessionManager.login(response.body().getUsers(),
                             response.body().getToken());
 
-                    //SessionManager.;
-//                    Toast.makeText(getActivity(), "Login BERHASIL", Toast.LENGTH_LONG).show();
-                    Toast toast = Toast.makeText(getActivity(), "Login Berhasil", Toast.LENGTH_SHORT);
-                    View view = toast.getView();
-                    view.setPadding(42, 16, 42, 16);
-                    view.setBackgroundResource(R.drawable.xmlbg_toast_success);
-                    TextView textView = view.findViewById(android.R.id.message);
-                    textView.setTextColor(Color.WHITE);
-                    toast.show();
-
-//                    LoginRegisterActivity.prefConfig.writeLoginStatus(true);
-                    loginFormActivityListener.performLogin(response.body().getUsers().getEmail()); //restart actv
-                }
-                else if (response.body().getResponse().equals("failed")){
-//                    LoginRegisterActivity.prefConfig.displayToast("LoginFailed.. Try again");
-//                    Toast.makeText(getActivity(), "Login GAGAL", Toast.LENGTH_LONG).show();
-                    Toast toast = Toast.makeText(getActivity(), "Email atau Password Salah!", Toast.LENGTH_LONG);
-                    View view = toast.getView();
-                    view.setPadding(42, 16, 42, 16);
-                    view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
-                    TextView textView = view.findViewById(android.R.id.message);
-                    textView.setTextColor(Color.WHITE);
-                    toast.show();
+                    loginFormActivityListener.performLogin(response.body().getUsers().getEmail());
                 }
             }
 
             @Override
             public void onFailure(Call<Logins> call, Throwable t) {
-                Log.d("nores", t.getMessage());
-//                Toast.makeText(getActivity(), "ERROR : " +t.getMessage(), Toast.LENGTH_LONG);
-                Toast toast = Toast.makeText(getActivity(), "Email / Password salah !", Toast.LENGTH_LONG);
-                View view = toast.getView();
-                view.setPadding(42, 16, 42, 16);
-                view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
-                TextView textView = view.findViewById(android.R.id.message);
-                textView.setTextColor(Color.WHITE);
-                toast.show();
+
+                callToast("Terjadi Kesalahan Koneksi", 0);
 
                 pb_loading.setVisibility(View.GONE);
 
