@@ -24,7 +24,7 @@ public class ChatFragment extends Fragment {
         cv_btnPerformChatDokter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "https://api.whatsapp.com/send?phone=" + "08156754523";
+                String url = "https://api.whatsapp.com/send?phone=" + "628156754523";
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(url));
                 startActivity(intent);
