@@ -186,7 +186,7 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/tv_hasilDiagnosaDetail"
+        android:id="@+id/tv_hasilDiagnosaDetailHistory"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_marginTop="12dp"
@@ -197,7 +197,7 @@
         android:id="@+id/cv_3"
         android:layout_width="match_parent"
         android:layout_height="32dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_hasilDiagnosaDetail"
+        app:layout_constraintTop_toBottomOf="@id/tv_hasilDiagnosaDetailHistory"
         android:layout_marginTop="24dp"
         app:cardCornerRadius="16dp"
         android:layout_marginLeft="-36dp"
@@ -216,7 +216,7 @@
             tools:ignore="RtlCompat" />
     </androidx.cardview.widget.CardView>
     <TextView
-        android:id="@+id/tv_saranDetail"
+        android:id="@+id/tv_saranDetailHistory"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_marginTop="12dp"

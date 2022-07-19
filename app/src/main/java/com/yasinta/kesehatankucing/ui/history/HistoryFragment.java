@@ -87,6 +87,8 @@ public class HistoryFragment extends Fragment {
                                 u.setJenis_kucing(histories.getJSONObject("user").getString("jenis_kucing"));
                                 model.setUsers(u);
 
+//                                Log.d("detail", "NAMA_KUCING: " + histories.getJSONObject("user").getString("nama_kucing"));
+
 //                                gejala
                                 ArrayList<Gejalas> arrayListGejalas = new ArrayList<>();
                                 JSONArray list_gejala = histories.getJSONArray("gejala");
@@ -106,6 +108,7 @@ public class HistoryFragment extends Fragment {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Log.d("detail", "CATCH LIST HISTORY");
                         }
                     }
                 }, new Response.ErrorListener() {
