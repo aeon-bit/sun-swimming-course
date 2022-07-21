@@ -7,6 +7,7 @@ import com.yasinta.kesehatankucing.model.JadwalPeriksas;
 import com.yasinta.kesehatankucing.model.Logins;
 import com.yasinta.kesehatankucing.model.Registers;
 import com.yasinta.kesehatankucing.model.ResponseBookingJadwals;
+import com.yasinta.kesehatankucing.model.ResponseDetailArtikel;
 import com.yasinta.kesehatankucing.model.ResponseSpJadwals;
 import com.yasinta.kesehatankucing.model.ResponseTesKesehatan;
 import com.yasinta.kesehatankucing.model.Users;
@@ -76,6 +77,12 @@ public interface ApiInterface {
 
     @GET("data-riwayat-diagnosa/{id}/show")
     Call <ResponseTesKesehatan> getDetailDiagnosa(
+            @Header("Authorization") String token,
+            @Path("id") String id
+    );
+
+    @GET("data-artikel/{id}/show")
+    Call <ResponseDetailArtikel> getDetailArtikel(
             @Header("Authorization") String token,
             @Path("id") String id
     );

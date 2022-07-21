@@ -1,7 +1,9 @@
 package com.yasinta.kesehatankucing.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.media.Image;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +14,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.yasinta.kesehatankucing.R;
 import com.yasinta.kesehatankucing.model.Artikels;
+import com.yasinta.kesehatankucing.ui.artikel.DetailArtikel;
+import com.yasinta.kesehatankucing.ui.jenispenyakit.DetailJenisPenyakitFragment;
 import com.yasinta.kesehatankucing.utils.ApiClient;
 
 import java.util.List;
@@ -44,7 +50,7 @@ public class AdapterListArtikel extends
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HolderItem holderItem, int position) {
+    public void onBindViewHolder(@NonNull HolderItem holderItem, @SuppressLint("RecyclerView") int position) {
         //memasukan data ke objek yg sudah dikenalkan di HolderItem
         final Artikels artikels = listArtikels.get(position);
 
@@ -56,7 +62,18 @@ public class AdapterListArtikel extends
         holderItem.cv_itemListArtikelHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Fragment detailFragment = new DetailArtikel();
+                Bundle bundle = new Bundle();
+                bundle.putString("id", listArtikels.get(position).getId());
+                bundle.putString("judul_artikel", listArtikels.get(position).getJudul_artikel());
+                bundle.putString("deskripsi", listArtikels.get(position).getDeskripsi());
+                bundle.putString("gambar", listArtikels.get(position).getGambar());
 
+                detailFragment.setArguments(bundle);
+                ((FragmentActivity)context).getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.nav_host_fragment_content_main, detailFragment).addToBackStack("fromDetailArtikel")
+                        .commit();
             }
         });
     }

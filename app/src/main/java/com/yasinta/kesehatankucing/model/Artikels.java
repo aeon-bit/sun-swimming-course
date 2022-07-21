@@ -6,6 +6,9 @@ public class Artikels {
     @SerializedName("response")
     private String response;
 
+    @SerializedName("id")
+    private String id;
+
     @SerializedName("token")
     private String token;
 
@@ -20,6 +23,14 @@ public class Artikels {
 
     @SerializedName("gambar")
     private String gambar;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getJudul_artikel() {
         return judul_artikel;
