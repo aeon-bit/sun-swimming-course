@@ -112,12 +112,13 @@ public class LoginFragment extends Fragment {
         call.enqueue(new Callback<Logins>() {
             @Override
             public void onResponse(Call<Logins> call, Response<Logins> response) {
-                if (response.body().getResponse().equals("ok")){
+                Log.d("login", "onResponse: " + response.body().getUser().toString());
+                if (response.body().getMessage().equals("sukses")){
                     callToast("Login berhasil", 1);
-                    SessionManager.login(response.body().getUsers(),
+                    SessionManager.login(response.body().getUser(),
                             response.body().getToken());
 
-                    loginFormActivityListener.performLogin(response.body().getUsers().getEmail());
+                    loginFormActivityListener.performLogin(response.body().getUser().getEmail());
                 }
             }
 

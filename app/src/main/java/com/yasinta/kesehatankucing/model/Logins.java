@@ -3,22 +3,21 @@ package com.yasinta.kesehatankucing.model;
 import com.google.gson.annotations.SerializedName;
 
 public class Logins {
-    @SerializedName("response")
-    private String response;
+    @SerializedName("message")
+    private String message;
 
     @SerializedName("token")
     private String token;
 
-    @SerializedName("data")
-    private Users users;
+    @SerializedName("user")
+    private Users user;
 
-
-    public String getResponse() {
-        return response;
+    public String getMessage() {
+        return message;
     }
 
-    public void setResponse(String response) {
-        this.response = response;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getToken() {
@@ -29,12 +28,11 @@ public class Logins {
         this.token = token;
     }
 
-    public Users getUsers() {
-        return users;
+    public Users getUser() {
+        return user;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setUser(Users user) {
+        this.user = user;
     }
-
 }

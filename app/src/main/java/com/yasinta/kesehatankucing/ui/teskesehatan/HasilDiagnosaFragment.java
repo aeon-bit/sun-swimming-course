@@ -23,7 +23,11 @@ import com.yasinta.kesehatankucing.R;
 import com.yasinta.kesehatankucing.activity.MainActivity;
 import com.yasinta.kesehatankucing.adapter.AdapterListGejalaDetailDiagnosis;
 import com.yasinta.kesehatankucing.adapter.AdapterListHistoryPeriksa;
+import com.yasinta.kesehatankucing.adapter.AdapterListKesimpulanDetailDiagnosis;
+import com.yasinta.kesehatankucing.adapter.AdapterListSaranDetailDiagnosis;
+import com.yasinta.kesehatankucing.model.Diagnosas;
 import com.yasinta.kesehatankucing.model.Gejalas;
+import com.yasinta.kesehatankucing.model.HasilSarans;
 import com.yasinta.kesehatankucing.model.Histories;
 import com.yasinta.kesehatankucing.model.ResponseTesKesehatan;
 import com.yasinta.kesehatankucing.utils.SessionManager;
@@ -34,17 +38,32 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.xml.transform.ErrorListener;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 
 public class HasilDiagnosaFragment extends Fragment {
-    TextView tv_namaKucingHasilD, tv_namaPemilikHasilD,tv_jenisKucingHasilD,
+    TextView tv_namaKucingHasilD, tv_namaPemilikHasilD, tv_jenisKucingHasilD,
             tv_hasilDiagnosaDetail, tv_saranDetail;
 
+    //gejala
     RecyclerView rv_gejalaDetail;
     RecyclerView.Adapter rvAdapter;
     RecyclerView.LayoutManager rvLayoutManager;
     List<Gejalas> listGejalas;
+
+    //hasil
+    RecyclerView rv_hasilDetail;
+    RecyclerView.Adapter rvAdapterHasilDetail;
+    RecyclerView.LayoutManager rvLayoutManagerHasilDetail;
+    List<HasilSarans> listHasils;
+
+    //saran
+    RecyclerView rv_saranDetail;
+    RecyclerView.Adapter rvAdapterSaranDetail;
+    RecyclerView.LayoutManager rvLayoutManagerSaranDetail;
+    List<HasilSarans> listSarans;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -53,16 +72,32 @@ public class HasilDiagnosaFragment extends Fragment {
         tv_namaKucingHasilD = root.findViewById(R.id.tv_namaKucingHasilD);
         tv_jenisKucingHasilD = root.findViewById(R.id.tv_jenisKucingHasilD);
         tv_namaPemilikHasilD = root.findViewById(R.id.tv_namaPemilikHasilD);
-        tv_hasilDiagnosaDetail = root.findViewById(R.id.tv_hasilDiagnosaDetail);
-        tv_saranDetail = root.findViewById(R.id.tv_saranDetail);
 
-//        rv
+//        rv_gejala
         rv_gejalaDetail = root.findViewById(R.id.rv_gejalaDetail);
         listGejalas = new ArrayList<>();
         rvLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rv_gejalaDetail.setLayoutManager(rvLayoutManager);
         rvAdapter = new AdapterListGejalaDetailDiagnosis(listGejalas, getContext());
         rv_gejalaDetail.setAdapter(rvAdapter);
+
+
+//        ===================================
+        //rv_hasil
+        rv_hasilDetail = root.findViewById(R.id.rv_hasilDiagnosaDetail);
+        listHasils = new ArrayList<>();
+        rvLayoutManagerHasilDetail = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        rv_hasilDetail.setLayoutManager(rvLayoutManagerHasilDetail);
+        rvAdapterHasilDetail = new AdapterListKesimpulanDetailDiagnosis(listHasils, getContext());
+        rv_hasilDetail.setAdapter(rvAdapterHasilDetail);
+
+        //saran
+        rv_saranDetail = root.findViewById(R.id.rv_saranDiagnosaDetail);
+        listSarans = new ArrayList<>();
+        rvLayoutManagerSaranDetail = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        rv_saranDetail.setLayoutManager(rvLayoutManagerSaranDetail);
+        rvAdapterSaranDetail = new AdapterListSaranDetailDiagnosis(listSarans, getContext());
+        rv_saranDetail.setAdapter(rvAdapterSaranDetail);
 
         catchCalues();
 
@@ -82,6 +117,8 @@ public class HasilDiagnosaFragment extends Fragment {
     private void catchCalues() {
         String sId = getArguments().getString("id");
 
+        Log.d("catch", "catchCalues ID: " + sId);
+
         getDataById(sId);
 
     }
@@ -95,23 +132,44 @@ public class HasilDiagnosaFragment extends Fragment {
         call.enqueue(new Callback<ResponseTesKesehatan>() {
             @Override
             public void onResponse(Call<ResponseTesKesehatan> call, retrofit2.Response<ResponseTesKesehatan> response) {
-                Log.d("respon", "onResponse Diagnosis: " + response.body().toString());
+
+                if (response.body() != null) {
+                    Log.d("respon", "onResponse Diagnosis: " + response.body().toString());
+                } else {
+                    Log.d("respon", "onResponse Diagnosis: NULL");
+                }
 
                 tv_namaKucingHasilD.setText(response.body().getData().getUser().getNama_kucing());
                 tv_jenisKucingHasilD.setText(response.body().getData().getUser().getJenis_kucing());
                 tv_namaPemilikHasilD.setText(response.body().getData().getUser().getNama_pemilik());
 
-                tv_hasilDiagnosaDetail.setText(response.body().getData().getHasil_diagnosa());
-                tv_saranDetail.setText(response.body().getData().getSaran_pengobatan());
+//                tv_hasilDiagnosaDetail.setText(response.body().getData().get);
+//                tv_saranDetail.setText(response.body().getData().getSaran_pengobatan());
 
 //                listGejalas = response.body().getData().getGejala();
 //                Log.d("respons", "LISTGEJALAS: " + Arrays.toString(listGejalas.toArray()));
 //                rvAdapter.notifyDataSetChanged();
+
+                //gejala
                 ArrayList<Gejalas> arrayListGejalas = response.body().getData().getGejala();
-                for (int i = 0; i<arrayListGejalas.size(); i++){
+                for (int i = 0; i < arrayListGejalas.size(); i++) {
                     listGejalas.add(arrayListGejalas.get(i));
                 }
                 rvAdapter.notifyDataSetChanged();
+
+                //hasil
+                ArrayList<HasilSarans> arrayListHasils = response.body().getData().getHasil_diagnosa();
+                for (int i = 0; i < arrayListHasils.size(); i++) {
+                    listHasils.add(arrayListHasils.get(i));
+                }
+                rvAdapterHasilDetail.notifyDataSetChanged();
+
+                //saran
+                ArrayList<HasilSarans> arrayListSarans = response.body().getData().getSaran_pengobatan();
+                for (int i = 0; i < arrayListSarans.size(); i++) {
+                    listSarans.add(arrayListSarans.get(i));
+                }
+                rvAdapterSaranDetail.notifyDataSetChanged();
             }
 
             @Override

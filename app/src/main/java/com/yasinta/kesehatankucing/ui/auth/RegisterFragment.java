@@ -174,7 +174,7 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onResponse(Call<Registers> call, Response<Registers> response) {
 
-                if (response.body().getResponse().equals("ok")) {
+                if (response.body().getMessage().equals("register sukses")) {
 
                     Toast toast = Toast.makeText(getActivity(), "Pendaftaran Berhasil", Toast.LENGTH_LONG);
                     View view = toast.getView();
@@ -184,7 +184,7 @@ public class RegisterFragment extends Fragment {
                     toast.show();
 
                     ((MainActivity) getContext()).logoutPerform(); //restart actv
-                } else if (response.body().getResponse().equals("exist")) {
+                } else if (response.body().getMessage().equals("exist")) {
 
                     Toast toast = Toast.makeText(getActivity(), "Username Telah Terdaftar", Toast.LENGTH_LONG);
                     View view = toast.getView();
@@ -192,7 +192,7 @@ public class RegisterFragment extends Fragment {
                     TextView textView = view.findViewById(android.R.id.message);
                     textView.setTextColor(Color.WHITE);
                     toast.show();
-                } else if (response.body().getResponse().equals("error")) {
+                } else if (response.body().getMessage().equals("error")) {
                     Toast toast = Toast.makeText(getActivity(), "Pendaftaran Gagal", Toast.LENGTH_LONG);
                     View view = toast.getView();
                     view.setBackgroundResource(R.drawable.xmlbg_toast_warning);

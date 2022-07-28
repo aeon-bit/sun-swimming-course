@@ -17,22 +17,28 @@ public class Diagnosas {
     @SerializedName("tanggal")
     private String tanggal;
 
-    @SerializedName("hasil_diagnosa")
-    private String hasil_diagnosa;
+//    @SerializedName("hasil_diagnosa")
+//    private String hasil_diagnosa;
 
-    @SerializedName("saran_pengobatan")
-    private String saran_pengobatan;
+//    @SerializedName("saran_pengobatan")
+//    private String saran_pengobatan;
 
     @SerializedName("gejala")
     private ArrayList<Gejalas> gejala;
 
+    @SerializedName("hasil_diagnosa")
+    private ArrayList<HasilSarans> hasil_diagnosa;
 
-    public ArrayList<Gejalas> getGejala() {
-        return gejala;
+    @SerializedName("saran_pengobatan")
+    private ArrayList<HasilSarans> saran_pengobatan;
+
+
+    public String getId() {
+        return id;
     }
 
-    public void setGejala(ArrayList<Gejalas> gejala) {
-        this.gejala = gejala;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Users getUser() {
@@ -41,14 +47,6 @@ public class Diagnosas {
 
     public void setUser(Users user) {
         this.user = user;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getData_jadwal_periksa_id() {
@@ -67,19 +65,27 @@ public class Diagnosas {
         this.tanggal = tanggal;
     }
 
-    public String getHasil_diagnosa() {
+    public ArrayList<Gejalas> getGejala() {
+        return gejala;
+    }
+
+    public void setGejala(ArrayList<Gejalas> gejala) {
+        this.gejala = gejala;
+    }
+
+    public ArrayList<HasilSarans> getHasil_diagnosa() {
         return hasil_diagnosa;
     }
 
-    public void setHasil_diagnosa(String hasil_diagnosa) {
+    public void setHasil_diagnosa(ArrayList<HasilSarans> hasil_diagnosa) {
         this.hasil_diagnosa = hasil_diagnosa;
     }
 
-    public String getSaran_pengobatan() {
+    public ArrayList<HasilSarans> getSaran_pengobatan() {
         return saran_pengobatan;
     }
 
-    public void setSaran_pengobatan(String saran_pengobatan) {
+    public void setSaran_pengobatan(ArrayList<HasilSarans> saran_pengobatan) {
         this.saran_pengobatan = saran_pengobatan;
     }
 }

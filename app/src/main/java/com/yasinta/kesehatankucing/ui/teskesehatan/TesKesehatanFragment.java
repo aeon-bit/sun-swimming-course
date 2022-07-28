@@ -96,7 +96,7 @@ public class TesKesehatanFragment extends Fragment {
 //                } else {
 //                    performDiagnosa(sNamaKucing, sJenis, sNamaPemilik);
 //                }
-                performDiagnosa("namakucing", "jenisKucing", "namaPemilik");
+                performDiagnosa();
             }
         });
 
@@ -201,7 +201,7 @@ public class TesKesehatanFragment extends Fragment {
 
     }
 
-    private void performDiagnosa(String sNamaKucing, String sJenis, String sNamaPemilik) {
+    private void performDiagnosa() {
         Call<ResponseTesKesehatan> call = MainActivity.apiInterface.performTesKesehatan(
                 "Bearer " + SessionManager.getToken(), checkedGejala, selectedIdJadwalPeriksa
         );

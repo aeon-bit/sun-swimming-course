@@ -4,19 +4,18 @@ import com.google.gson.annotations.SerializedName;
 
 public class Registers {
 
-    @SerializedName("response")
-    private String response;
+    @SerializedName("message")
+    private String message;
 
     @SerializedName("data")
     private Users users;
 
-
-    public String getResponse() {
-        return response;
+    public String getMessage() {
+        return message;
     }
 
-    public void setResponse(String response) {
-        this.response = response;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public Users getUsers() {
