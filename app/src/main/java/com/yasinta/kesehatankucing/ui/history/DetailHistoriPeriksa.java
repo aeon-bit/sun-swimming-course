@@ -26,7 +26,10 @@ import com.yasinta.kesehatankucing.activity.MainActivity;
 import com.yasinta.kesehatankucing.adapter.AdapterListDetailHistori;
 import com.yasinta.kesehatankucing.adapter.AdapterListGejalaDetailDiagnosis;
 import com.yasinta.kesehatankucing.adapter.AdapterListHistoryPeriksa;
+import com.yasinta.kesehatankucing.adapter.AdapterListKesimpulanDetailDiagnosis;
+import com.yasinta.kesehatankucing.adapter.AdapterListSaranDetailDiagnosis;
 import com.yasinta.kesehatankucing.model.Gejalas;
+import com.yasinta.kesehatankucing.model.HasilSarans;
 import com.yasinta.kesehatankucing.model.Histories;
 import com.yasinta.kesehatankucing.model.ResponseTesKesehatan;
 import com.yasinta.kesehatankucing.model.Users;
@@ -55,6 +58,19 @@ public class DetailHistoriPeriksa extends Fragment {
     List<Histories> listHistori;
     List<Gejalas> listGejalas;
 
+
+    //hasil
+    RecyclerView rv_hasilDetail;
+    RecyclerView.Adapter rvAdapterHasilDetail;
+    RecyclerView.LayoutManager rvLayoutManagerHasilDetail;
+    List<HasilSarans> listHasils;
+
+    //saran
+    RecyclerView rv_saranDetail;
+    RecyclerView.Adapter rvAdapterSaranDetail;
+    RecyclerView.LayoutManager rvLayoutManagerSaranDetail;
+    List<HasilSarans> listSarans;
+
     TextView tv_namaKucingDetailHistory, tv_jenisKucingDetailHistory,
     tv_namaPemilikDetailHistory, tv_tglPeriksaDetailHistory,
     tv_hasilDiagnosaDetailHistory, tv_saranDetailHistory;
@@ -67,8 +83,8 @@ public class DetailHistoriPeriksa extends Fragment {
         tv_jenisKucingDetailHistory = root.findViewById(R.id.tv_jenisKucingDetailHistory);
         tv_namaPemilikDetailHistory = root.findViewById(R.id.tv_namaPemilikDetailHistory);
         tv_tglPeriksaDetailHistory = root.findViewById(R.id.tv_tglPeriksaDetailHistory);
-        tv_hasilDiagnosaDetailHistory = root.findViewById(R.id.tv_hasilDiagnosaDetailHistory);
-        tv_saranDetailHistory = root.findViewById(R.id.tv_saranDetailHistory);
+//        tv_hasilDiagnosaDetailHistory = root.findViewById(R.id.tv_hasilDiagnosaDetailHistory);
+//        tv_saranDetailHistory = root.findViewById(R.id.tv_saranDetailHistory);
 
 //        rv_gejalaDetail = root.findViewById(R.id.rv_gejalaDetail);
 //        requestQueue = Volley.newRequestQueue(getContext());
@@ -84,6 +100,24 @@ public class DetailHistoriPeriksa extends Fragment {
         rv_gejalaDetail.setLayoutManager(rvLayoutManager);
         rvAdapter = new AdapterListGejalaDetailDiagnosis(listGejalas, getContext());
         rv_gejalaDetail.setAdapter(rvAdapter);
+
+
+        //        ===================================
+        //rv_hasil
+        rv_hasilDetail = root.findViewById(R.id.rv_hasilDiagnosaDetail);
+        listHasils = new ArrayList<>();
+        rvLayoutManagerHasilDetail = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        rv_hasilDetail.setLayoutManager(rvLayoutManagerHasilDetail);
+        rvAdapterHasilDetail = new AdapterListKesimpulanDetailDiagnosis(listHasils, getContext());
+        rv_hasilDetail.setAdapter(rvAdapterHasilDetail);
+
+        //saran
+        rv_saranDetail = root.findViewById(R.id.rv_saranDiagnosaDetail);
+        listSarans = new ArrayList<>();
+        rvLayoutManagerSaranDetail = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        rv_saranDetail.setLayoutManager(rvLayoutManagerSaranDetail);
+        rvAdapterSaranDetail = new AdapterListSaranDetailDiagnosis(listSarans, getContext());
+        rv_saranDetail.setAdapter(rvAdapterSaranDetail);
 
         catchValues(root);
 
@@ -117,8 +151,8 @@ public class DetailHistoriPeriksa extends Fragment {
                 tv_jenisKucingDetailHistory.setText(response.body().getData().getUser().getJenis_kucing());
                 tv_namaPemilikDetailHistory.setText(response.body().getData().getUser().getNama_pemilik());
                 tv_tglPeriksaDetailHistory.setText(response.body().getData().getTanggal());
-                tv_hasilDiagnosaDetailHistory.setText(response.body().getData().getHasil_diagnosa() + "\n ");
-                tv_saranDetailHistory.setText(response.body().getData().getSaran_pengobatan() + "\n ");
+//                tv_hasilDiagnosaDetailHistory.setText(response.body().getData().getHasil_diagnosa() + "\n ");
+//                tv_saranDetailHistory.setText(response.body().getData().getSaran_pengobatan() + "\n ");
 
 //                tv_namaKucingHasilD.setText(response.body().getData().getUser().getNama_kucing());
 //                tv_jenisKucingHasilD.setText(response.body().getData().getUser().getJenis_kucing());
@@ -135,6 +169,20 @@ public class DetailHistoriPeriksa extends Fragment {
                     listGejalas.add(arrayListGejalas.get(i));
                 }
                 rvAdapter.notifyDataSetChanged();
+
+                //hasil
+                ArrayList<HasilSarans> arrayListHasils = response.body().getData().getHasil_diagnosa();
+                for (int i = 0; i < arrayListHasils.size(); i++) {
+                    listHasils.add(arrayListHasils.get(i));
+                }
+                rvAdapterHasilDetail.notifyDataSetChanged();
+
+                //saran
+                ArrayList<HasilSarans> arrayListSarans = response.body().getData().getSaran_pengobatan();
+                for (int i = 0; i < arrayListSarans.size(); i++) {
+                    listSarans.add(arrayListSarans.get(i));
+                }
+                rvAdapterSaranDetail.notifyDataSetChanged();
             }
 
             @Override

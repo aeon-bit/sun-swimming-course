@@ -236,8 +236,8 @@ public class TesKesehatanFragment extends Fragment {
             @Override
             public void onFailure(Call<ResponseTesKesehatan> call, Throwable t) {
 
-                Log.d("daftar", "onFaillure: " + t.toString());
-                Toast toast = Toast.makeText(getActivity(), "Terjadi Kesalahan", Toast.LENGTH_LONG);
+                Log.d("daftar", "onFaillure: " + t);
+                Toast toast = Toast.makeText(getActivity(), "Jadwal sudah terisi", Toast.LENGTH_LONG);
                 View view = toast.getView();
                 view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
                 TextView textView = view.findViewById(android.R.id.message);

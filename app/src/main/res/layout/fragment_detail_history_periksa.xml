@@ -207,8 +207,8 @@
                     tools:ignore="RtlCompat" />
             </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:id="@+id/tv_hasilDiagnosaDetailHistory"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_hasilDiagnosaDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
@@ -226,7 +226,7 @@
                 android:layout_marginRight="180dp"
                 app:cardBackgroundColor="@color/secondary"
                 app:cardCornerRadius="16dp"
-                app:layout_constraintTop_toBottomOf="@id/tv_hasilDiagnosaDetailHistory">
+                app:layout_constraintTop_toBottomOf="@id/rv_hasilDiagnosaDetail">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -242,8 +242,8 @@
             </androidx.cardview.widget.CardView>
 
 
-            <TextView
-                android:id="@+id/tv_saranDetailHistory"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_saranDiagnosaDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
@@ -262,7 +262,7 @@
                 android:background="@drawable/xmlbg_warning_diagnosa"
                 android:padding="12dp"
                 android:weightSum="100"
-                app:layout_constraintTop_toBottomOf="@id/tv_saranDetailHistory">
+                app:layout_constraintTop_toBottomOf="@id/rv_saranDiagnosaDetail">
 
                 <ImageView
                     android:layout_width="0dp"

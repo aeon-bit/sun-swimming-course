@@ -27,4 +27,10 @@
     <string name="warning_diagnosa">Hasil tes kesehatan kucing tidak 100% akurat.\n
     Maka diperlukan pemeriksaan fisik serta penunjang lebih lanjut oleh dokter hewan.</string>
 
+    <string name="t_1">Buat jadwal dengan dokter di menu "Booking Jadwal Periksa"</string>
+    <string name="t_2">Pilih menu "Tes Kesehatan Kucing" dan masukkan data gejala yang diderita"</string>
+    <string name="t_3">Tekan tombol "Diagnosa" untuk mendapatkan hasil data diagnosa sementara.</string>
+    <string name="t_4">Tekan tombol "Chat Dokter" untuk melakukan konsultasi lebih lanjut.</string>
+    <string name="t_5">"Chat Dokter juga dapat langsung di akses melalui menu utama".</string>
+
 </resources>
