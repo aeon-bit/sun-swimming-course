@@ -24,6 +24,8 @@ import com.yasinta.kesehatankucing.R;
 import com.yasinta.kesehatankucing.activity.MainActivity;
 import com.yasinta.kesehatankucing.model.Logins;
 import com.yasinta.kesehatankucing.model.Users;
+import com.yasinta.kesehatankucing.utils.APIError;
+import com.yasinta.kesehatankucing.utils.ErrorUtils;
 import com.yasinta.kesehatankucing.utils.SessionManager;
 
 import retrofit2.Call;
@@ -112,20 +114,36 @@ public class LoginFragment extends Fragment {
         call.enqueue(new Callback<Logins>() {
             @Override
             public void onResponse(Call<Logins> call, Response<Logins> response) {
-                Log.d("login", "onResponse: " + response.body().getUser().toString());
-                if (response.body().getMessage().equals("sukses")){
-                    callToast("Login berhasil", 1);
-                    SessionManager.login(response.body().getUser(),
-                            response.body().getToken());
+//                Log.d("login", "onResponse: " + response.body().getUser().toString());
+//                if (response.body().getMessage().equals("sukses")){
+//                    callToast("Login berhasil", 1);
+//                    SessionManager.login(response.body().getUser(),
+//                            response.body().getToken());
+//
+//                    loginFormActivityListener.performLogin(response.body().getUser().getEmail());
+//                }
 
-                    loginFormActivityListener.performLogin(response.body().getUser().getEmail());
+                if (response.isSuccessful()){
+                    if (response.body().getMessage().equals("sukses")){
+                        callToast("Login berhasil", 1);
+                        SessionManager.login(response.body().getUser(),
+                                response.body().getToken());
+
+                        loginFormActivityListener.performLogin(response.body().getUser().getEmail());
+                    }
+                } else {
+                    APIError error = ErrorUtils.parseError(response);
+
+                    callToast("Server Error", 0);
+
+                    Log.d("error message", error.message());
                 }
             }
 
             @Override
             public void onFailure(Call<Logins> call, Throwable t) {
 
-                callToast("Terjadi Kesalahan Koneksi", 0);
+                callToast("Terjadi Kesalahan Koneksi: " + t.getMessage(), 0);
 
                 pb_loading.setVisibility(View.GONE);
 

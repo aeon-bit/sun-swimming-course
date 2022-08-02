@@ -3,42 +3,28 @@ package com.yasinta.kesehatankucing.utils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 
+import okhttp3.ResponseBody;
+import retrofit2.Converter;
 import retrofit2.Response;
 
 public class ErrorUtils {
-//    public static APIError parseError(final Response<?> response) {
-//        JSONObject bodyObj = null;
-//        boolean success;
-//        ArrayList messages = new ArrayList<>();
-//
-//        try {
-//            String errorBody = response.errorBody().string();
-//
-//            if (errorBody != null) {
-//                bodyObj = new JSONObject(errorBody);
-//
-//                success = bodyObj.getBoolean("success");
-//                JSONArray errors = bodyObj.getJSONArray("errors");
-//
-//                for (int i = 0; i < errors.length(); i++) {
-//                    messages.add(errors.get(i));
-//                }
-//            } else {
-//                success = false;
-//                messages.add("Unable to parse error");
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//
-//            success = false;
-//            messages.add("Unable to parse error");
-//        }
-//
-//        return new APIError.Builder()
-//                .success(false)
-//                .messages(messages)
-//                .build();
-//    }
+    public static APIError parseError(Response<?> response) {
+        Converter<ResponseBody, APIError> converter =
+                ApiClient.getApiClient()
+                        .responseBodyConverter(APIError.class, new Annotation[0]);
+
+        APIError error;
+
+        try {
+            error = converter.convert(response.errorBody());
+        } catch (IOException e) {
+            return new APIError();
+        }
+
+        return error;
+    }
 }

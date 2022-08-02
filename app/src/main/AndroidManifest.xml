@@ -12,6 +12,7 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/icon_256"
         android:supportsRtl="true"
+        android:allowClearUserData="true"
         android:theme="@style/Theme.MPASI.NoActionBar">
         <activity
             android:name=".activity.DetailJenisPenyakit"

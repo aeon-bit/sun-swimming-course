@@ -2,6 +2,8 @@ package com.yasinta.kesehatankucing.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class Logins {
     @SerializedName("message")
     private String message;
@@ -11,6 +13,9 @@ public class Logins {
 
     @SerializedName("user")
     private Users user;
+
+    @SerializedName("errors")
+    private ArrayList errors;
 
     public String getMessage() {
         return message;
@@ -34,5 +39,13 @@ public class Logins {
 
     public void setUser(Users user) {
         this.user = user;
+    }
+
+    public ArrayList getErrors() {
+        return errors;
+    }
+
+    public void setErrors(ArrayList errors) {
+        this.errors = errors;
     }
 }

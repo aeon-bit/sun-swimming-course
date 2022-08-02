@@ -90,9 +90,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tv_namaPenggunaHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
-                        new ProfileFragment()).commit();
-                drawer.closeDrawer(GravityCompat.START);
+                if (SessionManager.isLogin()) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
+                            new ProfileFragment()).commit();
+                    drawer.closeDrawer(GravityCompat.START);
+                } else {
+                    callWarningToast("Silakan login dahulu!");
+                }
             }
         });
         iv_profilePicHeader.setOnClickListener(new View.OnClickListener() {
@@ -253,16 +257,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 navigationView.setCheckedItem(R.id.nav_auth);
                 getSupportActionBar().setTitle("Login");
             } else {
-                Toast toast = Toast.makeText(this, "Silakan login dahulu!", Toast.LENGTH_SHORT);
-                View view = toast.getView();
-                view.setPadding(42, 16, 42, 16);
-                view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
-                TextView textView = view.findViewById(android.R.id.message);
-                textView.setTextColor(Color.WHITE);
-                toast.show();
+                callWarningToast("Silakan login dahulu!");
             }
         }
         return false;
+    }
+
+    private void callWarningToast(String s){
+        Toast toast = Toast.makeText(this, s, Toast.LENGTH_SHORT);
+        View view = toast.getView();
+        view.setPadding(42, 16, 42, 16);
+        view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
+        TextView textView = view.findViewById(android.R.id.message);
+        textView.setTextColor(Color.WHITE);
+        toast.show();
     }
 
     public void SwitchFrag(int frag) {
