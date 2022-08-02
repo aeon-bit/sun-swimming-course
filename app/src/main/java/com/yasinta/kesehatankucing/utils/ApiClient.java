@@ -7,7 +7,6 @@ public class ApiClient {
 
 //    public static final String BASE_URL = "http://192.168.8.102:8000/";
 //    public static final String BASE_URL = "http://192.168.0.200:8000/";
-//    public static final String BASE_URL = "http://192.168.43.206:8000/";
 //    public static final String BASE_URL = "http://192.168.57.101:8000/";
     public static final String BASE_URL = "https://admin-page-diagnosis-penyakit-kucing.my.id/";
 
