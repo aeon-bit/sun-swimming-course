@@ -256,6 +256,7 @@ public class TesKesehatanFragment extends Fragment {
             CheckBox cb = new CheckBox(getContext());
             cb.setButtonTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondary)));
             cb.setText(listGejalas.get(i).getNama_gejala());
+            cb.setTextColor(Color.parseColor("#034743"));
             cb.setId(i);
             cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override

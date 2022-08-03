@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,9 @@ import com.yasinta.kesehatankucing.R;
 import com.yasinta.kesehatankucing.activity.MainActivity;
 import com.yasinta.kesehatankucing.model.Registers;
 import com.yasinta.kesehatankucing.model.Users;
+import com.yasinta.kesehatankucing.utils.APIError;
+import com.yasinta.kesehatankucing.utils.ErrorUtils;
+import com.yasinta.kesehatankucing.utils.SessionManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,6 +43,8 @@ public class RegisterFragment extends Fragment {
     private Button btn_registerForm;
     private TextView tvBtn_loginNow;
     private EditText rb_errorMsg;
+
+    private ProgressBar pb_loading;
 
 
     public RegisterFragment() {
@@ -61,6 +67,9 @@ public class RegisterFragment extends Fragment {
         et_usernameRegisterForm = view.findViewById(R.id.et_usernameRegisterForm);
         et_passwordRegisterForm = view.findViewById(R.id.et_passwordRegisterForm);
         et_cPasswordRegisterForm = view.findViewById(R.id.et_cPasswordRegisterForm);
+
+        pb_loading = view.findViewById(R.id.pb_loading);
+        pb_loading.setVisibility(View.INVISIBLE);
 
         TextView tv_btnLoginNow = view.findViewById(R.id.tv_btnLoginNow);
 
@@ -123,7 +132,7 @@ public class RegisterFragment extends Fragment {
                     et_passwordRegisterForm.setError("Minimal 6 karakter");
                 } else if (!sCPassword.equals(sPassword)) {
                     et_cPasswordRegisterForm.setError("password tidak sesuai");
-                }else if (!isValidEmail(sEmail)) {
+                } else if (!isValidEmail(sEmail)) {
                     et_emailRegisterForm.setError("Format Email salah");
                 } else {
                     performRegistration(sNama, sAlamat, sNoHp, sNamaKucing, sJenis, sUsername, sEmail, sPassword, sCPassword);
@@ -134,6 +143,7 @@ public class RegisterFragment extends Fragment {
 //                    Log.d("daftar", sPassword + "\n");
 //                    Log.d("daftar", sCPassword + "\n");
 //                    Log.d("daftar", sNoHp + "\n");
+                    pb_loading.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -169,36 +179,34 @@ public class RegisterFragment extends Fragment {
 //                "123",
 //                "123"
                 sNama, sAlamat, sNoHp, sNamaKucing, sJenis, sUsername, sEmail, sPassword, sCPassword
-                );
+        );
         call.enqueue(new Callback<Registers>() {
             @Override
             public void onResponse(Call<Registers> call, Response<Registers> response) {
 
-                if (response.body().getMessage().equals("register sukses")) {
+//                if (response.body().getMessage().equals("register sukses")) {
+//
+//                    Toast toast = Toast.makeText(getActivity(), "Pendaftaran Berhasil", Toast.LENGTH_LONG);
+//                    View view = toast.getView();
+//                    view.setBackgroundResource(R.drawable.xmlbg_toast_success);
+//                    TextView textView = view.findViewById(android.R.id.message);
+//                    textView.setTextColor(Color.WHITE);
+//                    toast.show();
+//
+//                    ((MainActivity) getContext()).logoutPerform(); //restart actv
+//                }
+                if (response.isSuccessful()) {
+                    if (response.body().getMessage().equals("register sukses")) {
+                        callToast("Pendaftaran berhasil", 1);
 
-                    Toast toast = Toast.makeText(getActivity(), "Pendaftaran Berhasil", Toast.LENGTH_LONG);
-                    View view = toast.getView();
-                    view.setBackgroundResource(R.drawable.xmlbg_toast_success);
-                    TextView textView = view.findViewById(android.R.id.message);
-                    textView.setTextColor(Color.WHITE);
-                    toast.show();
+                        ((MainActivity) getContext()).logoutPerform(); //restart actv
+                    }
+                } else {
+                    APIError error = ErrorUtils.parseError(response);
 
-                    ((MainActivity) getContext()).logoutPerform(); //restart actv
-                } else if (response.body().getMessage().equals("exist")) {
+                    callToast("Server Error", 0);
 
-                    Toast toast = Toast.makeText(getActivity(), "Username Telah Terdaftar", Toast.LENGTH_LONG);
-                    View view = toast.getView();
-                    view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
-                    TextView textView = view.findViewById(android.R.id.message);
-                    textView.setTextColor(Color.WHITE);
-                    toast.show();
-                } else if (response.body().getMessage().equals("error")) {
-                    Toast toast = Toast.makeText(getActivity(), "Pendaftaran Gagal", Toast.LENGTH_LONG);
-                    View view = toast.getView();
-                    view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
-                    TextView textView = view.findViewById(android.R.id.message);
-                    textView.setTextColor(Color.WHITE);
-                    toast.show();
+                    Log.d("error message", error.message());
                 }
             }
 
@@ -214,6 +222,22 @@ public class RegisterFragment extends Fragment {
                 toast.show();
             }
         });
+
+        pb_loading.setVisibility(View.INVISIBLE);
+    }
+
+    private void callToast(String msg, int i) {
+        Toast toast = Toast.makeText(getContext(), msg, Toast.LENGTH_LONG);
+        View view = toast.getView();
+        view.setPadding(42, 12, 42, 12);
+        if (i == 1) {
+            view.setBackgroundResource(R.drawable.xmlbg_toast_success);
+        } else {
+            view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
+        }
+        TextView textView = view.findViewById(android.R.id.message);
+        textView.setTextColor(Color.WHITE);
+        toast.show();
     }
 
 //        et_nameRegisterForm.setText("");
