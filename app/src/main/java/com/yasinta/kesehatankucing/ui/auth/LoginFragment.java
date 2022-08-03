@@ -143,7 +143,8 @@ public class LoginFragment extends Fragment {
             @Override
             public void onFailure(Call<Logins> call, Throwable t) {
 
-                callToast("Terjadi Kesalahan Koneksi: " + t.getMessage(), 0);
+//                callToast("Terjadi Kesalahan Koneksi: " + t.getMessage(), 0);
+                callToast("Terjadi Kesalahan Koneksi", 0);
 
                 pb_loading.setVisibility(View.GONE);
 
