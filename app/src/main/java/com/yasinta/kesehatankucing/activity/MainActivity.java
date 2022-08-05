@@ -265,11 +265,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void callWarningToast(String s){
         Toast toast = Toast.makeText(this, s, Toast.LENGTH_SHORT);
-        View view = toast.getView();
-        view.setPadding(42, 16, 42, 16);
-        view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
-        TextView textView = view.findViewById(android.R.id.message);
-        textView.setTextColor(Color.WHITE);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+            View view = toast.getView();
+            view.setPadding(42, 16, 42, 16);
+            view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
+            TextView textView = view.findViewById(android.R.id.message);
+            textView.setTextColor(Color.WHITE);
+        }
         toast.show();
     }
 

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -108,10 +109,12 @@ public class BookingJadwalFragment extends Fragment {
 
                 if (tv_dateSelected.getText().toString().isEmpty()) {
                     Toast toast = Toast.makeText(getActivity(), "Masukkan tanggal booking", Toast.LENGTH_LONG);
-                    View view = toast.getView();
-                    view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
-                    TextView textView = view.findViewById(android.R.id.message);
-                    textView.setTextColor(Color.WHITE);
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+                        View view = toast.getView();
+                        view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
+                        TextView textView = view.findViewById(android.R.id.message);
+                        textView.setTextColor(Color.WHITE);
+                    }
                     toast.show();
                 } else {
                     performBuatJadwal();
@@ -157,10 +160,12 @@ public class BookingJadwalFragment extends Fragment {
                     if (response.body().getStatus().equals("success")) {
 
                         Toast toast = Toast.makeText(getActivity(), "Booking Jadwal Berhasil", Toast.LENGTH_LONG);
-                        View view = toast.getView();
-                        view.setBackgroundResource(R.drawable.xmlbg_toast_success);
-                        TextView textView = view.findViewById(android.R.id.message);
-                        textView.setTextColor(Color.WHITE);
+                        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+                            View view = toast.getView();
+                            view.setBackgroundResource(R.drawable.xmlbg_toast_success);
+                            TextView textView = view.findViewById(android.R.id.message);
+                            textView.setTextColor(Color.WHITE);
+                        }
                         toast.show();
 
                     getActivity().getSupportFragmentManager().beginTransaction()
@@ -176,10 +181,12 @@ public class BookingJadwalFragment extends Fragment {
 
                 Log.d("daftar", "onFaillure: " + t.toString());
                 Toast toast = Toast.makeText(getActivity(), "Terjadi Kesalahan", Toast.LENGTH_LONG);
-                View view = toast.getView();
-                view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
-                TextView textView = view.findViewById(android.R.id.message);
-                textView.setTextColor(Color.WHITE);
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+                    View view = toast.getView();
+                    view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
+                    TextView textView = view.findViewById(android.R.id.message);
+                    textView.setTextColor(Color.WHITE);
+                }
                 toast.show();
             }
         });

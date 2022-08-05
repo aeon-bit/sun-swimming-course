@@ -2,6 +2,7 @@ package com.yasinta.kesehatankucing.ui.auth;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,11 +47,13 @@ public class ProfileFragment extends Fragment {
                 SessionManager.logout();
 
                 Toast toast = Toast.makeText(getActivity(), "Logout Berhasil", Toast.LENGTH_SHORT);
-                View view = toast.getView();
-                view.setPadding(42, 16, 42, 16);
-                view.setBackgroundResource(R.drawable.xmlbg_toast_success);
-                TextView textView = view.findViewById(android.R.id.message);
-                textView.setTextColor(Color.WHITE);
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+                    View view = toast.getView();
+                    view.setPadding(42, 16, 42, 16);
+                    view.setBackgroundResource(R.drawable.xmlbg_toast_success);
+                    TextView textView = view.findViewById(android.R.id.message);
+                    textView.setTextColor(Color.WHITE);
+                }
                 toast.show();
 
                 Intent intent = new Intent(getContext(), MainActivity.class);

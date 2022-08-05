@@ -2,6 +2,7 @@ package com.yasinta.kesehatankucing.ui.teskesehatan;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -215,10 +216,12 @@ public class TesKesehatanFragment extends Fragment {
                 if (response.body().getStatus().equals("success")) {
 
                     Toast toast = Toast.makeText(getActivity(), "Upload Diagnosa Berhasil", Toast.LENGTH_LONG);
-                    View view = toast.getView();
-                    view.setBackgroundResource(R.drawable.xmlbg_toast_success);
-                    TextView textView = view.findViewById(android.R.id.message);
-                    textView.setTextColor(Color.WHITE);
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+                        View view = toast.getView();
+                        view.setBackgroundResource(R.drawable.xmlbg_toast_success);
+                        TextView textView = view.findViewById(android.R.id.message);
+                        textView.setTextColor(Color.WHITE);
+                    }
                     toast.show();
 
 //                    ((MainActivity) getContext()).logoutPerform(); //restart actv
@@ -238,11 +241,13 @@ public class TesKesehatanFragment extends Fragment {
 
                 Log.d("daftar", "onFaillure: " + t);
                 Toast toast = Toast.makeText(getActivity(), "Jadwal sudah terisi", Toast.LENGTH_LONG);
-                View view = toast.getView();
-                view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
-                TextView textView = view.findViewById(android.R.id.message);
-                textView.setTextColor(Color.WHITE);
-                toast.show();
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+                    View view = toast.getView();
+                    view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
+                    TextView textView = view.findViewById(android.R.id.message);
+                    textView.setTextColor(Color.WHITE);
+                    toast.show();
+                }
             }
         });
 

@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -43,6 +44,8 @@ public class HistoryFragment extends Fragment {
     RequestQueue requestQueue;
     List<Histories> listHistori;
 
+    TextView tv_noData;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_history, container, false);
@@ -54,6 +57,9 @@ public class HistoryFragment extends Fragment {
         rv_historiPeriksa.setLayoutManager(rvLayoutManager);
         rvAdapter = new AdapterListHistoryPeriksa(listHistori, getContext());
         rv_historiPeriksa.setAdapter(rvAdapter);
+
+        tv_noData = root.findViewById(R.id.tv_noData);
+        tv_noData.setVisibility(View.INVISIBLE);
 
         requestAllHistory();
         return root;
@@ -69,6 +75,10 @@ public class HistoryFragment extends Fragment {
                         Log.d("respon", "Data History: " + response.toString());
                         try {
                             JSONArray jsonArray = response.getJSONArray("data");
+
+                            if (jsonArray.length() < 1){
+                                tv_noData.setVisibility(View.VISIBLE);
+                            }
 
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject histories = jsonArray.getJSONObject(i);

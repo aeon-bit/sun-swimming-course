@@ -3,6 +3,7 @@ package com.yasinta.kesehatankucing.ui.teskesehatan;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -177,10 +178,12 @@ public class HasilDiagnosaFragment extends Fragment {
 
                 Log.d("daftar", "onFaillure: " + t.toString());
                 Toast toast = Toast.makeText(getActivity(), "Terjadi Kesalahan", Toast.LENGTH_LONG);
-                View view = toast.getView();
-                view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
-                TextView textView = view.findViewById(android.R.id.message);
-                textView.setTextColor(Color.WHITE);
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+                    View view = toast.getView();
+                    view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
+                    TextView textView = view.findViewById(android.R.id.message);
+                    textView.setTextColor(Color.WHITE);
+                }
                 toast.show();
             }
         });

@@ -4,6 +4,7 @@ package com.yasinta.kesehatankucing.ui.auth;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -169,15 +170,17 @@ public class LoginFragment extends Fragment {
 
     private void callToast(String msg, int i) {
         Toast toast = Toast.makeText(getContext(), msg, Toast.LENGTH_LONG);
-        View view = toast.getView();
-        view.setPadding(42, 12, 42, 12);
-        if (i == 1) {
-            view.setBackgroundResource(R.drawable.xmlbg_toast_success);
-        } else {
-            view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R){
+            View view = toast.getView();
+            view.setPadding(42, 12, 42, 12);
+            if (i == 1) {
+                view.setBackgroundResource(R.drawable.xmlbg_toast_success);
+            } else {
+                view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
+            }
+            TextView textView = view.findViewById(android.R.id.message);
+            textView.setTextColor(Color.WHITE);
         }
-        TextView textView = view.findViewById(android.R.id.message);
-        textView.setTextColor(Color.WHITE);
         toast.show();
     }
 
