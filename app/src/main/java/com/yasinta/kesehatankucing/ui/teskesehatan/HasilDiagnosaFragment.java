@@ -31,6 +31,7 @@ import com.yasinta.kesehatankucing.model.Gejalas;
 import com.yasinta.kesehatankucing.model.HasilSarans;
 import com.yasinta.kesehatankucing.model.Histories;
 import com.yasinta.kesehatankucing.model.ResponseTesKesehatan;
+import com.yasinta.kesehatankucing.ui.bookingjadwal.BookingJadwalFragment;
 import com.yasinta.kesehatankucing.utils.SessionManager;
 
 import org.w3c.dom.Text;
@@ -110,6 +111,18 @@ public class HasilDiagnosaFragment extends Fragment {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(url));
                 startActivity(intent);
+            }
+        });
+
+        CardView cv_btnPerformBooking = root.findViewById(R.id.cv_btnPerformBooking);
+        cv_btnPerformBooking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment booking = new BookingJadwalFragment();
+
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.nav_host_fragment_content_main, booking).commit();
+                ((MainActivity)getActivity()).setActionBarTitle(R.string.menu_booking_jadwal);
             }
         });
         return root;

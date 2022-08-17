@@ -275,6 +275,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toast.show();
     }
 
+    public void setActionBarTitle(int title){
+        getSupportActionBar().setTitle(title);
+    }
+
     public void SwitchFrag(int frag) {
         switch (frag) {
             case 0:

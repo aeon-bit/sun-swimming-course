@@ -64,7 +64,7 @@ public class RegisterFragment extends Fragment {
         et_noTelpRegisterForm = view.findViewById(R.id.et_noHpRegisterForm);
 //        et_namaKucingRegisterForm = view.findViewById(R.id.et_namaKucingRegisterForm);
 //        et_jenisKucingRegisterForm = view.findViewById(R.id.et_jenisKucingRegisterForm);
-        et_emailRegisterForm = view.findViewById(R.id.et_emailRegisterForm);
+//        et_emailRegisterForm = view.findViewById(R.id.et_emailRegisterForm);
         et_usernameRegisterForm = view.findViewById(R.id.et_usernameRegisterForm);
         et_passwordRegisterForm = view.findViewById(R.id.et_passwordRegisterForm);
         et_cPasswordRegisterForm = view.findViewById(R.id.et_cPasswordRegisterForm);
@@ -95,8 +95,8 @@ public class RegisterFragment extends Fragment {
                 String sNoHp = et_noTelpRegisterForm.getText().toString().trim();
 //                String sNamaKucing = et_namaKucingRegisterForm.getText().toString();
 //                String sJenis = et_jenisKucingRegisterForm.getText().toString();
-                String sUsername = et_usernameRegisterForm.getText().toString().trim().toLowerCase();
-                String sEmail = et_emailRegisterForm.getText().toString();
+                String sUsername = et_usernameRegisterForm.getText().toString().trim();
+                String sEmail = "default@email.com";
                 String sPassword = et_passwordRegisterForm.getText().toString();
                 String sCPassword = et_cPasswordRegisterForm.getText().toString();
 //                String sJk = "";
@@ -125,8 +125,8 @@ public class RegisterFragment extends Fragment {
 //                    et_namaKucingRegisterForm.setError("Masukkan Nama Kucing");
 //                } else if (sJenis.isEmpty()) {
 //                    et_jenisKucingRegisterForm.setError("Masukkan Jenis Kucing");
-                } else if (sEmail.isEmpty()) {
-                    et_emailRegisterForm.setError("Masukkan Email");
+//                } else if (sEmail.isEmpty()) {
+//                    et_emailRegisterForm.setError("Masukkan Email");
                 } else if (sPassword.isEmpty()) {
                     et_passwordRegisterForm.setError("isi password");
                 } else if (sPassword.length() < 6) {
