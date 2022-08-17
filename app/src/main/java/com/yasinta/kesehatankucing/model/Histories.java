@@ -3,7 +3,7 @@ package com.yasinta.kesehatankucing.model;
 import java.util.ArrayList;
 
 public class Histories {
-    String id, data_jadwal_periksa_id, tanggal, hasil_diagnosa, saran_pengobatan;
+    String id, data_jadwal_periksa_id, tanggal, nama_kucing, jenis_kucing, hasil_diagnosa, saran_pengobatan;
     Users users;
     ArrayList<Gejalas> gejalas;
 
@@ -31,6 +31,21 @@ public class Histories {
         this.tanggal = tanggal;
     }
 
+    public String getNama_kucing() {
+        return nama_kucing;
+    }
+
+    public void setNama_kucing(String nama_kucing) {
+        this.nama_kucing = nama_kucing;
+    }
+
+    public String getJenis_kucing() {
+        return jenis_kucing;
+    }
+
+    public void setJenis_kucing(String jenis_kucing) {
+        this.jenis_kucing = jenis_kucing;
+    }
 
     public Users getUsers() {
         return users;

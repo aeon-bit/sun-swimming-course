@@ -48,7 +48,7 @@ public class AdapterListHistoryPeriksa extends
         //memasukan data ke objek yg sudah dikenalkan di HolderItem
         final Histories historiPeriksa = listHistories.get(position);
 
-        holderItem.tv_namaKucingItemHistory.setText(historiPeriksa.getUsers().getNama_kucing());
+        holderItem.tv_namaKucingItemHistory.setText(historiPeriksa.getNama_kucing());
         holderItem.tv_tanggalKucingItemHistory.setText(historiPeriksa.getTanggal());
 
         holderItem.cv_itemListHistoriPeriksa.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +57,8 @@ public class AdapterListHistoryPeriksa extends
                 Fragment detailHistoriPeriksa = new DetailHistoriPeriksa();
                 Bundle bundle = new Bundle();
                 bundle.putString("id", listHistories.get(position).getId());
+//                bundle.putString("nama_kucing", listHistories.get(position).getNama_kucing());
+//                bundle.putString("jenis_kucing", listHistories.get(position).getJenis_kucing());
                 detailHistoriPeriksa.setArguments(bundle);
 
                 ((FragmentActivity)context).getSupportFragmentManager()

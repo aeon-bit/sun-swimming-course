@@ -32,7 +32,7 @@ public interface ApiInterface {
     @POST("login")
     Call<Logins> performLogin(
 //            @Header("Authorization") String Token,
-            @Field("email") String Email,
+            @Field("username") String Username,
             @Field("password") String Password
     );
 
@@ -42,8 +42,8 @@ public interface ApiInterface {
             @Field("nama") String nama,
             @Field("alamat") String alamat,
             @Field("no_hp") String no_hp,
-            @Field("nama_kucing") String nama_kucing,
-            @Field("jenis_kucing") String jenis_kucing,
+//            @Field("nama_kucing") String nama_kucing,
+//            @Field("jenis_kucing") String jenis_kucing,
             @Field("username") String username,
             @Field("email") String email,
             @Field("password") String password,
@@ -59,15 +59,20 @@ public interface ApiInterface {
     @POST("diagnosa")
     Call <ResponseTesKesehatan> performTesKesehatan(
             @Header("Authorization") String token,
-            @Field("gejala[]") ArrayList<String> gejala,
-            @Field("data_jadwal_periksa_id") String data_jadwal_periksa_id
+            @Field("nama_kucing") String nama_kucing,
+            @Field("jenis_kucing") String jenis_kucing,
+            @Field("tanggal") String today,
+            @Field("gejala[]") ArrayList<String> gejala
+//            @Field("data_jadwal_periksa_id") String data_jadwal_periksa_id
     );
 
     @FormUrlEncoded
     @POST("data-jadwal-periksa/tambah-data")
     Call <ResponseBookingJadwals> performBookingJadwal(
             @Header("Authorization") String token,
-            @Field("tanggal_periksa") String tanggal_periksa
+            @Field("tanggal_periksa") String tanggal_periksa,
+            @Field("nama_kucing") String nama_kucing,
+            @Field("jenis_kucing") String jenis_kucing
     );
 
     @GET("data-jadwal-periksa")

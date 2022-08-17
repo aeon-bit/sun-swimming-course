@@ -2,6 +2,7 @@ package com.yasinta.kesehatankucing.ui.teskesehatan;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -30,6 +32,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.yasinta.kesehatankucing.R;
 import com.yasinta.kesehatankucing.activity.MainActivity;
+import com.yasinta.kesehatankucing.dialog.DialogConfirmTes;
 import com.yasinta.kesehatankucing.model.Gejalas;
 import com.yasinta.kesehatankucing.model.JadwalPeriksas;
 import com.yasinta.kesehatankucing.model.ResponseSpJadwals;
@@ -42,6 +45,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -53,7 +58,7 @@ import retrofit2.Callback;
 
 public class TesKesehatanFragment extends Fragment {
     Spinner sp_idJadwalPeriksa;
-    String selectedIdJadwalPeriksa;
+    String selectedIdJadwalPeriksa, today;
 
     LinearLayout ly_cb;
     RequestQueue requestQueue;
@@ -73,36 +78,70 @@ public class TesKesehatanFragment extends Fragment {
         listGejalas = new ArrayList<>();
         requestQueue = Volley.newRequestQueue(getContext());
         getAllDiagnosa();
-        getSpinnerJadwalPeriksa();
+//        getSpinnerJadwalPeriksa();
+        getCurrentDate();
 
-//        EditText et_namaKucingTesK = root.findViewById(R.id.et_namaKucingTesK);
-//        EditText et_jenisKucingTesK = root.findViewById(R.id.et_jenisKucingTesK);
+
+        EditText et_namaKucingTesK = root.findViewById(R.id.et_namaKucingTesK);
+        EditText et_jenisKucingTesK = root.findViewById(R.id.et_jenisKucingTesK);
 //        EditText et_namaPemilikTesK = root.findViewById(R.id.et_namaPemilikTesK);
-        sp_idJadwalPeriksa = root.findViewById(R.id.sp_idJadwalPeriksa);
+//        sp_idJadwalPeriksa = root.findViewById(R.id.sp_idJadwalPeriksa);
 
-//        String sNamaKucing = et_namaKucingTesK.getText().toString();
-//        String sJenis = et_jenisKucingTesK.getText().toString();
+
 //        String sNamaPemilik = et_namaPemilikTesK.getText().toString();
 
         CardView cv_btnPerformDiagnosa = root.findViewById(R.id.cv_btnPerformDiagnosa);
         cv_btnPerformDiagnosa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (sNamaKucing.equals("")) {
-//                    et_namaKucingTesK.setError("Masukkan nama kucing");
-//                } else if (sJenis.equals("")) {
-//                    et_jenisKucingTesK.setError("Masukkan jenis kucing");
+                //call Dialog
+                DialogConfirmTes dialogConfirmTes = new DialogConfirmTes(getContext());
+                dialogConfirmTes.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                LinearLayout ly_btnConfirmTes = dialogConfirmTes.findViewById(R.id.ly_btnConfirmTes);
+                LinearLayout ly_btnBatalTes = dialogConfirmTes.findViewById(R.id.ly_btnBatalTes);
+
+                ly_btnConfirmTes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String sNamaKucing = et_namaKucingTesK.getText().toString();
+                        String sJenis = et_jenisKucingTesK.getText().toString();
+
+                        if (sNamaKucing.equals("")) {
+                            et_namaKucingTesK.setError("Masukkan nama kucing");
+                        } else if (sJenis.equals("")) {
+                            et_jenisKucingTesK.setError("Masukkan jenis kucing");
 //                } else if (sNamaPemilik.equals("")) {
 //                    et_namaPemilikTesK.setError("Masukkan nama pemilik");
-//                } else {
-//                    performDiagnosa(sNamaKucing, sJenis, sNamaPemilik);
-//                }
-                performDiagnosa();
+                        } else {
+                            performDiagnosa(sNamaKucing, sJenis);
+                        }
+
+                        dialogConfirmTes.dismiss();
+                    }
+                });
+
+                ly_btnBatalTes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialogConfirmTes.dismiss();
+                    }
+                });
+
+                dialogConfirmTes.show();
             }
         });
 
 
         return root;
+    }
+
+    private void getCurrentDate() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime now = LocalDateTime.now();
+        today = dtf.format(now);
+
+//        Log.d("tanggal", "getCurrentDate: " + dtf.format(now));
     }
 
     private void getSpinnerJadwalPeriksa() {
@@ -202,37 +241,57 @@ public class TesKesehatanFragment extends Fragment {
 
     }
 
-    private void performDiagnosa() {
+    private void performDiagnosa(String sNamaKucing, String sJenis) {
         Call<ResponseTesKesehatan> call = MainActivity.apiInterface.performTesKesehatan(
-                "Bearer " + SessionManager.getToken(), checkedGejala, selectedIdJadwalPeriksa
+                "Bearer " + SessionManager.getToken(),
+                sNamaKucing,
+                sJenis,
+                today,
+                checkedGejala
         );
+
+        Log.d("perform", "NAMA: "+sNamaKucing);
+        Log.d("perform", "JENIS: "+sJenis);
+        Log.d("perform", "TANGGAL: "+today);
 
         Fragment self = this;
         call.enqueue(new Callback<ResponseTesKesehatan>() {
             @Override
             public void onResponse(Call<ResponseTesKesehatan> call, retrofit2.Response<ResponseTesKesehatan> response) {
-                Log.d("respon", "onResponse Diagnosis: " + response.body().toString());
 
-                if (response.body().getStatus().equals("success")) {
+//                Log.d("respon", "onResponse Diagnosis: " + response.body().getData().getTanggal());
+//                Log.d("respon", "onResponse Diagnosis: " + response.errorBody().toString());
+                if (response.body() != null){
+                    if (response.body().getStatus().equals("success")) {
 
-                    Toast toast = Toast.makeText(getActivity(), "Upload Diagnosa Berhasil", Toast.LENGTH_LONG);
+                        Toast toast = Toast.makeText(getActivity(), "Upload Diagnosa Berhasil", Toast.LENGTH_LONG);
+                        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+                            View view = toast.getView();
+                            view.setBackgroundResource(R.drawable.xmlbg_toast_success);
+                            TextView textView = view.findViewById(android.R.id.message);
+                            textView.setTextColor(Color.WHITE);
+                        }
+                        toast.show();
+
+//                    ((MainActivity) getContext()).logoutPerform(); //restart actv
+                        Fragment detailDiagnosa = new HasilDiagnosaFragment();
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("id", response.body().getData().getId());
+                        detailDiagnosa.setArguments(bundle);
+
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.nav_host_fragment_content_main, detailDiagnosa).commit();
+                    }
+                } else {
+                    Toast toast = Toast.makeText(getActivity(), "Server Bermasalah", Toast.LENGTH_LONG);
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
                         View view = toast.getView();
-                        view.setBackgroundResource(R.drawable.xmlbg_toast_success);
+                        view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
                         TextView textView = view.findViewById(android.R.id.message);
                         textView.setTextColor(Color.WHITE);
                     }
                     toast.show();
-
-//                    ((MainActivity) getContext()).logoutPerform(); //restart actv
-                    Fragment detailDiagnosa = new HasilDiagnosaFragment();
-
-                    Bundle bundle = new Bundle();
-                    bundle.putString("id", response.body().getData().getId());
-                    detailDiagnosa.setArguments(bundle);
-
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.nav_host_fragment_content_main, detailDiagnosa).commit();
                 }
             }
 
@@ -240,7 +299,7 @@ public class TesKesehatanFragment extends Fragment {
             public void onFailure(Call<ResponseTesKesehatan> call, Throwable t) {
 
                 Log.d("daftar", "onFaillure: " + t);
-                Toast toast = Toast.makeText(getActivity(), "Jadwal sudah terisi", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getActivity(), "Terjadi Kesalahan", Toast.LENGTH_LONG);
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
                     View view = toast.getView();
                     view.setBackgroundResource(R.drawable.xmlbg_toast_warning);

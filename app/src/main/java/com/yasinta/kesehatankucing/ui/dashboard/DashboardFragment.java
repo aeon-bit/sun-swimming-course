@@ -94,7 +94,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d("respon", "Data artikel: " + response.toString());
+//                        Log.d("respon", "Data artikel: " + response.toString());
                         try {
                             JSONArray jsonArray = response.getJSONArray("data");
 

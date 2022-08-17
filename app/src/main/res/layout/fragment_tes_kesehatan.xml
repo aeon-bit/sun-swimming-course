@@ -18,58 +18,58 @@
         android:orientation="vertical">
 
 <!--&lt;!&ndash;        nama&ndash;&gt;-->
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="32dp"-->
-<!--            android:weightSum="100">-->
-<!--            <TextView-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_weight="40"-->
-<!--                android:text="Nama Kucing"-->
-<!--                android:gravity="center_vertical"-->
-<!--                android:fontFamily="@font/nunito_bold"-->
-<!--                android:textColor="@color/secondary"/>-->
-<!--            <EditText-->
-<!--                android:id="@+id/et_namaKucingTesK"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_weight="60"-->
-<!--                android:textSize="14dp"-->
-<!--                android:fontFamily="@font/nunito_bold"-->
-<!--                android:paddingHorizontal="12dp"-->
-<!--                android:maxLines="1"-->
-<!--                android:ellipsize="end"-->
-<!--                android:textColor="@color/secondary"-->
-<!--                android:background="@drawable/xmlbg_input_outline"/>-->
-<!--        </LinearLayout>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:weightSum="100">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="40"
+                android:text="Nama Kucing"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/nunito_bold"
+                android:textColor="@color/secondary"/>
+            <EditText
+                android:id="@+id/et_namaKucingTesK"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="60"
+                android:textSize="14dp"
+                android:fontFamily="@font/nunito_bold"
+                android:paddingHorizontal="12dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/secondary"
+                android:background="@drawable/xmlbg_input_outline"/>
+        </LinearLayout>
 <!--&lt;!&ndash;        jenis&ndash;&gt;-->
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="32dp"-->
-<!--            android:weightSum="100"-->
-<!--            android:layout_marginTop="12dp">-->
-<!--            <TextView-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_weight="40"-->
-<!--                android:text="Jenis Kucing"-->
-<!--                android:gravity="center_vertical"-->
-<!--                android:fontFamily="@font/nunito_bold"-->
-<!--                android:textColor="@color/secondary"/>-->
-<!--            <EditText-->
-<!--                android:id="@+id/et_jenisKucingTesK"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_weight="60"-->
-<!--                android:textSize="14dp"-->
-<!--                android:fontFamily="@font/nunito_bold"-->
-<!--                android:paddingHorizontal="12dp"-->
-<!--                android:maxLines="1"-->
-<!--                android:ellipsize="end"-->
-<!--                android:textColor="@color/secondary"-->
-<!--                android:background="@drawable/xmlbg_input_outline"/>-->
-<!--        </LinearLayout>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:weightSum="100"
+            android:layout_marginTop="12dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="40"
+                android:text="Jenis Kucing"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/nunito_bold"
+                android:textColor="@color/secondary"/>
+            <EditText
+                android:id="@+id/et_jenisKucingTesK"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="60"
+                android:textSize="14dp"
+                android:fontFamily="@font/nunito_bold"
+                android:paddingHorizontal="12dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/secondary"
+                android:background="@drawable/xmlbg_input_outline"/>
+        </LinearLayout>
 <!--&lt;!&ndash;        pemilik&ndash;&gt;-->
 <!--        <LinearLayout-->
 <!--            android:layout_width="match_parent"-->
@@ -99,26 +99,26 @@
 
 <!--        </LinearLayout>-->
 <!--            dd jadwal periksa id-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:weightSum="100"
-            android:layout_marginTop="12dp">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="40"
-                android:text="Jadwal Periksa"
-                android:gravity="center_vertical"
-                android:fontFamily="@font/nunito_bold"
-                android:textColor="@color/secondary"/>
-            <Spinner
-                android:id="@+id/sp_idJadwalPeriksa"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="60" />
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:weightSum="100"-->
+<!--            android:layout_marginTop="12dp">-->
+<!--            <TextView-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="40"-->
+<!--                android:text="Jadwal Periksa"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:fontFamily="@font/nunito_bold"-->
+<!--                android:textColor="@color/secondary"/>-->
+<!--            <Spinner-->
+<!--                android:id="@+id/sp_idJadwalPeriksa"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="60" />-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
     </LinearLayout>
 
     <FrameLayout

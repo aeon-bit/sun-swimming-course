@@ -87,10 +87,10 @@ public class BookingJadwalFragment extends Fragment {
         cv_btnPerformBuatJadwal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (et_namaKucingBook.getText().toString().isEmpty()) {
-//                    et_namaKucingBook.setError("Masukkan nama kucing");
-//                } else if (et_jenisKucingKucingBook.getText().toString().isEmpty()) {
-//                    et_jenisKucingKucingBook.setError("Masukkan jenis kucing");
+                if (et_namaKucingBook.getText().toString().isEmpty()) {
+                    et_namaKucingBook.setError("Masukkan nama kucing");
+                } else if (et_jenisKucingKucingBook.getText().toString().isEmpty()) {
+                    et_jenisKucingKucingBook.setError("Masukkan jenis kucing");
 //                } else if (et_usiaKucingBook.getText().toString().isEmpty()) {
 //                    et_usiaKucingBook.setError("Masukkan usia kucing");
 //                } else if (et_namaPemilikBook.getText().toString().isEmpty()) {
@@ -106,6 +106,7 @@ public class BookingJadwalFragment extends Fragment {
 //                } else if (tv_dateSelected.getText().toString().isEmpty()) {
 //                    et_tglBook.setError("Masukkan tanggal booking");
 //                } else {
+                }
 
                 if (tv_dateSelected.getText().toString().isEmpty()) {
                     Toast toast = Toast.makeText(getActivity(), "Masukkan tanggal booking", Toast.LENGTH_LONG);
@@ -117,26 +118,25 @@ public class BookingJadwalFragment extends Fragment {
                     }
                     toast.show();
                 } else {
-                    performBuatJadwal();
-//                    performBuatJadwal(
-//                            sNamaKucing, sJenis, sUsia, sNamaPemilik, sNoHp, sAlamat, sHasilD, dateToUp
-//                            et_namaKucingBook.getText().toString(),
-//                            et_jenisKucingKucingBook.getText().toString(),
+//                    performBuatJadwal();
+                    performBuatJadwal(
+                            et_namaKucingBook.getText().toString(),
+                            et_jenisKucingKucingBook.getText().toString()
 //                            et_usiaKucingBook.getText().toString(),
 //                            et_namaPemilikBook.getText().toString(),
 //                            et_noHpBook.getText().toString().trim(),
 //                            et_alamatBook.getText().toString(),
 //                            et_hasilDiagnosisBook.getText().toString(),
 //                            dateToUp
-//                    );
+                    );
                 }
             }
         });
         return root;
     }
 
-    //    private void performBuatJadwal(String sNamaKucing, String sJenis, String sUsia, String sNamaPemilik, String sNoHp, String sAlamat, String sHasilD, String dateToUp) {
-    private void performBuatJadwal() {
+//        private void performBuatJadwal(String sNamaKucing, String sJenis, String sUsia, String sNamaPemilik, String sNoHp, String sAlamat, String sHasilD, String dateToUp) {
+    private void performBuatJadwal(String sNamaKucing, String sJenis) {
 //                    Log.d("performup", "nama kucing: " + sNamaKucing);
 //                    Log.d("performup", "jenis: " + sJenis);
 //                    Log.d("performup", "usia: " + sUsia);
@@ -146,7 +146,10 @@ public class BookingJadwalFragment extends Fragment {
 //                    Log.d("performup", "hasilk: " + sHasilD);
 //        Log.d("performup", "date: " + selectedDate);
         Call<ResponseBookingJadwals> call = MainActivity.apiInterface.performBookingJadwal(
-                "Bearer " + SessionManager.getToken(), selectedDate
+                "Bearer " + SessionManager.getToken(),
+                selectedDate,
+                sNamaKucing,
+                sJenis
         );
 
         Fragment self = this;

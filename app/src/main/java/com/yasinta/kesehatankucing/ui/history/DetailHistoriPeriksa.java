@@ -148,9 +148,9 @@ public class DetailHistoriPeriksa extends Fragment {
             public void onResponse(Call<ResponseTesKesehatan> call, retrofit2.Response<ResponseTesKesehatan> response) {
                 Log.d("respon", "onResponse Diagnosis: " + response.toString());
 
-                tv_namaKucingDetailHistory.setText(response.body().getData().getUser().getNama_kucing());
-                tv_jenisKucingDetailHistory.setText(response.body().getData().getUser().getJenis_kucing());
-                tv_namaPemilikDetailHistory.setText(response.body().getData().getUser().getNama_pemilik());
+                tv_namaKucingDetailHistory.setText(response.body().getData().getNama_kucing());
+                tv_jenisKucingDetailHistory.setText(response.body().getData().getJenis_kucing());
+                tv_namaPemilikDetailHistory.setText(response.body().getData().getNama_pemilik());
                 tv_tglPeriksaDetailHistory.setText(response.body().getData().getTanggal());
 //                tv_hasilDiagnosaDetailHistory.setText(response.body().getData().getHasil_diagnosa() + "\n ");
 //                tv_saranDetailHistory.setText(response.body().getData().getSaran_pengobatan() + "\n ");
@@ -165,6 +165,8 @@ public class DetailHistoriPeriksa extends Fragment {
 //                listGejalas = response.body().getData().getGejala();
 //                Log.d("respons", "LISTGEJALAS: " + Arrays.toString(listGejalas.toArray()));
 //                rvAdapter.notifyDataSetChanged();
+
+
                 ArrayList<Gejalas> arrayListGejalas = response.body().getData().getGejala();
                 for (int i = 0; i<arrayListGejalas.size(); i++){
                     listGejalas.add(arrayListGejalas.get(i));

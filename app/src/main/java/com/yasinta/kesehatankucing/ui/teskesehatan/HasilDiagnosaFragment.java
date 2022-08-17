@@ -135,42 +135,41 @@ public class HasilDiagnosaFragment extends Fragment {
             public void onResponse(Call<ResponseTesKesehatan> call, retrofit2.Response<ResponseTesKesehatan> response) {
 
                 if (response.body() != null) {
-                    Log.d("respon", "onResponse Diagnosis: " + response.body().toString());
-                } else {
-                    Log.d("respon", "onResponse Diagnosis: NULL");
-                }
+                    Log.d("respon", "onResponse Hasil Diagnosis: " + response.body().toString());
+                    tv_namaKucingHasilD.setText(response.body().getData().getNama_kucing());
+                    tv_jenisKucingHasilD.setText(response.body().getData().getJenis_kucing());
+                    tv_namaPemilikHasilD.setText(response.body().getData().getNama_pemilik());
 
-                tv_namaKucingHasilD.setText(response.body().getData().getUser().getNama_kucing());
-                tv_jenisKucingHasilD.setText(response.body().getData().getUser().getJenis_kucing());
-                tv_namaPemilikHasilD.setText(response.body().getData().getUser().getNama_pemilik());
-
-//                tv_hasilDiagnosaDetail.setText(response.body().getData().get);
+                    //                tv_hasilDiagnosaDetail.setText(response.body().getData().get);
 //                tv_saranDetail.setText(response.body().getData().getSaran_pengobatan());
 
 //                listGejalas = response.body().getData().getGejala();
 //                Log.d("respons", "LISTGEJALAS: " + Arrays.toString(listGejalas.toArray()));
 //                rvAdapter.notifyDataSetChanged();
 
-                //gejala
-                ArrayList<Gejalas> arrayListGejalas = response.body().getData().getGejala();
-                for (int i = 0; i < arrayListGejalas.size(); i++) {
-                    listGejalas.add(arrayListGejalas.get(i));
-                }
-                rvAdapter.notifyDataSetChanged();
+                    //gejala
+                    ArrayList<Gejalas> arrayListGejalas = response.body().getData().getGejala();
+                    for (int i = 0; i < arrayListGejalas.size(); i++) {
+                        listGejalas.add(arrayListGejalas.get(i));
+                    }
+                    rvAdapter.notifyDataSetChanged();
 
-                //hasil
-                ArrayList<HasilSarans> arrayListHasils = response.body().getData().getHasil_diagnosa();
-                for (int i = 0; i < arrayListHasils.size(); i++) {
-                    listHasils.add(arrayListHasils.get(i));
-                }
-                rvAdapterHasilDetail.notifyDataSetChanged();
+                    //hasil
+                    ArrayList<HasilSarans> arrayListHasils = response.body().getData().getHasil_diagnosa();
+                    for (int i = 0; i < arrayListHasils.size(); i++) {
+                        listHasils.add(arrayListHasils.get(i));
+                    }
+                    rvAdapterHasilDetail.notifyDataSetChanged();
 
-                //saran
-                ArrayList<HasilSarans> arrayListSarans = response.body().getData().getSaran_pengobatan();
-                for (int i = 0; i < arrayListSarans.size(); i++) {
-                    listSarans.add(arrayListSarans.get(i));
+                    //saran
+                    ArrayList<HasilSarans> arrayListSarans = response.body().getData().getSaran_pengobatan();
+                    for (int i = 0; i < arrayListSarans.size(); i++) {
+                        listSarans.add(arrayListSarans.get(i));
+                    }
+                    rvAdapterSaranDetail.notifyDataSetChanged();
+                } else {
+                    Log.d("respon", "onResponse Diagnosis: NULL");
                 }
-                rvAdapterSaranDetail.notifyDataSetChanged();
             }
 
             @Override

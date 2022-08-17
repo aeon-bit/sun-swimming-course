@@ -39,7 +39,7 @@ import retrofit2.Response;
  */
 public class LoginFragment extends Fragment {
 
-    private EditText et_emailLogin, et_passwordLogin;
+    private EditText et_usernameLogin, et_passwordLogin;
     ProgressBar pb_loading;
 
     OnLoginFormActivityListener loginFormActivityListener;
@@ -62,7 +62,7 @@ public class LoginFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
         pb_loading = view.findViewById(R.id.pb_loading);
-        et_emailLogin = view.findViewById(R.id.et_emailLogin);
+        et_usernameLogin = view.findViewById(R.id.et_usernameLogin);
         et_passwordLogin = view.findViewById(R.id.et_passwordLogin);
 
         CardView cv_loginPerformLogin = view.findViewById(R.id.cv_loginPerformLogin);
@@ -71,12 +71,12 @@ public class LoginFragment extends Fragment {
         cv_loginPerformLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (et_emailLogin.getText().toString().isEmpty()) {
-                    et_emailLogin.setError("Masukkan email");
+                if (et_usernameLogin.getText().toString().isEmpty()) {
+                    et_usernameLogin.setError("Masukkan username");
                 } else if (et_passwordLogin.getText().toString().isEmpty()) {
                     et_passwordLogin.setError("Masukkan password");
-                } else if (!isValidEmail(et_emailLogin.getText().toString())) {
-                    et_emailLogin.setError("Format Email salah");
+//                } else if (!isValidEmail(et_usernameLogin.getText().toString())) {
+//                    et_usernameLogin.setError("Format Email salah");
                 } else {
                     performLogin();
                     pb_loading.setVisibility(View.VISIBLE);
@@ -108,10 +108,10 @@ public class LoginFragment extends Fragment {
     private void performLogin() {
         hideKeyboard();
 
-        String sEmail = et_emailLogin.getText().toString().trim();
+        String sUsername = et_usernameLogin.getText().toString().trim();
         String sPassword = et_passwordLogin.getText().toString().trim();
 
-        Call<Logins> call = MainActivity.apiInterface.performLogin(sEmail, sPassword);
+        Call<Logins> call = MainActivity.apiInterface.performLogin(sUsername, sPassword);
         call.enqueue(new Callback<Logins>() {
             @Override
             public void onResponse(Call<Logins> call, Response<Logins> response) {
@@ -145,14 +145,14 @@ public class LoginFragment extends Fragment {
             public void onFailure(Call<Logins> call, Throwable t) {
 
 //                callToast("Terjadi Kesalahan Koneksi: " + t.getMessage(), 0);
-                callToast("Terjadi Kesalahan Koneksi", 0);
+                callToast("Username / Password Salah", 0);
 
                 pb_loading.setVisibility(View.GONE);
 
             }
         });
 
-        et_emailLogin.setText("");
+        et_usernameLogin.setText("");
         et_passwordLogin.setText("");
         pb_loading.setVisibility(View.GONE);
     }

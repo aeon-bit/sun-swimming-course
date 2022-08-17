@@ -62,8 +62,8 @@ public class RegisterFragment extends Fragment {
         et_nameRegisterForm = view.findViewById(R.id.et_nameRegisterForm);
         et_alamatRegisterForm = view.findViewById(R.id.et_alamatRegisterForm);
         et_noTelpRegisterForm = view.findViewById(R.id.et_noHpRegisterForm);
-        et_namaKucingRegisterForm = view.findViewById(R.id.et_namaKucingRegisterForm);
-        et_jenisKucingRegisterForm = view.findViewById(R.id.et_jenisKucingRegisterForm);
+//        et_namaKucingRegisterForm = view.findViewById(R.id.et_namaKucingRegisterForm);
+//        et_jenisKucingRegisterForm = view.findViewById(R.id.et_jenisKucingRegisterForm);
         et_emailRegisterForm = view.findViewById(R.id.et_emailRegisterForm);
         et_usernameRegisterForm = view.findViewById(R.id.et_usernameRegisterForm);
         et_passwordRegisterForm = view.findViewById(R.id.et_passwordRegisterForm);
@@ -93,8 +93,8 @@ public class RegisterFragment extends Fragment {
                 String sNama = et_nameRegisterForm.getText().toString();
                 String sAlamat = et_alamatRegisterForm.getText().toString();
                 String sNoHp = et_noTelpRegisterForm.getText().toString().trim();
-                String sNamaKucing = et_namaKucingRegisterForm.getText().toString();
-                String sJenis = et_jenisKucingRegisterForm.getText().toString();
+//                String sNamaKucing = et_namaKucingRegisterForm.getText().toString();
+//                String sJenis = et_jenisKucingRegisterForm.getText().toString();
                 String sUsername = et_usernameRegisterForm.getText().toString().trim().toLowerCase();
                 String sEmail = et_emailRegisterForm.getText().toString();
                 String sPassword = et_passwordRegisterForm.getText().toString();
@@ -121,10 +121,10 @@ public class RegisterFragment extends Fragment {
                     et_noTelpRegisterForm.setError("Masukkan No Hp");
                 } else if (sNoHp.length() < 11) {
                     et_noTelpRegisterForm.setError("Minimal 11 karakter");
-                } else if (sNamaKucing.isEmpty()) {
-                    et_namaKucingRegisterForm.setError("Masukkan Nama Kucing");
-                } else if (sJenis.isEmpty()) {
-                    et_jenisKucingRegisterForm.setError("Masukkan Jenis Kucing");
+//                } else if (sNamaKucing.isEmpty()) {
+//                    et_namaKucingRegisterForm.setError("Masukkan Nama Kucing");
+//                } else if (sJenis.isEmpty()) {
+//                    et_jenisKucingRegisterForm.setError("Masukkan Jenis Kucing");
                 } else if (sEmail.isEmpty()) {
                     et_emailRegisterForm.setError("Masukkan Email");
                 } else if (sPassword.isEmpty()) {
@@ -136,7 +136,7 @@ public class RegisterFragment extends Fragment {
                 } else if (!isValidEmail(sEmail)) {
                     et_emailRegisterForm.setError("Format Email salah");
                 } else {
-                    performRegistration(sNama, sAlamat, sNoHp, sNamaKucing, sJenis, sUsername, sEmail, sPassword, sCPassword);
+                    performRegistration(sNama, sAlamat, sNoHp, sUsername, sEmail, sPassword, sCPassword);
                     hideKeyboard();
 //                    Log.d("daftar", sNama + "\n");
 //                    Log.d("daftar", sJk + "\n");
@@ -167,7 +167,7 @@ public class RegisterFragment extends Fragment {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
-    public void performRegistration(String sNama, String sAlamat, String sNoHp, String sNamaKucing, String sJenis, String sUsername, String sEmail, String sPassword, String sCPassword) {
+    public void performRegistration(String sNama, String sAlamat, String sNoHp, String sUsername, String sEmail, String sPassword, String sCPassword) {
 
 
         Call<Registers> call = MainActivity.apiInterface.performRegistration(
@@ -179,7 +179,7 @@ public class RegisterFragment extends Fragment {
 //                "email@email.com",
 //                "123",
 //                "123"
-                sNama, sAlamat, sNoHp, sNamaKucing, sJenis, sUsername, sEmail, sPassword, sCPassword
+                sNama, sAlamat, sNoHp, sUsername, sEmail, sPassword, sCPassword
         );
         call.enqueue(new Callback<Registers>() {
             @Override

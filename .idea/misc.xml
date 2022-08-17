@@ -3,11 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/TmpProjects/Yasinta/KesehatanKucing/app/src/main/res/drawable/xmlbg_btn_cancel.xml" value="0.2795" />
+        <entry key="..\:/TmpProjects/Yasinta/KesehatanKucing/app/src/main/res/drawable/xmlbg_btn_confirm.xml" value="0.2795" />
+        <entry key="..\:/TmpProjects/Yasinta/KesehatanKucing/app/src/main/res/drawable/xmlbg_confirm.xml" value="0.2615" />
+        <entry key="..\:/TmpProjects/Yasinta/KesehatanKucing/app/src/main/res/layout/fragment_booking_jadwal.xml" value="0.371875" />
+        <entry key="..\:/TmpProjects/Yasinta/KesehatanKucing/app/src/main/res/layout/fragment_chat.xml" value="0.33" />
         <entry key="..\:/TmpProjects/Yasinta/KesehatanKucing/app/src/main/res/layout/fragment_dashboard.xml" value="0.2657407407407407" />
+        <entry key="..\:/TmpProjects/Yasinta/KesehatanKucing/app/src/main/res/layout/fragment_hasil_diagnosa.xml" value="0.371875" />
         <entry key="..\:/TmpProjects/Yasinta/KesehatanKucing/app/src/main/res/layout/fragment_history.xml" value="0.33" />
         <entry key="..\:/TmpProjects/Yasinta/KesehatanKucing/app/src/main/res/layout/fragment_login.xml" value="0.33" />
-        <entry key="..\:/TmpProjects/Yasinta/KesehatanKucing/app/src/main/res/layout/fragment_register.xml" value="0.2657407407407407" />
+        <entry key="..\:/TmpProjects/Yasinta/KesehatanKucing/app/src/main/res/layout/fragment_register.xml" value="0.371875" />
         <entry key="..\:/TmpProjects/Yasinta/KesehatanKucing/app/src/main/res/layout/fragment_tentang.xml" value="0.2657407407407407" />
+        <entry key="..\:/TmpProjects/Yasinta/KesehatanKucing/app/src/main/res/layout/fragment_tes_kesehatan.xml" value="0.371875" />
+        <entry key="..\:/TmpProjects/Yasinta/KesehatanKucing/app/src/main/res/layout/layout_dialog_confirm_tes.xml" value="0.37083333333333335" />
       </map>
     </option>
   </component>

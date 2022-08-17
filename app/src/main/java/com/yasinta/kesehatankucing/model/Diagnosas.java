@@ -8,6 +8,15 @@ public class Diagnosas {
     @SerializedName("id")
     private String id;
 
+    @SerializedName("nama_kucing")
+    private String nama_kucing;
+
+    @SerializedName("jenis_kucing")
+    private String jenis_kucing;
+
+    @SerializedName("nama_pemilik")
+    private String nama_pemilik;
+
     @SerializedName("user")
     private Users user;
 
@@ -35,6 +44,30 @@ public class Diagnosas {
 
     public String getId() {
         return id;
+    }
+
+    public String getNama_kucing() {
+        return nama_kucing;
+    }
+
+    public void setNama_kucing(String nama_kucing) {
+        this.nama_kucing = nama_kucing;
+    }
+
+    public String getJenis_kucing() {
+        return jenis_kucing;
+    }
+
+    public void setJenis_kucing(String jenis_kucing) {
+        this.jenis_kucing = jenis_kucing;
+    }
+
+    public String getNama_pemilik() {
+        return nama_pemilik;
+    }
+
+    public void setNama_pemilik(String nama_pemilik) {
+        this.nama_pemilik = nama_pemilik;
     }
 
     public void setId(String id) {

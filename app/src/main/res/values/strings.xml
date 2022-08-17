@@ -26,6 +26,7 @@
     </string>
     <string name="warning_diagnosa">Hasil tes kesehatan kucing tidak 100% akurat.\n
     Maka diperlukan pemeriksaan fisik serta penunjang lebih lanjut oleh dokter hewan.</string>
+    <string name="warning_booking">Booking jadwal pemeriksaan hanya bisa dilakukan sampe jam 8 malam.</string>
 
     <string name="t_1">Buat jadwal dengan dokter di menu "Booking Jadwal Periksa"</string>
     <string name="t_2">Pilih menu "Tes Kesehatan Kucing" dan masukkan data gejala yang diderita"</string>
