@@ -20,29 +20,29 @@
             android:icon="@drawable/ic_dashboard"
             android:title="Dashboard" />
         <item
-            android:id="@+id/nav_tes_kesehatan"
-            android:icon="@drawable/ic_teskesehatan"
-            android:title="Tes Kesehatan Kucing" />
+            android:id="@+id/nav_jadwal_latihan"
+            android:icon="@drawable/ic_jadwal_latihan"
+            android:title="Jadwal Latihan" />
         <item
-            android:id="@+id/nav_jenis_penyakit"
-            android:icon="@drawable/ic_jenispenyakit"
-            android:title="Jenis Penyakit" />
+            android:id="@+id/nav_daftar_pelatih"
+            android:icon="@drawable/ic_daftar_pelatih"
+            android:title="Daftar Pelatih" />
         <item
-            android:id="@+id/nav_booking_jadwal"
-            android:icon="@drawable/ic_bookingjadwal"
-            android:title="Booking Jadwal Periksa" />
-        <item
-            android:id="@+id/nav_chat"
-            android:icon="@drawable/ic_chat"
-            android:title="Chat Dokter" />
-        <item
-            android:id="@+id/nav_history"
-            android:icon="@drawable/ic_history"
-            android:title="Histori Periksa" />
-        <item
-            android:id="@+id/nav_tentang"
-            android:icon="@drawable/ic_tentang"
-            android:title="Tentang" />
+            android:id="@+id/nav_pendaftaran"
+            android:icon="@drawable/ic_pendaftaran"
+            android:title="Pendaftaran" />
+<!--        <item-->
+<!--            android:id="@+id/nav_chat"-->
+<!--            android:icon="@drawable/ic_chat"-->
+<!--            android:title="Chat Dokter" />-->
+<!--        <item-->
+<!--            android:id="@+id/nav_history"-->
+<!--            android:icon="@drawable/ic_history"-->
+<!--            android:title="Histori Periksa" />-->
+<!--        <item-->
+<!--            android:id="@+id/nav_tentang"-->
+<!--            android:icon="@drawable/ic_tentang"-->
+<!--            android:title="Tentang" />-->
     </group>
 
     <group

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primary">#C3F0ED</color>
-    <color name="secondary">#0C605B</color>
-    <color name="accent">#034743</color>
+    <color name="secondary">#6C63FF</color>
+    <color name="accent">#443AE1</color>
     <color name="secondaru_darker1">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
@@ -10,7 +10,8 @@
     <color name="white_bg">#EEEEEE</color>
     <color name="white_darker1">#CFCFCF</color>
     <color name="bule_dark">#5383D8</color>
-    <color name="text">#252525</color>
+    <color name="text">#111111</color>
+    <color name="text2">#2E2E2E</color>
     <color name="text_hint">#4D252525</color>
     <color name="success">#4CAF50</color>
     <color name="warining">#FF5722</color>

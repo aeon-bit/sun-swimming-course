@@ -14,22 +14,46 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/c_wel1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hai, Selamat datang di"
+                android:fontFamily="@font/visbt_med"
+                android:textColor="@color/text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginLeft="36dp"
+                android:textSize="18dp"
+                android:layout_marginTop="32dp"/>
+            <TextView
+                android:id="@+id/c_wel2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SUN Swimming Course"
+                android:fontFamily="@font/visvy_bold"
+                android:textColor="@color/text"
+                android:textSize="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/c_wel1"
+                android:layout_marginLeft="36dp"/>
             <!--    LINEAR 1-->
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/line1"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="32dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/c_wel2">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_btnTes"
-                    android:layout_width="126dp"
-                    android:layout_height="126dp"
+                    android:id="@+id/cv_btnJadwalLatihan"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_marginHorizontal="20dp"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
@@ -49,12 +73,12 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="58dp"
-                            android:src="@drawable/ic_teskesehatan" />
+                            android:src="@drawable/ic_jadwal_latihan" />
 
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@color/white" />
+<!--                        <FrameLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="2dp"-->
+<!--                            android:background="@color/white" />-->
 
                         <TextView
                             android:layout_width="match_parent"
@@ -62,16 +86,16 @@
                             android:layout_marginTop="6dp"
                             android:fontFamily="@font/nunito_bold"
                             android:gravity="center"
-                            android:text="Tes Kesehatan\nKucing"
+                            android:text="Jadwal\nLatihan"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_btnJenisPenyakit"
-                    android:layout_width="126dp"
-                    android:layout_height="126dp"
+                    android:id="@+id/cv_btnDaftarPelatih"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_marginHorizontal="20dp"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
@@ -90,22 +114,24 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="58dp"
-                            android:src="@drawable/ic_jenispenyakit" />
+                            android:layout_height="48dp"
+                            android:layout_marginTop="6dp"
+                            android:src="@drawable/ic_daftar_pelatih" />
 
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@color/white" />
+                        <!--                        <FrameLayout-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="2dp"-->
+                        <!--                            android:background="@color/white" />-->
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginTop="6dp"
                             android:fontFamily="@font/nunito_bold"
                             android:gravity="center"
-                            android:text="Jenis Penyakit"
+                            android:text="Daftar\nPelatih"
                             android:textColor="@color/white"
-                            android:textSize="13dp" />
+                            android:textSize="12dp" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </androidx.cardview.widget.CardView>
 
@@ -124,9 +150,9 @@
                 app:layout_constraintTop_toBottomOf="@id/line1">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_btnBooking"
-                    android:layout_width="126dp"
-                    android:layout_height="126dp"
+                    android:id="@+id/cv_btnPendaftaran"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_marginHorizontal="20dp"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
@@ -147,28 +173,28 @@
                             android:layout_width="wrap_content"
                             android:layout_height="54dp"
                             android:layout_marginBottom="4dp"
-                            android:src="@drawable/ic_bookingjadwal" />
+                            android:src="@drawable/ic_pendaftaran" />
 
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@color/white" />
+<!--                        <FrameLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="2dp"-->
+<!--                            android:background="@color/white" />-->
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:fontFamily="@font/nunito_bold"
                             android:gravity="center"
-                            android:text="Booking Jadwal"
+                            android:text="Pendaftaran"
                             android:textColor="@color/white"
                             android:textSize="14dp" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_btnChat"
-                    android:layout_width="126dp"
-                    android:layout_height="126dp"
+                    android:id="@+id/cv_btnTentang"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_marginHorizontal="20dp"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
@@ -188,108 +214,12 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="58dp"
-                            android:src="@drawable/ic_chat" />
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@color/white" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:fontFamily="@font/nunito_bold"
-                            android:gravity="center"
-                            android:text="Chat Dokter"
-                            android:textColor="@color/white"
-                            android:textSize="14dp" />
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-                </androidx.cardview.widget.CardView>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <!--    LINEAR 2-->
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/line3"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginTop="18dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/line2">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_btnHistori"
-                    android:layout_width="126dp"
-                    android:layout_height="126dp"
-                    android:layout_marginHorizontal="20dp"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardBackgroundColor="@color/secondary"
-                    app:cardCornerRadius="18dp"
-                    app:cardElevation="8dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical"
-                        android:paddingVertical="16dp">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="64dp"
-                            android:src="@drawable/ic_history" />
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@color/white" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:fontFamily="@font/nunito_bold"
-                            android:gravity="center"
-                            android:text="Histori Periksa"
-                            android:textColor="@color/white"
-                            android:textSize="14dp" />
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_btnTentang"
-                    android:layout_width="126dp"
-                    android:layout_height="126dp"
-                    android:layout_marginHorizontal="20dp"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardBackgroundColor="@color/secondary"
-                    app:cardCornerRadius="18dp"
-                    app:cardElevation="8dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical"
-                        android:paddingVertical="16dp">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="64dp"
                             android:src="@drawable/ic_tentang" />
 
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@color/white" />
+<!--                        <FrameLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="2dp"-->
+<!--                            android:background="@color/white" />-->
 
                         <TextView
                             android:layout_width="match_parent"
@@ -297,6 +227,7 @@
                             android:fontFamily="@font/nunito_bold"
                             android:gravity="center"
                             android:text="Tentang"
+                            android:layout_marginTop="2dp"
                             android:textColor="@color/white"
                             android:textSize="14dp" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -305,30 +236,23 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <FrameLayout
+                android:id="@+id/fl_2"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="0.8dp"
                 android:layout_marginHorizontal="24dp"
                 android:background="@color/secondary"
-                app:layout_constraintTop_toBottomOf="@id/line3" />
-
-            <TextView
-                android:id="@+id/title_artikel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/nunito_bold"
-                android:text="Artikel tentang kesehatan kucing:"
-                android:textColor="@color/secondary"
-                app:layout_constraintTop_toBottomOf="@id/line3" />
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@id/line2" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_arrtikelHome"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="160dp"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="24dp"
-                app:layout_constraintTop_toBottomOf="@id/title_artikel"
+                android:clipToPadding="false"
+                android:paddingVertical="8dp"
+                app:layout_constraintTop_toBottomOf="@id/fl_2"
                 tools:listitem="@layout/item_list_artikel_home" />
 
             <FrameLayout

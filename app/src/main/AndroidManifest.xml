@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yasinta.kesehatankucing">
+    package="com.nurul.swimmingcourse">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".utils.AppQu"
+        android:name="com.nurul.swimmingcourse.utils.AppQu"
         android:allowBackup="true"
         android:icon="@drawable/icon_256"
         android:label="@string/app_name"
@@ -15,13 +15,13 @@
         android:allowClearUserData="true"
         android:theme="@style/Theme.MPASI.NoActionBar">
         <activity
-            android:name=".activity.DetailJenisPenyakit"
+            android:name="com.nurul.swimmingcourse.activity.DetailJenisPenyakit"
             android:exported="false" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.nurul.swimmingcourse.activity.MainActivity"
             android:theme="@style/Theme.MPASI.NoActionBar" />
         <activity
-            android:name=".activity.Splashscreen"
+            android:name="com.nurul.swimmingcourse.activity.Splashscreen"
             android:exported="true"
             android:theme="@style/Theme.MPASI.NoActionBar">
             <intent-filter>

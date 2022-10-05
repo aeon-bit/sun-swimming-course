@@ -34,4 +34,13 @@
     <string name="t_4">Tekan tombol "Chat Dokter" untuk melakukan konsultasi lebih lanjut.</string>
     <string name="t_5">"Chat Dokter juga dapat langsung di akses melalui menu utama".</string>
 
+    <string-array name="jenis_kucing">
+        <item>Domestik</item>
+        <item>Anggora</item>
+        <item>Persia</item>
+        <item>Maine Coon</item>
+        <item>Ragdoll</item>
+        <item>Siam</item>
+    </string-array>
+
 </resources>

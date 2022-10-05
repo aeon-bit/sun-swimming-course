@@ -45,33 +45,69 @@
                 android:background="@drawable/xmlbg_input_outline"/>
         </LinearLayout>
         <!--        jenis-->
-        <LinearLayout
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="32dp"-->
+<!--            android:weightSum="100"-->
+<!--            android:layout_marginTop="12dp">-->
+<!--            <TextView-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="40"-->
+<!--                android:text="Jenis Kucing"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:fontFamily="@font/nunito_bold"-->
+<!--                android:textColor="@color/secondary"/>-->
+<!--            <EditText-->
+<!--                android:id="@+id/et_jenisKucingKucingBook"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="60"-->
+<!--                android:textSize="14dp"-->
+<!--                android:fontFamily="@font/nunito_bold"-->
+<!--                android:paddingHorizontal="12dp"-->
+<!--                android:maxLines="1"-->
+<!--                android:focusableInTouchMode="true"-->
+<!--                android:ellipsize="end"-->
+<!--                android:textColor="@color/secondary"-->
+<!--                android:background="@drawable/xmlbg_input_outline"/>-->
+<!--        </LinearLayout>-->
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:weightSum="100"
+            android:layout_height="wrap_content"
             android:layout_marginTop="12dp">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="40"
-                android:text="Jenis Kucing"
-                android:gravity="center_vertical"
-                android:fontFamily="@font/nunito_bold"
-                android:textColor="@color/secondary"/>
-            <EditText
-                android:id="@+id/et_jenisKucingKucingBook"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="60"
-                android:textSize="14dp"
-                android:fontFamily="@font/nunito_bold"
-                android:paddingHorizontal="12dp"
-                android:maxLines="1"
-                android:focusableInTouchMode="true"
-                android:ellipsize="end"
-                android:textColor="@color/secondary"
-                android:background="@drawable/xmlbg_input_outline"/>
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:weightSum="100"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="40"
+                    android:fontFamily="@font/nunito_bold"
+                    android:gravity="center_vertical"
+                    android:text="Jenis Kucing"
+                    android:textColor="@color/secondary" />
+
+                <Spinner
+                    android:id="@+id/sp_jenisKucing"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="60"
+                    android:background="@drawable/xmlbg_input_outline" />
+
+            </LinearLayout>
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_baseline_arrow_drop_down_24"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:tint="@color/accent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 <!--        usia-->
         <LinearLayout
             android:layout_width="match_parent"

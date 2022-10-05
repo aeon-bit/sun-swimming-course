@@ -5,13 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
-    android:background="@drawable/ic_bg_intro"
     tools:context="ui.auth.RegisterFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/bg"/>
+        android:layout_height="match_parent"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,27 +22,35 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingHorizontal="32dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="64dp"
+                android:layout_marginTop="18dp"
                 android:textSize="28dp"
                 android:textAlignment="center"
                 android:layout_marginHorizontal="58dp"
                 android:fontFamily="@font/nunito_bold"
-                android:text="Register"
-                android:textColor="@color/teal_700" />
+                android:text="Daftar"
+                android:textColor="@color/secondary" />
 
 
             <!--FORM-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama Siswa"
+                android:fontFamily="@font/visvy_bold"
+                android:textColor="@color/text"
+                android:layout_marginTop="18dp"/>
             <EditText
                 android:id="@+id/et_nameRegisterForm"
-                android:layout_width="250dp"
-                android:layout_height="38dp"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="6dp"
                 android:background="@drawable/xmlbg_input_outline"
                 android:fontFamily="@font/nunitto_semibold"
                 android:hint="Nama"
@@ -52,15 +58,132 @@
                 android:paddingHorizontal="10dp"
                 android:singleLine="true"
                 android:textColor="@color/text"
-                android:textSize="16dp" />
+                android:textSize="14dp" />
 
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tanggal Lahir"
+                android:fontFamily="@font/visvy_bold"
+                android:textColor="@color/text"
+                android:layout_marginTop="18dp"/>
+            <EditText
+                android:id="@+id/et_tglLahirRegisterForm"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/xmlbg_input_outline"
+                android:fontFamily="@font/nunitto_semibold"
+                android:hint="Tenggal Lahir"
+                android:textColorHint="@color/text_hint"
+                android:paddingHorizontal="10dp"
+                android:singleLine="true"
+                android:textColor="@color/text"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tempat Lahir"
+                android:fontFamily="@font/visvy_bold"
+                android:textColor="@color/text"
+                android:layout_marginTop="18dp"/>
+            <EditText
+                android:id="@+id/et_tempatLahirRegisterForm"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/xmlbg_input_outline"
+                android:fontFamily="@font/nunitto_semibold"
+                android:hint="Tempat Lahir"
+                android:textColorHint="@color/text_hint"
+                android:paddingHorizontal="10dp"
+                android:singleLine="true"
+                android:textColor="@color/text"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jenis Kelamin"
+                android:fontFamily="@font/visvy_bold"
+                android:textColor="@color/text"
+                android:layout_marginTop="18dp"/>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <RadioButton
+                    android:id="@+id/rb_laki"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:buttonTint="@color/secondary"/>
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Laki-laki"
+                    android:fontFamily="@font/nunitto_semibold"
+                    android:textColor="@color/text"
+                    android:layout_marginLeft="4dp"/>
+                <RadioButton
+                    android:id="@+id/rb_perempuan"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:buttonTint="@color/secondary"/>
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Perempuan"
+                    android:fontFamily="@font/nunitto_semibold"
+                    android:textColor="@color/text"
+                    android:layout_marginLeft="4dp"/>
+                <EditText
+                    android:id="@+id/rb_errorMsg"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"/>
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama Orang Tua"
+                android:fontFamily="@font/visvy_bold"
+                android:textColor="@color/text"
+                android:layout_marginTop="18dp"/>
+            <EditText
+                android:id="@+id/et_namaOrtuRegisterForm"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/xmlbg_input_outline"
+                android:fontFamily="@font/nunitto_semibold"
+                android:hint="Nama Orang Tua"
+                android:textColorHint="@color/text_hint"
+                android:paddingHorizontal="10dp"
+                android:singleLine="true"
+                android:textColor="@color/text"
+                android:textSize="14dp"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Alamat"
+                android:fontFamily="@font/visvy_bold"
+                android:textColor="@color/text"
+                android:layout_marginTop="18dp"/>
             <EditText
                 android:id="@+id/et_alamatRegisterForm"
-                android:layout_width="250dp"
-                android:layout_height="38dp"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="6dp"
                 android:background="@drawable/xmlbg_input_outline"
                 android:fontFamily="@font/nunitto_semibold"
                 android:hint="Alamat"
@@ -68,48 +191,21 @@
                 android:paddingHorizontal="10dp"
                 android:singleLine="true"
                 android:textColor="@color/text"
-                android:textSize="16dp"/>
+                android:textSize="14dp"/>
 
-<!--            <RadioGroup-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="14dp"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:gravity="center">-->
-<!--                <RadioButton-->
-<!--                    android:id="@+id/rb_laki"-->
-<!--                    android:layout_width="28dp"-->
-<!--                    android:layout_height="28dp"/>-->
-<!--                <TextView-->
-<!--                    android:layout_width="80dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Laki-laki"-->
-<!--                    android:fontFamily="@font/nunitto_semibold"-->
-<!--                    android:textColor="@color/text"-->
-<!--                    android:layout_marginLeft="4dp"/>-->
-<!--                <RadioButton-->
-<!--                    android:id="@+id/rb_perempuan"-->
-<!--                    android:layout_width="28dp"-->
-<!--                    android:layout_height="28dp"/>-->
-<!--                <TextView-->
-<!--                    android:layout_width="80dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Perempuan"-->
-<!--                    android:fontFamily="@font/nunitto_semibold"-->
-<!--                    android:textColor="@color/text"-->
-<!--                    android:layout_marginLeft="4dp"/>-->
-<!--                <EditText-->
-<!--                    android:id="@+id/rb_errorMsg"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="0dp"/>-->
-<!--            </RadioGroup>-->
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nomor Hp"
+                android:fontFamily="@font/visvy_bold"
+                android:textColor="@color/text"
+                android:layout_marginTop="18dp"/>
             <EditText
                 android:id="@+id/et_noHpRegisterForm"
-                android:layout_width="250dp"
-                android:layout_height="38dp"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="6dp"
                 android:background="@drawable/xmlbg_input_outline"
                 android:fontFamily="@font/nunitto_semibold"
                 android:hint="Nomor Hp"
@@ -118,44 +214,21 @@
                 android:paddingHorizontal="10dp"
                 android:singleLine="true"
                 android:textColor="@color/text"
-                android:textSize="16dp" />
+                android:textSize="14dp" />
 
-<!--            <EditText-->
-<!--                android:id="@+id/et_namaKucingRegisterForm"-->
-<!--                android:layout_width="250dp"-->
-<!--                android:layout_height="38dp"-->
-<!--                android:layout_gravity="center_horizontal"-->
-<!--                android:layout_marginTop="14dp"-->
-<!--                android:background="@drawable/xmlbg_input_outline"-->
-<!--                android:fontFamily="@font/nunitto_semibold"-->
-<!--                android:hint="Nama Kucing"-->
-<!--                android:textColorHint="@color/text_hint"-->
-<!--                android:paddingHorizontal="10dp"-->
-<!--                android:singleLine="true"-->
-<!--                android:textColor="@color/text"-->
-<!--                android:textSize="16dp" />-->
-
-<!--            <EditText-->
-<!--                android:id="@+id/et_jenisKucingRegisterForm"-->
-<!--                android:layout_width="250dp"-->
-<!--                android:layout_height="38dp"-->
-<!--                android:layout_gravity="center_horizontal"-->
-<!--                android:layout_marginTop="14dp"-->
-<!--                android:background="@drawable/xmlbg_input_outline"-->
-<!--                android:fontFamily="@font/nunitto_semibold"-->
-<!--                android:hint="Jenis Kucing"-->
-<!--                android:textColorHint="@color/text_hint"-->
-<!--                android:paddingHorizontal="10dp"-->
-<!--                android:singleLine="true"-->
-<!--                android:textColor="@color/text"-->
-<!--                android:textSize="16dp" />-->
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Username"
+                android:fontFamily="@font/visvy_bold"
+                android:textColor="@color/text"
+                android:layout_marginTop="18dp"/>
             <EditText
                 android:id="@+id/et_usernameRegisterForm"
-                android:layout_width="250dp"
-                android:layout_height="38dp"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="6dp"
                 android:background="@drawable/xmlbg_input_outline"
                 android:fontFamily="@font/nunitto_semibold"
                 android:hint="Username"
@@ -164,30 +237,21 @@
                 android:paddingHorizontal="10dp"
                 android:singleLine="true"
                 android:textColor="@color/text"
-                android:textSize="16dp" />
-
-<!--            <EditText-->
-<!--                android:id="@+id/et_emailRegisterForm"-->
-<!--                android:layout_width="250dp"-->
-<!--                android:layout_height="38dp"-->
-<!--                android:layout_gravity="center_horizontal"-->
-<!--                android:layout_marginTop="14dp"-->
-<!--                android:background="@drawable/xmlbg_input_outline"-->
-<!--                android:fontFamily="@font/nunitto_semibold"-->
-<!--                android:hint="Email"-->
-<!--                android:inputType="textEmailAddress"-->
-<!--                android:textColorHint="@color/text_hint"-->
-<!--                android:paddingHorizontal="10dp"-->
-<!--                android:singleLine="true"-->
-<!--                android:textColor="@color/text"-->
-<!--                android:textSize="16dp" />-->
+                android:textSize="14dp" />
 
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:fontFamily="@font/visvy_bold"
+                android:textColor="@color/text"
+                android:layout_marginTop="18dp"/>
             <EditText
                 android:id="@+id/et_passwordRegisterForm"
-                android:layout_width="250dp"
-                android:layout_height="38dp"
-                android:layout_marginTop="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginTop="6dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/xmlbg_input_outline"
                 android:fontFamily="@font/nunitto_semibold"
@@ -198,11 +262,18 @@
                 android:singleLine="true"
                 android:textColor="@color/text" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ulangi Password"
+                android:fontFamily="@font/visvy_bold"
+                android:textColor="@color/text"
+                android:layout_marginTop="18dp"/>
             <EditText
                 android:id="@+id/et_cPasswordRegisterForm"
-                android:layout_width="250dp"
-                android:layout_height="38dp"
-                android:layout_marginTop="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginTop="6dp"
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/nunitto_semibold"
                 android:hint="Confirm Password"
@@ -222,7 +293,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_btnPerformRegister"
-                android:layout_width="250dp"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="46dp"
@@ -231,7 +302,7 @@
                 android:focusable="true"
                 android:foreground="?android:selectableItemBackground"
                 app:cardBackgroundColor="@color/secondary"
-                app:cardCornerRadius="18dp"
+                app:cardCornerRadius="8dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_passwordLogin">
