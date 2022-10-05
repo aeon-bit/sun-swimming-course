@@ -19,12 +19,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.nurul.swimmingcourse.R;
 import com.nurul.swimmingcourse.activity.MainActivity;
 import com.nurul.swimmingcourse.adapter.AdapterListArtikel;
 import com.nurul.swimmingcourse.model.Artikels;
 import com.nurul.swimmingcourse.utils.ApiClient;
 import com.nurul.swimmingcourse.utils.SessionManager;
-import com.yasinta.kesehatankucing.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

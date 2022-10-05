@@ -8,22 +8,22 @@
     <application
         android:name="com.nurul.swimmingcourse.utils.AppQu"
         android:allowBackup="true"
-        android:icon="@drawable/icon_256"
+        android:icon="@drawable/icon_app"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/icon_256"
+        android:roundIcon="@drawable/icon_app_rounded"
         android:supportsRtl="true"
         android:allowClearUserData="true"
-        android:theme="@style/Theme.MPASI.NoActionBar">
+        android:theme="@style/Theme.MyTheme.NoActionBar">
         <activity
             android:name="com.nurul.swimmingcourse.activity.DetailJenisPenyakit"
             android:exported="false" />
         <activity
             android:name="com.nurul.swimmingcourse.activity.MainActivity"
-            android:theme="@style/Theme.MPASI.NoActionBar" />
+            android:theme="@style/Theme.MyTheme.NoActionBar" />
         <activity
             android:name="com.nurul.swimmingcourse.activity.Splashscreen"
             android:exported="true"
-            android:theme="@style/Theme.MPASI.NoActionBar">
+            android:theme="@style/Theme.MyTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

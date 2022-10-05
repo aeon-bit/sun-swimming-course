@@ -11,7 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import com.yasinta.kesehatankucing.R;
+import com.nurul.swimmingcourse.R;
 
 
 public class Splashscreen extends AppCompatActivity {

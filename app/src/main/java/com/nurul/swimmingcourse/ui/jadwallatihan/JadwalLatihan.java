@@ -1,4 +1,4 @@
-package com.nurul.swimmingcourse.ui.teskesehatan;
+package com.nurul.swimmingcourse.ui.jadwallatihan;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -55,7 +55,7 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class TesKesehatanFragment extends Fragment {
+public class JadwalLatihan extends Fragment {
     Spinner sp_jenisKucing;
     String selectedIdJadwalPeriksa, today;
 

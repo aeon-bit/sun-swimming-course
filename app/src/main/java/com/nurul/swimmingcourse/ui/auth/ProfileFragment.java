@@ -36,8 +36,8 @@ public class ProfileFragment extends Fragment {
 
         tv_namaPengguna.setText(": " + SessionManager.getUserData().getNama());
         tv_alamatPengguna.setText(": " + SessionManager.getUserData().getAlamat());
-        tv_noHpPengguna.setText(": " + SessionManager.getUserData().getNo_hp());
-        tv_emailPengguna.setText(": " + SessionManager.getUserData().getEmail());
+//        tv_noHpPengguna.setText(": " + SessionManager.getUserData().getNo_hp());
+//        tv_emailPengguna.setText(": " + SessionManager.getUserData().getEmail());
         tv_userPengguna.setText(": " + SessionManager.getUserData().getUsername());
 //        tv_passPengguna.setText(": " + SessionManager.getUserData().getpas);
 
@@ -49,7 +49,7 @@ public class ProfileFragment extends Fragment {
                 Toast toast = Toast.makeText(getActivity(), "Logout Berhasil", Toast.LENGTH_SHORT);
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
                     View view = toast.getView();
-                    view.setPadding(42, 16, 42, 16);
+                    view.setPadding(42, 12, 42, 12);
                     view.setBackgroundResource(R.drawable.xmlbg_toast_success);
                     TextView textView = view.findViewById(android.R.id.message);
                     textView.setTextColor(Color.WHITE);

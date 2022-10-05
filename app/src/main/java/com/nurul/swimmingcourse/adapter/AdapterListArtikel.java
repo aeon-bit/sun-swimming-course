@@ -92,7 +92,7 @@ public class AdapterListArtikel extends
             super(v);
 
             cv_itemListArtikelHome = v.findViewById(R.id.cv_itemListArtikelHome);
-            tv_judulItemArtikel = v.findViewById(R.id.tv_judulItemArtikel);
+//            tv_judulItemArtikel = v.findViewById(R.id.tv_judulItemArtikel);
             iv_gambarItemArtikel = v.findViewById(R.id.iv_gambarItemArtikel);
 
         }

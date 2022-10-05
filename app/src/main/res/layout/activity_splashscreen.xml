@@ -16,16 +16,5 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="DIAGNOSA KESEHATAN\nKUCING"
-        android:fontFamily="@font/nunito_bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/iv_splashLogo"
-        app:layout_constraintVertical_bias="0.95"
-        android:textColor="@color/white"
-        android:textSize="22dp"
-        android:textAlignment="center"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

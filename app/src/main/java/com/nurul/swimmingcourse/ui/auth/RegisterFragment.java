@@ -22,11 +22,11 @@ import android.widget.Toast;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.nurul.swimmingcourse.R;
 import com.nurul.swimmingcourse.activity.MainActivity;
 import com.nurul.swimmingcourse.model.Registers;
 import com.nurul.swimmingcourse.utils.APIError;
 import com.nurul.swimmingcourse.utils.ErrorUtils;
-import com.yasinta.kesehatankucing.R;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,7 +37,10 @@ import retrofit2.Response;
  */
 public class RegisterFragment extends Fragment {
 
-    private EditText et_nameRegisterForm, et_noTelpRegisterForm, et_namaKucingRegisterForm, et_jenisKucingRegisterForm, et_alamatRegisterForm, et_usernameRegisterForm, et_emailRegisterForm, et_passwordRegisterForm, et_cPasswordRegisterForm;
+    private EditText et_nameRegisterForm, et_noTelpRegisterForm, et_tglLahirRegisterForm,
+            et_tempatLahirRegisterForm, et_namaOrtuRegisterForm, et_namaKucingRegisterForm,
+            et_jenisKucingRegisterForm, et_alamatRegisterForm, et_usernameRegisterForm,
+            et_emailRegisterForm, et_passwordRegisterForm, et_cPasswordRegisterForm;
     private RadioButton rb_laki, rb_perempuan;
     private Button btn_registerForm;
     private TextView tvBtn_loginNow;
@@ -58,11 +61,13 @@ public class RegisterFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_register, container, false);
 
         et_nameRegisterForm = view.findViewById(R.id.et_nameRegisterForm);
+        et_tglLahirRegisterForm = view.findViewById(R.id.et_tglLahirRegisterForm);
+        et_tempatLahirRegisterForm = view.findViewById(R.id.et_tempatLahirRegisterForm);
+        rb_laki = view.findViewById(R.id.rb_laki);
+        rb_perempuan = view.findViewById(R.id.rb_perempuan);
+        et_namaOrtuRegisterForm = view.findViewById(R.id.et_namaOrtuRegisterForm);
         et_alamatRegisterForm = view.findViewById(R.id.et_alamatRegisterForm);
         et_noTelpRegisterForm = view.findViewById(R.id.et_noHpRegisterForm);
-//        et_namaKucingRegisterForm = view.findViewById(R.id.et_namaKucingRegisterForm);
-//        et_jenisKucingRegisterForm = view.findViewById(R.id.et_jenisKucingRegisterForm);
-//        et_emailRegisterForm = view.findViewById(R.id.et_emailRegisterForm);
         et_usernameRegisterForm = view.findViewById(R.id.et_usernameRegisterForm);
         et_passwordRegisterForm = view.findViewById(R.id.et_passwordRegisterForm);
         et_cPasswordRegisterForm = view.findViewById(R.id.et_cPasswordRegisterForm);
@@ -89,59 +94,65 @@ public class RegisterFragment extends Fragment {
             public void onClick(View view) {
 
                 String sNama = et_nameRegisterForm.getText().toString();
+                String sTgl = et_tglLahirRegisterForm.getText().toString();
+                String sTempatLahir = et_tempatLahirRegisterForm.getText().toString();
+                String sOrtu = et_namaOrtuRegisterForm.getText().toString();
                 String sAlamat = et_alamatRegisterForm.getText().toString();
                 String sNoHp = et_noTelpRegisterForm.getText().toString().trim();
-//                String sNamaKucing = et_namaKucingRegisterForm.getText().toString();
-//                String sJenis = et_jenisKucingRegisterForm.getText().toString();
                 String sUsername = et_usernameRegisterForm.getText().toString().trim();
-                String sEmail = "default@email.com";
                 String sPassword = et_passwordRegisterForm.getText().toString();
                 String sCPassword = et_cPasswordRegisterForm.getText().toString();
-//                String sJk = "";
-//                if (rb_laki.isChecked()) {
-//                    sJk = "Laki-laki";
-//                } else {
-//                    sJk = "Perempuan";
-//                }
+                String sJk = "";
+                if (rb_laki.isChecked()) {
+                    sJk = "Laki-laki";
+                } else if (rb_perempuan.isChecked()){
+                    sJk = "Perempuan";
+                } else {
+                    sJk = "Laki-laki";
+                }
 //                if (sNoHp.isEmpty() || sNoHp == null) {
 //                    sNoHp = "";
 //                }
 
-                if (sNama.isEmpty()) {
+                if (sNama.equals("")) {
                     et_nameRegisterForm.setError("Masukkan nama");
-                } else if (sAlamat.isEmpty()) {
+                } else if (sAlamat.equals("")) {
                     et_alamatRegisterForm.setError("Masukkan alamat");
 //                } else if (!rb_laki.isChecked() && !rb_perempuan.isChecked()) {
 //                    rb_errorMsg.setError("isi jenis kelamin");
-                } else if (sUsername.isEmpty() || sUsername == null) {
+                } else if (sTgl.equals("")){
+                    et_tglLahirRegisterForm.setError("Masukkan tanggal lahir");
+                } else if (sTempatLahir.equals("")){
+                    et_tempatLahirRegisterForm.setError("Masukkan tempat lahir");
+                } else if (sOrtu.equals("")){
+                    et_namaOrtuRegisterForm.setError("Masukkan nama orang tua");
+                } else if (sUsername.equals("")) {
                     et_usernameRegisterForm.setError("Masukkan username");
-                } else if (sNoHp.isEmpty()) {
+                } else if (sNoHp.equals("")) {
                     et_noTelpRegisterForm.setError("Masukkan No Hp");
                 } else if (sNoHp.length() < 11) {
                     et_noTelpRegisterForm.setError("Minimal 11 karakter");
-//                } else if (sNamaKucing.isEmpty()) {
-//                    et_namaKucingRegisterForm.setError("Masukkan Nama Kucing");
-//                } else if (sJenis.isEmpty()) {
-//                    et_jenisKucingRegisterForm.setError("Masukkan Jenis Kucing");
-//                } else if (sEmail.isEmpty()) {
-//                    et_emailRegisterForm.setError("Masukkan Email");
-                } else if (sPassword.isEmpty()) {
+                } else if (sPassword.equals("")) {
                     et_passwordRegisterForm.setError("isi password");
-                } else if (sPassword.length() < 6) {
+                } else if (sPassword.length() < 8) {
                     et_passwordRegisterForm.setError("Minimal 6 karakter");
                 } else if (!sCPassword.equals(sPassword)) {
                     et_cPasswordRegisterForm.setError("password tidak sesuai");
-                } else if (!isValidEmail(sEmail)) {
-                    et_emailRegisterForm.setError("Format Email salah");
+//                } else if (!isValidEmail(sEmail)) {
+//                    et_emailRegisterForm.setError("Format Email salah");
                 } else {
-                    performRegistration(sNama, sAlamat, sNoHp, sUsername, sEmail, sPassword, sCPassword);
+                    performRegistration(sNama, sTempatLahir, sTgl, sJk, sOrtu, sAlamat, sNoHp, sUsername, sPassword);
                     hideKeyboard();
 //                    Log.d("daftar", sNama + "\n");
+//                    Log.d("daftar", sTempatLahir + "\n");
+//                    Log.d("daftar", sTgl + "\n");
 //                    Log.d("daftar", sJk + "\n");
+//                    Log.d("daftar", sOrtu + "\n");
+//                    Log.d("daftar", sAlamat + "\n");
+//                    Log.d("daftar", sNoHp + "\n");
 //                    Log.d("daftar", sUsername + "\n");
 //                    Log.d("daftar", sPassword + "\n");
 //                    Log.d("daftar", sCPassword + "\n");
-//                    Log.d("daftar", sNoHp + "\n");
                     pb_loading.setVisibility(View.VISIBLE);
                 }
             }
@@ -165,7 +176,7 @@ public class RegisterFragment extends Fragment {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
-    public void performRegistration(String sNama, String sAlamat, String sNoHp, String sUsername, String sEmail, String sPassword, String sCPassword) {
+    public void performRegistration(String sNama, String sTempatLahir, String sTgl, String sJk, String sOrtu, String sAlamat, String sNoHp, String sUsername, String sPassword) {
 
 
         Call<Registers> call = MainActivity.apiInterface.performRegistration(
@@ -177,7 +188,7 @@ public class RegisterFragment extends Fragment {
 //                "email@email.com",
 //                "123",
 //                "123"
-                sNama, sAlamat, sNoHp, sUsername, sEmail, sPassword, sCPassword
+                sNama, sTempatLahir, sTgl, sJk, sOrtu, sAlamat, sNoHp, sUsername, sPassword
         );
         call.enqueue(new Callback<Registers>() {
             @Override

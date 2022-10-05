@@ -1,4 +1,4 @@
-package com.nurul.swimmingcourse.ui.teskesehatan;
+package com.nurul.swimmingcourse.ui.jadwallatihan;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

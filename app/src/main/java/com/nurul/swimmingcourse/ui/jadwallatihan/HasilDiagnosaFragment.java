@@ -1,4 +1,4 @@
-package com.nurul.swimmingcourse.ui.teskesehatan;
+package com.nurul.swimmingcourse.ui.jadwallatihan;
 
 import android.content.Intent;
 import android.graphics.Color;

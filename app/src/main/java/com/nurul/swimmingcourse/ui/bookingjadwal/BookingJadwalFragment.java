@@ -66,11 +66,11 @@ public class BookingJadwalFragment extends Fragment {
         EditText et_tglBook = root.findViewById(R.id.et_tglBook);
         CardView cv_btnPerformBuatJadwal = root.findViewById(R.id.cv_btnPerformBuatJadwal);
 
-        et_namaKucingBook.setText(SessionManager.getUserData().getNama_kucing());
+//        et_namaKucingBook.setText(SessionManager.getUserData().getNama_kucing());
 //        et_jenisKucingKucingBook.setText(SessionManager.getUserData().getJenis_kucing());
 //        et_usiaKucingBook.setText(SessionManager.getUserData().());
         et_namaPemilikBook.setText(SessionManager.getUserData().getNama());
-        et_noHpBook.setText(SessionManager.getUserData().getNo_hp());
+//        et_noHpBook.setText(SessionManager.getUserData().getNo_hp());
         et_alamatBook.setText(SessionManager.getUserData().getAlamat());
 
 //        String sNamaKucing = et_namaKucingBook.getText().toString();

@@ -33,14 +33,14 @@ public interface ApiInterface {
     @POST("register")
     Call <Registers> performRegistration(
             @Field("nama") String nama,
+            @Field("tempat_lahir") String tempat_lahir,
+            @Field("tanggal_lahir") String tanggal_lahir,
+            @Field("jenis_kelamin") String jenis_kelamin,
+            @Field("nama_ortu") String nama_ortu,
             @Field("alamat") String alamat,
-            @Field("no_hp") String no_hp,
-//            @Field("nama_kucing") String nama_kucing,
-//            @Field("jenis_kucing") String jenis_kucing,
+            @Field("no_telp") String no_telp,
             @Field("username") String username,
-            @Field("email") String email,
-            @Field("password") String password,
-            @Field("password_confirmation") String cpassword
+            @Field("password") String password
     );
 
     @GET("data-artikel")

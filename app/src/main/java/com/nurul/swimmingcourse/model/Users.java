@@ -13,35 +13,30 @@ public class Users {
     @SerializedName("nama")
     private String nama;
 
-    @SerializedName("nama_pemilik")
-    private String nama_pemilik;
+    @SerializedName("tempat_lahir")
+    private String tempat_lahir;
 
-    @SerializedName("email")
-    private String email;
+    @SerializedName("tanggal_lahir")
+    private String tanggal_lahir;
+
+    @SerializedName("jenis_kelamin")
+    private String jenis_kelamin;
+
+    @SerializedName("nama_ortu")
+    private String nama_ortu;
 
     @SerializedName("alamat")
     private String alamat;
 
-    @SerializedName("no_hp")
-    private String no_hp;
+    @SerializedName("no_telp")
+    private String no_telp;
 
     @SerializedName("username")
     private String username;
 
-    @SerializedName("nama_kucing")
-    private String nama_kucing;
-
-    @SerializedName("jenis_kucing")
-    private String jenis_kucing;
-
-
-    public String getNama_pemilik() {
-        return nama_pemilik;
-    }
-
-    public void setNama_pemilik(String nama_pemilik) {
-        this.nama_pemilik = nama_pemilik;
-    }
+    //pelatih
+    @SerializedName("foto")
+    private String foto;
 
     public String getId() {
         return id;
@@ -59,12 +54,36 @@ public class Users {
         this.nama = nama;
     }
 
-    public String getEmail() {
-        return email;
+    public String getTempat_lahir() {
+        return tempat_lahir;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setTempat_lahir(String tempat_lahir) {
+        this.tempat_lahir = tempat_lahir;
+    }
+
+    public String getTanggal_lahir() {
+        return tanggal_lahir;
+    }
+
+    public void setTanggal_lahir(String tanggal_lahir) {
+        this.tanggal_lahir = tanggal_lahir;
+    }
+
+    public String getJenis_kelamin() {
+        return jenis_kelamin;
+    }
+
+    public void setJenis_kelamin(String jenis_kelamin) {
+        this.jenis_kelamin = jenis_kelamin;
+    }
+
+    public String getNama_ortu() {
+        return nama_ortu;
+    }
+
+    public void setNama_ortu(String nama_ortu) {
+        this.nama_ortu = nama_ortu;
     }
 
     public String getAlamat() {
@@ -75,12 +94,12 @@ public class Users {
         this.alamat = alamat;
     }
 
-    public String getNo_hp() {
-        return no_hp;
+    public String getNo_telp() {
+        return no_telp;
     }
 
-    public void setNo_hp(String no_hp) {
-        this.no_hp = no_hp;
+    public void setNo_telp(String no_telp) {
+        this.no_telp = no_telp;
     }
 
     public String getUsername() {
@@ -91,19 +110,11 @@ public class Users {
         this.username = username;
     }
 
-    public String getNama_kucing() {
-        return nama_kucing;
+    public String getFoto() {
+        return foto;
     }
 
-    public void setNama_kucing(String nama_kucing) {
-        this.nama_kucing = nama_kucing;
-    }
-
-    public String getJenis_kucing() {
-        return jenis_kucing;
-    }
-
-    public void setJenis_kucing(String jenis_kucing) {
-        this.jenis_kucing = jenis_kucing;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }

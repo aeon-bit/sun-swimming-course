@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,12 +22,14 @@ import android.widget.Toast;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.nurul.swimmingcourse.R;
 import com.nurul.swimmingcourse.activity.MainActivity;
 import com.nurul.swimmingcourse.model.Logins;
 import com.nurul.swimmingcourse.utils.APIError;
 import com.nurul.swimmingcourse.utils.ErrorUtils;
 import com.nurul.swimmingcourse.utils.SessionManager;
-import com.yasinta.kesehatankucing.R;
+
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,6 +66,7 @@ public class LoginFragment extends Fragment {
         pb_loading = view.findViewById(R.id.pb_loading);
         et_usernameLogin = view.findViewById(R.id.et_usernameLogin);
         et_passwordLogin = view.findViewById(R.id.et_passwordLogin);
+        LinearLayout ly_btnSkip = view.findViewById(R.id.ly_btnSkip);
 
         CardView cv_loginPerformLogin = view.findViewById(R.id.cv_loginPerformLogin);
         TextView tv_btnRegisterNow = view.findViewById(R.id.tv_btnRegisterNow);
@@ -90,6 +94,13 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        ly_btnSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getContext()).SwitchFrag(0);
+            }
+        });
+
         return view;
     }
 
@@ -114,7 +125,7 @@ public class LoginFragment extends Fragment {
         call.enqueue(new Callback<Logins>() {
             @Override
             public void onResponse(Call<Logins> call, Response<Logins> response) {
-//                Log.d("login", "onResponse: " + response.body().getUser().toString());
+                Log.d("login", "onResponse: " + response.body().getMessage());
 //                if (response.body().getMessage().equals("sukses")){
 //                    callToast("Login berhasil", 1);
 //                    SessionManager.login(response.body().getUser(),
@@ -129,22 +140,25 @@ public class LoginFragment extends Fragment {
                         SessionManager.login(response.body().getUser(),
                                 response.body().getToken());
 
-                        loginFormActivityListener.performLogin(response.body().getUser().getEmail());
+                        loginFormActivityListener.performLogin(response.body().getUser().getNama());
                     }
                 } else {
-                    APIError error = ErrorUtils.parseError(response);
-
-                    callToast("Server Error", 0);
-
-                    Log.d("error message", error.message());
+                    callToast("Username / Password Salah", 0);
+//                    APIError error = ErrorUtils.parseError(response);
+//
+//                    callToast("Server Error", 0);
+//
+//                    Log.d("error message", error.message());
                 }
             }
 
             @Override
             public void onFailure(Call<Logins> call, Throwable t) {
-
-//                callToast("Terjadi Kesalahan Koneksi: " + t.getMessage(), 0);
-                callToast("Username / Password Salah", 0);
+                if (t instanceof IOException){
+                    callToast("Terjadi Kesalahan Koneksi", 0);
+                } else {
+                    callToast("Username / Password Salah", 0);
+                }
 
                 pb_loading.setVisibility(View.GONE);
 

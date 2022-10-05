@@ -14,6 +14,9 @@ public class Logins {
     @SerializedName("user")
     private Users user;
 
+    @SerializedName("role")
+    private String role;
+
     @SerializedName("errors")
     private ArrayList errors;
 
@@ -39,6 +42,14 @@ public class Logins {
 
     public void setUser(Users user) {
         this.user = user;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public ArrayList getErrors() {

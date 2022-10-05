@@ -4,7 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.yasinta.kesehatankucing.R;
+import com.nurul.swimmingcourse.R;
+
 
 public class DetailJenisPenyakit extends AppCompatActivity {
 

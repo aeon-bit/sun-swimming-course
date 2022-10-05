@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white_bg"
     android:clickable="true"
-    tools:context=".ui.teskesehatan.HasilDiagnosaFragment">
+    tools:context=".ui.jadwallatihan.HasilDiagnosaFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

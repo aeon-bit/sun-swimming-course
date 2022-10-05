@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white_bg"
     android:clickable="true"
-    tools:context=".ui.teskesehatan.TesKesehatanFragment">
+    tools:context=".ui.jadwallatihan.JadwalLatihan">
 
     <LinearLayout
         android:id="@+id/c1"

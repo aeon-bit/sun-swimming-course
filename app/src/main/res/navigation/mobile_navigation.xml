@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/nav_tes_kesehatan"
-        android:name="com.nurul.swimmingcourse.ui.teskesehatan.TesKesehatanFragment"
+        android:name="com.nurul.swimmingcourse.ui.jadwallatihan.JadwalLatihan"
         android:label="Tes Kesehatan Kucing"
         tools:layout="@layout/fragment_tes_kesehatan" />
 

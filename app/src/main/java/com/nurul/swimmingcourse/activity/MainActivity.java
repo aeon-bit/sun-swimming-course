@@ -21,7 +21,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.nurul.swimmingcourse.R;
-import com.nurul.swimmingcourse.ui.teskesehatan.TesKesehatanFragment;
+import com.nurul.swimmingcourse.ui.jadwallatihan.JadwalLatihan;
 import com.nurul.swimmingcourse.ui.auth.LoginFragment;
 import com.nurul.swimmingcourse.ui.auth.ProfileFragment;
 import com.nurul.swimmingcourse.ui.auth.RegisterFragment;
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     private AppBarConfiguration mAppBarConfiguration;
-//    private ActivityMainBinding binding;
+    //    private ActivityMainBinding binding;
     private DrawerLayout drawer;
     private NavigationView navigationView;
 
@@ -144,6 +144,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    public void DashboardNoLogin(){
+        getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
+                new DashboardFragment()).commit();
+        navigationView.setCheckedItem(R.id.nav_dashboard);
+        getSupportActionBar().setTitle("Dashboard");
+    }
+
     @Override
     public void performRegister() {
         getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
@@ -190,15 +197,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (SessionManager.isLogin()) {
 
             switch (item.getItemId()) {
-                case R.id.nav_dashboard:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
-                            new DashboardFragment()).commit();
-                    navigationView.setCheckedItem(R.id.nav_dashboard);
-                    getSupportActionBar().setTitle(R.string.menu_dashboard);
-                    break;
                 case R.id.nav_tes_kesehatan:
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
-                            new TesKesehatanFragment()).commit();
+                            new JadwalLatihan()).commit();
                     navigationView.setCheckedItem(R.id.nav_tes_kesehatan);
                     getSupportActionBar().setTitle(R.string.menu_tes_kesehatan);
                     break;
@@ -246,25 +247,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                     break;
             }
-            drawer.closeDrawer(GravityCompat.START);
+            drawer.closeDrawer(GravityCompat.START, false);
         } else {
-            if (item.getItemId() == R.id.nav_auth) {
+            if (item.getItemId() == R.id.nav_dashboard) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
+                        new DashboardFragment()).commit();
+                navigationView.setCheckedItem(R.id.nav_dashboard);
+                getSupportActionBar().setTitle(R.string.menu_dashboard);
+
+                drawer.closeDrawer(GravityCompat.START, false);
+
+            } else if (item.getItemId() == R.id.nav_auth) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
                         new LoginFragment()).commit();
                 navigationView.setCheckedItem(R.id.nav_auth);
                 getSupportActionBar().setTitle("Login");
+                drawer.closeDrawer(GravityCompat.START, false);
             } else {
                 callWarningToast("Silakan login dahulu!");
             }
         }
+
         return false;
     }
 
-    private void callWarningToast(String s){
+    private void callWarningToast(String s) {
         Toast toast = Toast.makeText(this, s, Toast.LENGTH_SHORT);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
             View view = toast.getView();
-            view.setPadding(42, 16, 42, 16);
+            view.setPadding(42, 12, 42, 12);
             view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
             TextView textView = view.findViewById(android.R.id.message);
             textView.setTextColor(Color.WHITE);
@@ -272,7 +283,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toast.show();
     }
 
-    public void setActionBarTitle(int title){
+    public void setActionBarTitle(int title) {
         getSupportActionBar().setTitle(title);
     }
 
@@ -286,7 +297,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case 1:
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
-                        new TesKesehatanFragment()).commit();
+                        new JadwalLatihan()).commit();
                 navigationView.setCheckedItem(R.id.nav_tes_kesehatan);
                 getSupportActionBar().setTitle(R.string.menu_tes_kesehatan);
                 break;

@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:clickable="true"
+    android:background="@color/white"
     tools:context="ui.auth.LoginFragment">
 
     <LinearLayout
@@ -118,6 +119,7 @@
                     android:textColor="@color/secondary" />
 
             </LinearLayout>
+
         </LinearLayout>
 
         <!--        <LinearLayout-->
@@ -147,6 +149,32 @@
         <!--                android:text="Daftar Sekarang"-->
         <!--                android:textColor="@color/colorBtnBlue" />-->
         <!--        </LinearLayout>-->
+
+        <LinearLayout
+            android:id="@+id/ly_btnSkip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginBottom="24dp"
+            android:layout_marginRight="18dp">
+
+            <TextView
+                android:id="@+id/tv_btnSkip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_bold"
+                android:text="Lewati"
+                android:textColor="@color/secondary" />
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_skip"
+                app:tint="@color/secondary" />
+
+        </LinearLayout>
 
         <ProgressBar
             android:id="@+id/pb_loading"
