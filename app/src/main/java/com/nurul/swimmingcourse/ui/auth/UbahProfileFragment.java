@@ -18,12 +18,12 @@ import com.nurul.swimmingcourse.R;
 import com.nurul.swimmingcourse.activity.MainActivity;
 import com.nurul.swimmingcourse.utils.SessionManager;
 
-public class ProfileFragment extends Fragment {
+public class UbahProfileFragment extends Fragment {
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_profile, container, false);
+        View root = inflater.inflate(R.layout.fragment_ubah_profile, container, false);
 
         CardView cv_btnPerformLogout = root.findViewById(R.id.cv_btnPerformLogout);
         CardView cv_btnUbahProfile = root.findViewById(R.id.cv_btnUbahProfile);
@@ -53,6 +53,11 @@ public class ProfileFragment extends Fragment {
         tv_alamatSiswaProfil.setText(": " + SessionManager.getUserData().getAlamat());
         tv_noTelpSiswaProfil.setText(": " + SessionManager.getUserData().getNo_telp());
         tv_usernameSiswaProfil.setText(": " + SessionManager.getUserData().getUsername());
+
+        tv_namaPelatihProfil.setText(": " + SessionManager.getUserData().getNama());
+        tv_alamatPelatihProfil.setText(": " + SessionManager.getUserData().getAlamat());
+        tv_noTelpPelatihProfil.setText(": " + SessionManager.getUserData().getNo_telp());
+        tv_usernamePelatihProfil.setText(": " + SessionManager.getUserData().getUsername());
 
         cv_btnPerformLogout.setOnClickListener(new View.OnClickListener() {
             @Override

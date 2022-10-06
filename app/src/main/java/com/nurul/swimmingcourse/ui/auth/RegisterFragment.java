@@ -28,6 +28,8 @@ import com.nurul.swimmingcourse.model.Registers;
 import com.nurul.swimmingcourse.utils.APIError;
 import com.nurul.swimmingcourse.utils.ErrorUtils;
 
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -93,55 +95,66 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                String sNama = et_nameRegisterForm.getText().toString();
-                String sTgl = et_tglLahirRegisterForm.getText().toString();
-                String sTempatLahir = et_tempatLahirRegisterForm.getText().toString();
-                String sOrtu = et_namaOrtuRegisterForm.getText().toString();
-                String sAlamat = et_alamatRegisterForm.getText().toString();
-                String sNoHp = et_noTelpRegisterForm.getText().toString().trim();
-                String sUsername = et_usernameRegisterForm.getText().toString().trim();
-                String sPassword = et_passwordRegisterForm.getText().toString();
-                String sCPassword = et_cPasswordRegisterForm.getText().toString();
-                String sJk = "";
-                if (rb_laki.isChecked()) {
-                    sJk = "Laki-laki";
-                } else if (rb_perempuan.isChecked()){
-                    sJk = "Perempuan";
-                } else {
-                    sJk = "Laki-laki";
-                }
-//                if (sNoHp.isEmpty() || sNoHp == null) {
-//                    sNoHp = "";
+                performRegistration(
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "-"
+                );
+//                String sNama = et_nameRegisterForm.getText().toString();
+//                String sTgl = et_tglLahirRegisterForm.getText().toString();
+//                String sTempatLahir = et_tempatLahirRegisterForm.getText().toString();
+//                String sOrtu = et_namaOrtuRegisterForm.getText().toString();
+//                String sAlamat = et_alamatRegisterForm.getText().toString();
+//                String sNoHp = et_noTelpRegisterForm.getText().toString().trim();
+//                String sUsername = et_usernameRegisterForm.getText().toString().trim();
+//                String sPassword = et_passwordRegisterForm.getText().toString();
+//                String sCPassword = et_cPasswordRegisterForm.getText().toString();
+//                String sJk = "";
+//                if (rb_laki.isChecked()) {
+//                    sJk = "Laki-laki";
+//                } else if (rb_perempuan.isChecked()){
+//                    sJk = "Perempuan";
+//                } else {
+//                    sJk = "Laki-laki";
 //                }
-
-                if (sNama.equals("")) {
-                    et_nameRegisterForm.setError("Masukkan nama");
-                } else if (sAlamat.equals("")) {
-                    et_alamatRegisterForm.setError("Masukkan alamat");
-//                } else if (!rb_laki.isChecked() && !rb_perempuan.isChecked()) {
-//                    rb_errorMsg.setError("isi jenis kelamin");
-                } else if (sTgl.equals("")){
-                    et_tglLahirRegisterForm.setError("Masukkan tanggal lahir");
-                } else if (sTempatLahir.equals("")){
-                    et_tempatLahirRegisterForm.setError("Masukkan tempat lahir");
-                } else if (sOrtu.equals("")){
-                    et_namaOrtuRegisterForm.setError("Masukkan nama orang tua");
-                } else if (sUsername.equals("")) {
-                    et_usernameRegisterForm.setError("Masukkan username");
-                } else if (sNoHp.equals("")) {
-                    et_noTelpRegisterForm.setError("Masukkan No Hp");
-                } else if (sNoHp.length() < 11) {
-                    et_noTelpRegisterForm.setError("Minimal 11 karakter");
-                } else if (sPassword.equals("")) {
-                    et_passwordRegisterForm.setError("isi password");
-                } else if (sPassword.length() < 8) {
-                    et_passwordRegisterForm.setError("Minimal 6 karakter");
-                } else if (!sCPassword.equals(sPassword)) {
-                    et_cPasswordRegisterForm.setError("password tidak sesuai");
-//                } else if (!isValidEmail(sEmail)) {
-//                    et_emailRegisterForm.setError("Format Email salah");
-                } else {
-                    performRegistration(sNama, sTempatLahir, sTgl, sJk, sOrtu, sAlamat, sNoHp, sUsername, sPassword);
+////                if (sNoHp.isEmpty() || sNoHp == null) {
+////                    sNoHp = "";
+////                }
+//
+//                if (sNama.equals("")) {
+//                    et_nameRegisterForm.setError("Masukkan nama");
+//                } else if (sAlamat.equals("")) {
+//                    et_alamatRegisterForm.setError("Masukkan alamat");
+////                } else if (!rb_laki.isChecked() && !rb_perempuan.isChecked()) {
+////                    rb_errorMsg.setError("isi jenis kelamin");
+//                } else if (sTgl.equals("")){
+//                    et_tglLahirRegisterForm.setError("Masukkan tanggal lahir");
+//                } else if (sTempatLahir.equals("")){
+//                    et_tempatLahirRegisterForm.setError("Masukkan tempat lahir");
+//                } else if (sOrtu.equals("")){
+//                    et_namaOrtuRegisterForm.setError("Masukkan nama orang tua");
+//                } else if (sUsername.equals("")) {
+//                    et_usernameRegisterForm.setError("Masukkan username");
+//                } else if (sNoHp.equals("")) {
+//                    et_noTelpRegisterForm.setError("Masukkan No Hp");
+//                } else if (sNoHp.length() < 11) {
+//                    et_noTelpRegisterForm.setError("Minimal 11 karakter");
+//                } else if (sPassword.equals("")) {
+//                    et_passwordRegisterForm.setError("isi password");
+//                } else if (sPassword.length() < 8) {
+//                    et_passwordRegisterForm.setError("Minimal 6 karakter");
+//                } else if (!sCPassword.equals(sPassword)) {
+//                    et_cPasswordRegisterForm.setError("password tidak sesuai");
+////                } else if (!isValidEmail(sEmail)) {
+////                    et_emailRegisterForm.setError("Format Email salah");
+//                } else {
+//                    performRegistration(sNama, sTempatLahir, sTgl, sJk, sOrtu, sAlamat, sNoHp, sUsername, sPassword);
                     hideKeyboard();
 //                    Log.d("daftar", sNama + "\n");
 //                    Log.d("daftar", sTempatLahir + "\n");
@@ -154,7 +167,7 @@ public class RegisterFragment extends Fragment {
 //                    Log.d("daftar", sPassword + "\n");
 //                    Log.d("daftar", sCPassword + "\n");
                     pb_loading.setVisibility(View.VISIBLE);
-                }
+//                }
             }
         });
 
@@ -180,15 +193,16 @@ public class RegisterFragment extends Fragment {
 
 
         Call<Registers> call = MainActivity.apiInterface.performRegistration(
-//                "tNama",
-//                "tAlamat",
-//                "99999",
-//                "tNamaKucing",
-//                "tJenis",
-//                "email@email.com",
-//                "123",
-//                "123"
-                sNama, sTempatLahir, sTgl, sJk, sOrtu, sAlamat, sNoHp, sUsername, sPassword
+//                sNama, sTempatLahir, sTgl, sJk, sOrtu, sAlamat, sNoHp, sUsername, sPassword
+                "nama tes",
+                "TL Test",
+                "1990-01-02",
+                "Laki-laki",
+                "Ortu test",
+                "alamat test",
+                "080000000000",
+                "user_test",
+                "password"
         );
         call.enqueue(new Callback<Registers>() {
             @Override
@@ -212,24 +226,23 @@ public class RegisterFragment extends Fragment {
                         ((MainActivity) getContext()).logoutPerform(); //restart actv
                     }
                 } else {
-                    APIError error = ErrorUtils.parseError(response);
-
-                    callToast("Server Error", 0);
-
-                    Log.d("error message", error.message());
+//                    APIError error = ErrorUtils.parseError(response);
+//
+//                    callToast("Server Error", 0);
+//
+//                    Log.d("error message", error.message());
                 }
             }
 
             @Override
             public void onFailure(Call<Registers> call, Throwable t) {
 
-                Log.d("daftar", "onFaillure: " + t.toString());
-                Toast toast = Toast.makeText(getActivity(), "Terjadi Kesalahan", Toast.LENGTH_LONG);
-                View view = toast.getView();
-                view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
-                TextView textView = view.findViewById(android.R.id.message);
-                textView.setTextColor(Color.WHITE);
-                toast.show();
+                Log.d("register", t.getMessage());
+                if (t instanceof IOException){
+                    callToast("Terjadi Kesalahan Koneksi", 0);
+                } else {
+                    callToast("Form Bermasalah", 0);
+                }
             }
         });
 

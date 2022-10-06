@@ -34,6 +34,9 @@ public class Users {
     @SerializedName("username")
     private String username;
 
+    @SerializedName("password")
+    private String password;
+
     //pelatih
     @SerializedName("foto")
     private String foto;
@@ -116,5 +119,13 @@ public class Users {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

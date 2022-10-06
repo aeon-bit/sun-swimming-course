@@ -15,7 +15,7 @@
         android:id="@+id/nav_tes_kesehatan"
         android:name="com.nurul.swimmingcourse.ui.jadwallatihan.JadwalLatihan"
         android:label="Tes Kesehatan Kucing"
-        tools:layout="@layout/fragment_tes_kesehatan" />
+        tools:layout="@layout/fragment_pesan_jadwal" />
 
     <fragment
         android:id="@+id/nav_jenis_penyakit"

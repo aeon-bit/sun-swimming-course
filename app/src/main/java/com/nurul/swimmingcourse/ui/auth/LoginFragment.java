@@ -116,6 +116,7 @@ public class LoginFragment extends Fragment {
     }
 
     private void performLogin() {
+        Log.d("login", "HIT LOGIN");
         hideKeyboard();
 
         String sUsername = et_usernameLogin.getText().toString().trim();
@@ -154,6 +155,7 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Logins> call, Throwable t) {
+                Log.d("login", t.getMessage());
                 if (t instanceof IOException){
                     callToast("Terjadi Kesalahan Koneksi", 0);
                 } else {
@@ -165,8 +167,8 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        et_usernameLogin.setText("");
-        et_passwordLogin.setText("");
+//        et_usernameLogin.setText("");
+//        et_passwordLogin.setText("");
         pb_loading.setVisibility(View.GONE);
     }
 

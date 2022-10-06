@@ -70,70 +70,70 @@ public class JadwalLatihan extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_tes_kesehatan, container, false);
+        View root = inflater.inflate(R.layout.fragment_pesan_jadwal, container, false);
 
 //        rg_gejala = root.findViewById(R.id.rg_gejala);
-        ly_cb = root.findViewById(R.id.ly_cb);
+//        ly_cb = root.findViewById(R.id.ly_cb);
         listGejalas = new ArrayList<>();
         requestQueue = Volley.newRequestQueue(getContext());
-        getAllDiagnosa();
+//        getAllDiagnosa();
 //        getSpinnerJadwalPeriksa();
         getCurrentDate();
 
 
-        EditText et_namaKucingTesK = root.findViewById(R.id.et_namaKucingTesK);
+//        EditText et_namaKucingTesK = root.findViewById(R.id.et_namaKucingTesK);
 //        EditText et_jenisKucingTesK = root.findViewById(R.id.et_jenisKucingTesK);
 //        EditText et_namaPemilikTesK = root.findViewById(R.id.et_namaPemilikTesK);
         sp_jenisKucing = root.findViewById(R.id.sp_jenisKucing);
 
-        spinnerJenisKucing();
+//        spinnerJenisKucing();
 
 
 //        String sNamaPemilik = et_namaPemilikTesK.getText().toString();
 
-        CardView cv_btnPerformDiagnosa = root.findViewById(R.id.cv_btnPerformDiagnosa);
-        cv_btnPerformDiagnosa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //call Dialog
-                DialogConfirmTes dialogConfirmTes = new DialogConfirmTes(getContext());
-                dialogConfirmTes.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-                LinearLayout ly_btnConfirmTes = dialogConfirmTes.findViewById(R.id.ly_btnConfirmTes);
-                LinearLayout ly_btnBatalTes = dialogConfirmTes.findViewById(R.id.ly_btnBatalTes);
-
-                ly_btnConfirmTes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String sNamaKucing = et_namaKucingTesK.getText().toString();
-                        String sJenis = sp_jenisKucing.getSelectedItem().toString();
-
-                        Log.d("spinner", "JENIS: " + sJenis);
-
-                        if (sNamaKucing.equals("")) {
-                            et_namaKucingTesK.setError("Masukkan nama kucing");
-//                        } else if (sJenis.equals("")) {
-//                            et_jenisKucingTesK.setError("Masukkan jenis kucing");
-//                } else if (sNamaPemilik.equals("")) {
-//                    et_namaPemilikTesK.setError("Masukkan nama pemilik");
-                        } else {
-                            performDiagnosa(sNamaKucing, sJenis);
-                        }
-
-                        dialogConfirmTes.dismiss();
-                    }
-                });
-
-                ly_btnBatalTes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialogConfirmTes.dismiss();
-                    }
-                });
-
-                dialogConfirmTes.show();
-            }
-        });
+//        CardView cv_btnPerformDiagnosa = root.findViewById(R.id.cv_btnPerformDiagnosa);
+//        cv_btnPerformDiagnosa.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //call Dialog
+//                DialogConfirmTes dialogConfirmTes = new DialogConfirmTes(getContext());
+//                dialogConfirmTes.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//
+//                LinearLayout ly_btnConfirmTes = dialogConfirmTes.findViewById(R.id.ly_btnConfirmTes);
+//                LinearLayout ly_btnBatalTes = dialogConfirmTes.findViewById(R.id.ly_btnBatalTes);
+//
+//                ly_btnConfirmTes.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        String sNamaKucing = et_namaKucingTesK.getText().toString();
+//                        String sJenis = sp_jenisKucing.getSelectedItem().toString();
+//
+//                        Log.d("spinner", "JENIS: " + sJenis);
+//
+//                        if (sNamaKucing.equals("")) {
+//                            et_namaKucingTesK.setError("Masukkan nama kucing");
+////                        } else if (sJenis.equals("")) {
+////                            et_jenisKucingTesK.setError("Masukkan jenis kucing");
+////                } else if (sNamaPemilik.equals("")) {
+////                    et_namaPemilikTesK.setError("Masukkan nama pemilik");
+//                        } else {
+//                            performDiagnosa(sNamaKucing, sJenis);
+//                        }
+//
+//                        dialogConfirmTes.dismiss();
+//                    }
+//                });
+//
+//                ly_btnBatalTes.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        dialogConfirmTes.dismiss();
+//                    }
+//                });
+//
+//                dialogConfirmTes.show();
+//            }
+//        });
 
 
         return root;

@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/nunito_bold"
+                android:fontFamily="@font/poppins_bold"
                 android:text="Login"
                 android:textSize="28dp"
                 android:textColor="@color/secondary"
@@ -50,7 +50,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="28dp"
                 android:background="@drawable/xmlbg_input_outline"
-                android:fontFamily="@font/nunitto_semibold"
+                android:fontFamily="@font/poppins_medium"
                 android:hint="Username"
                 android:inputType="text"
                 android:paddingHorizontal="10dp"
@@ -64,7 +64,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="14dp"
                 android:background="@drawable/xmlbg_input_outline"
-                android:fontFamily="@font/nunitto_semibold"
+                android:fontFamily="@font/poppins_medium"
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:paddingHorizontal="10dp"
@@ -106,7 +106,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunitto_semibold"
+                    android:fontFamily="@font/poppins_semibold"
                     android:text="Belum punya akun? "
                     android:textColor="@color/text" />
 

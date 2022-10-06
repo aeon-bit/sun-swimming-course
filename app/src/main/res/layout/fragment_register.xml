@@ -33,7 +33,7 @@
                 android:textSize="28dp"
                 android:textAlignment="center"
                 android:layout_marginHorizontal="58dp"
-                android:fontFamily="@font/nunito_bold"
+                android:fontFamily="@font/poppins_bold"
                 android:text="Daftar"
                 android:textColor="@color/secondary" />
 
@@ -311,7 +311,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:fontFamily="@font/nunito_bold"
+                    android:fontFamily="@font/poppins_bold"
                     android:gravity="center"
                     android:text="Daftar"
                     android:textColor="@color/white" />
@@ -336,7 +336,7 @@
                     android:id="@+id/tv_btnLoginNow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_bold"
+                    android:fontFamily="@font/poppins_bold"
                     android:text="Login sekarang"
                     android:textColor="@color/secondary" />
 
