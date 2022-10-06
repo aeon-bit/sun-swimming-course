@@ -28,6 +28,9 @@ public class ProfileFragment extends Fragment {
         CardView cv_btnPerformLogout = root.findViewById(R.id.cv_btnPerformLogout);
         CardView cv_btnUbahProfile = root.findViewById(R.id.cv_btnUbahProfile);
 
+        TextView tv_roleProfile = root.findViewById(R.id.tv_roleProfile);
+//        tv_roleProfile.setText(SessionManager.getUserData().getr);
+
 //        siswa
         TextView tv_namaSiswaProfil = root.findViewById(R.id.tv_namaSiswaProfil);
         TextView tv_tglLahirSiswaProfil = root.findViewById(R.id.tv_tglLahirSiswaProfil);

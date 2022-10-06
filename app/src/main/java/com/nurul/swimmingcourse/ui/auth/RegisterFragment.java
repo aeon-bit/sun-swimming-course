@@ -55,7 +55,6 @@ public class RegisterFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -197,7 +196,7 @@ public class RegisterFragment extends Fragment {
                 "nama tes",
                 "TL Test",
                 "1990-01-02",
-                "Laki-laki",
+                "laki-laki",
                 "Ortu test",
                 "alamat test",
                 "080000000000",

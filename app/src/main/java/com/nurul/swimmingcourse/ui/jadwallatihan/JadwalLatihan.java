@@ -2,7 +2,6 @@ package com.nurul.swimmingcourse.ui.jadwallatihan;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +19,6 @@ import android.widget.Toast;
 import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
@@ -32,7 +30,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.nurul.swimmingcourse.R;
 import com.nurul.swimmingcourse.activity.MainActivity;
-import com.nurul.swimmingcourse.dialog.DialogConfirmTes;
 import com.nurul.swimmingcourse.model.Gejalas;
 import com.nurul.swimmingcourse.model.JadwalPeriksas;
 import com.nurul.swimmingcourse.model.ResponseSpJadwals;
@@ -56,7 +53,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class JadwalLatihan extends Fragment {
-    Spinner sp_jenisKucing;
+    Spinner sp_hariInJadwal, sp_jamInJadwal;
     String selectedIdJadwalPeriksa, today;
 
     LinearLayout ly_cb;
@@ -77,16 +74,19 @@ public class JadwalLatihan extends Fragment {
         listGejalas = new ArrayList<>();
         requestQueue = Volley.newRequestQueue(getContext());
 //        getAllDiagnosa();
-//        getSpinnerJadwalPeriksa();
+//        getSpinnerAllPelatih();
         getCurrentDate();
 
 
-//        EditText et_namaKucingTesK = root.findViewById(R.id.et_namaKucingTesK);
-//        EditText et_jenisKucingTesK = root.findViewById(R.id.et_jenisKucingTesK);
-//        EditText et_namaPemilikTesK = root.findViewById(R.id.et_namaPemilikTesK);
-        sp_jenisKucing = root.findViewById(R.id.sp_jenisKucing);
+        EditText et_namaInJadwal = root.findViewById(R.id.et_namaInJadwal);
+        sp_hariInJadwal = root.findViewById(R.id.sp_hariInJadwal);
+        sp_jamInJadwal = root.findViewById(R.id.sp_jamInJadwal);
+        Spinner sp_pelatihInJadwal = root.findViewById(R.id.sp_pelatihInJadwal);
+        spinnerHari();
+        spinnerJam();
 
-//        spinnerJenisKucing();
+        et_namaInJadwal.setText(SessionManager.getUserData().getNama());
+
 
 
 //        String sNamaPemilik = et_namaPemilikTesK.getText().toString();
@@ -106,7 +106,7 @@ public class JadwalLatihan extends Fragment {
 //                    @Override
 //                    public void onClick(View v) {
 //                        String sNamaKucing = et_namaKucingTesK.getText().toString();
-//                        String sJenis = sp_jenisKucing.getSelectedItem().toString();
+//                        String sJenis = sp_hariInJadwal.getSelectedItem().toString();
 //
 //                        Log.d("spinner", "JENIS: " + sJenis);
 //
@@ -139,12 +139,18 @@ public class JadwalLatihan extends Fragment {
         return root;
     }
 
-    private void spinnerJenisKucing() {
-        //spinner jam
-        ArrayAdapter<CharSequence> adapterJam = ArrayAdapter.createFromResource(getContext(), R.array.jenis_kucing, android.R.layout.simple_spinner_item);
+    private void spinnerJam() {
+        ArrayAdapter<CharSequence> adapterJam = ArrayAdapter.createFromResource(getContext(), R.array.jam, android.R.layout.simple_spinner_item);
         adapterJam.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sp_jenisKucing.setAdapter(adapterJam);
-        sp_jenisKucing.setOnItemSelectedListener(sp_jenisKucing.getOnItemSelectedListener());
+        sp_jamInJadwal.setAdapter(adapterJam);
+        sp_jamInJadwal.setOnItemSelectedListener(sp_jamInJadwal.getOnItemSelectedListener());
+    }
+
+    private void spinnerHari() {
+        ArrayAdapter<CharSequence> adapterHari = ArrayAdapter.createFromResource(getContext(), R.array.hari, android.R.layout.simple_spinner_item);
+        adapterHari.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp_hariInJadwal.setAdapter(adapterHari);
+        sp_hariInJadwal.setOnItemSelectedListener(sp_hariInJadwal.getOnItemSelectedListener());
     }
 
     private void getCurrentDate() {
@@ -155,7 +161,7 @@ public class JadwalLatihan extends Fragment {
 //        Log.d("tanggal", "getCurrentDate: " + dtf.format(now));
     }
 
-    private void getSpinnerJadwalPeriksa() {
+    private void getSpinnerAllPelatih() {
         Call<ResponseSpJadwals> call = MainActivity.apiInterface.getSpJadwalPeriksa(
                 "Bearer " + SessionManager.getToken()
         );
@@ -174,8 +180,8 @@ public class JadwalLatihan extends Fragment {
                 //set to spinner adapter
                 final ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, listTglSp);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                sp_jenisKucing.setAdapter(adapter);
-                sp_jenisKucing.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                sp_hariInJadwal.setAdapter(adapter);
+                sp_hariInJadwal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 

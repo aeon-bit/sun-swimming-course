@@ -1,10 +1,13 @@
 package com.nurul.swimmingcourse.ui.dashboard;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -22,6 +25,7 @@ import com.android.volley.toolbox.Volley;
 import com.nurul.swimmingcourse.R;
 import com.nurul.swimmingcourse.activity.MainActivity;
 import com.nurul.swimmingcourse.adapter.AdapterListArtikel;
+import com.nurul.swimmingcourse.dialog.DialogConfirmLogout;
 import com.nurul.swimmingcourse.model.Artikels;
 import com.nurul.swimmingcourse.utils.ApiClient;
 import com.nurul.swimmingcourse.utils.SessionManager;
@@ -131,11 +135,40 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                 ((MainActivity) getActivity()).SwitchFrag(2);
                 break;
             case R.id.cv_btnPendaftaran:
-                ((MainActivity) getActivity()).SwitchFrag(3);
+//                if (SessionManager.isLogin()){
+//                    LogoutConfirm();
+//                }
+                ((MainActivity) getActivity()).SwitchFrag(8);
                 break;
             case R.id.cv_btnTentang:
-                ((MainActivity) getActivity()).SwitchFrag(4);
+                ((MainActivity) getActivity()).SwitchFrag(6);
                 break;
         }
+    }
+
+    private void LogoutConfirm() {
+        DialogConfirmLogout dialogConfirmLogout = new DialogConfirmLogout(getContext());
+        dialogConfirmLogout.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        LinearLayout ly_btnConfirmLogout = dialogConfirmLogout.findViewById(R.id.ly_btnConfirmLogout);
+        LinearLayout ly_btnBatalLogout = dialogConfirmLogout.findViewById(R.id.ly_btnBatalLogout);
+
+        ly_btnConfirmLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SessionManager.logout();
+                dialogConfirmLogout.dismiss();
+                ((MainActivity) getActivity()).SwitchFrag(8);
+            }
+        });
+
+        ly_btnBatalLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogConfirmLogout.dismiss();
+            }
+        });
+
+        dialogConfirmLogout.show();
     }
 }

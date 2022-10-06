@@ -39,7 +39,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="40"
-                android:text="Nama Siswa"
+                android:text="Nama"
                 android:gravity="center_vertical"
                 android:fontFamily="@font/poppins_medium"
                 android:textColor="@color/text"/>
@@ -49,6 +49,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="60"
                 android:textSize="14dp"
+                android:focusableInTouchMode="false"
                 android:fontFamily="@font/poppins_regular"
                 android:paddingHorizontal="12dp"
                 android:maxLines="1"
@@ -73,8 +74,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="60">
-                <EditText
-                    android:id="@+id/et_hariInJadwal"
+                <Spinner
+                    android:id="@+id/sp_hariInJadwal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="60"
@@ -112,8 +113,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="60">
-                <EditText
-                    android:id="@+id/et_jamInJadwal"
+                <Spinner
+                    android:id="@+id/sp_jamInJadwal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="60"
@@ -151,8 +152,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="60">
-                <EditText
-                    android:id="@+id/et_pelatihInJadwal"
+                <Spinner
+                    android:id="@+id/sp_pelatihInJadwal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="60"

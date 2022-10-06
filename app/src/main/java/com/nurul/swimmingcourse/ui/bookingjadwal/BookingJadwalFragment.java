@@ -136,7 +136,7 @@ public class BookingJadwalFragment extends Fragment {
 
     private void spinnerJenisKucing() {
         //spinner jam
-        ArrayAdapter<CharSequence> adapterJam = ArrayAdapter.createFromResource(getContext(), R.array.jenis_kucing, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterJam = ArrayAdapter.createFromResource(getContext(), R.array.hari, android.R.layout.simple_spinner_item);
         adapterJam.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_jenisKucing.setAdapter(adapterJam);
         sp_jenisKucing.setOnItemSelectedListener(sp_jenisKucing.getOnItemSelectedListener());

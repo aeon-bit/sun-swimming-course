@@ -12,34 +12,34 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/nav_tes_kesehatan"
+        android:id="@+id/nav_jadwal_latihan"
         android:name="com.nurul.swimmingcourse.ui.jadwallatihan.JadwalLatihan"
-        android:label="Tes Kesehatan Kucing"
+        android:label="Jadwal Latihan"
         tools:layout="@layout/fragment_pesan_jadwal" />
 
     <fragment
-        android:id="@+id/nav_jenis_penyakit"
-        android:name="com.nurul.swimmingcourse.ui.jenispenyakit.JenisPenyakitFragment"
-        android:label="Jenis Penyakit"
-        tools:layout="@layout/fragment_jenis_penyakit" />
+        android:id="@+id/nav_daftar_pelatih"
+        android:name="com.nurul.swimmingcourse.ui.daftrapelatih.DaftarPelatihFragment"
+        android:label="Daftar Pelatih"
+        tools:layout="@layout/fragment_daftar_pelatih" />
 
-    <fragment
-        android:id="@+id/nav_booking_jadwal"
-        android:name="com.nurul.swimmingcourse.ui.bookingjadwal.BookingJadwalFragment"
-        android:label="Booking Jadwal"
-        tools:layout="@layout/fragment_booking_jadwal" />
+<!--    <fragment-->
+<!--        android:id="@+id/nav_booking_jadwal"-->
+<!--        android:name="com.nurul.swimmingcourse.ui.bookingjadwal.BookingJadwalFragment"-->
+<!--        android:label="Booking Jadwal"-->
+<!--        tools:layout="@layout/fragment_booking_jadwal" />-->
 
-    <fragment
-        android:id="@+id/nav_chat"
-        android:name="com.nurul.swimmingcourse.ui.chat.ChatFragment"
-        android:label="Chat Dokter"
-        tools:layout="@layout/fragment_chat" />
+<!--    <fragment-->
+<!--        android:id="@+id/nav_chat"-->
+<!--        android:name="com.nurul.swimmingcourse.ui.chat.ChatFragment"-->
+<!--        android:label="Chat Dokter"-->
+<!--        tools:layout="@layout/fragment_chat" />-->
 
-    <fragment
-        android:id="@+id/nav_history"
-        android:name="com.nurul.swimmingcourse.ui.history.HistoryFragment"
-        android:label="Histori Periksa"
-        tools:layout="@layout/fragment_history" />
+<!--    <fragment-->
+<!--        android:id="@+id/nav_history"-->
+<!--        android:name="com.nurul.swimmingcourse.ui.history.HistoryFragment"-->
+<!--        android:label="Histori Periksa"-->
+<!--        tools:layout="@layout/fragment_history" />-->
 
     <fragment
         android:id="@+id/nav_tentang"

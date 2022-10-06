@@ -1,4 +1,4 @@
-package com.nurul.swimmingcourse.ui.jenispenyakit;
+package com.nurul.swimmingcourse.ui.daftrapelatih;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -33,7 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class JenisPenyakitFragment extends Fragment {
+public class DaftarPelatihFragment extends Fragment {
 
     RecyclerView rv_jenisPenyakit;
     RecyclerView.Adapter rvAdapter;
@@ -44,13 +44,13 @@ public class JenisPenyakitFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_jenis_penyakit, container, false);
+        View root = inflater.inflate(R.layout.fragment_daftar_pelatih, container, false);
 
         rv_jenisPenyakit = root.findViewById(R.id.rv_jenisPenyakit);
         requestQueue = Volley.newRequestQueue(getContext());
         listJenis = new ArrayList<>();
 
-        requestAllJenisPenyakit();
+        requestAllPelatih();
 
         rvLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rv_jenisPenyakit.setLayoutManager(rvLayoutManager);
@@ -60,7 +60,7 @@ public class JenisPenyakitFragment extends Fragment {
         return root;
     }
 
-    private void requestAllJenisPenyakit() {
+    private void requestAllPelatih() {
         String apiUrl = ApiClient.API + "data-penyakit/";
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, apiUrl, null,

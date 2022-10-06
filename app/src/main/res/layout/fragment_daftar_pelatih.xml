@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:background="@color/white_bg"
     android:clickable="true"
-    tools:context=".ui.jenispenyakit.JenisPenyakitFragment">
+    tools:context=".ui.daftrapelatih.DaftarPelatihFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_jenisPenyakit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_list_jenis_penyakit"
+        tools:listitem="@layout/item_list_daftar_pelatih"
         app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.nurul.swimmingcourse.ui.jenispenyakit;
+package com.nurul.swimmingcourse.ui.daftrapelatih;
 
 import android.os.Bundle;
 import android.util.Log;

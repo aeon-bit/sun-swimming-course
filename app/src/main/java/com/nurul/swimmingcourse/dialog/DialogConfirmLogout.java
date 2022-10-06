@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 
 import com.nurul.swimmingcourse.R;
 
-public class DialogConfirmTes extends Dialog{
-    public DialogConfirmTes(@NonNull Context context) {
+public class DialogConfirmLogout extends Dialog{
+    public DialogConfirmLogout(@NonNull Context context) {
         super(context);
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
@@ -23,7 +23,7 @@ public class DialogConfirmTes extends Dialog{
         setCancelable(true);
         setOnCancelListener(null);
 
-        View view = LayoutInflater.from(context).inflate(R.layout.layout_dialog_confirm_tes, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.layout_dialog_confirm_logout, null);
         setContentView(view);
     }
 }

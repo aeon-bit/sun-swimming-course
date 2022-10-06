@@ -1,4 +1,4 @@
-package com.nurul.swimmingcourse.ui.jenispenyakit;
+package com.nurul.swimmingcourse.ui.daftrapelatih;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

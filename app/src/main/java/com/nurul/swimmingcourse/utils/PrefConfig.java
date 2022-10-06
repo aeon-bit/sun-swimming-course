@@ -52,4 +52,14 @@ public class PrefConfig {
     public void displayToast(String message){
         Toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
+
+    public void setRole(String role){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(context.getString(R.string.pref_nama_user), role);
+        editor.commit();
+    }
+
+    public String getRole(){
+        return sharedPreferences.getString(context.getString(R.string.pref_role), "Role");
+    }
 }

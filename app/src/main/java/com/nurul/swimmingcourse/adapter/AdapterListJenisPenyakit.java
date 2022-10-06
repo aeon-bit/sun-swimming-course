@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.nurul.swimmingcourse.R;
 import com.nurul.swimmingcourse.model.JenisPenyakits;
-import com.nurul.swimmingcourse.ui.jenispenyakit.DetailJenisPenyakitFragment;
+import com.nurul.swimmingcourse.ui.daftrapelatih.DetailJenisPenyakitFragment;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class AdapterListJenisPenyakit extends
 
         //initiate item layout
         View view = LayoutInflater.from(context)
-                .inflate(R.layout.item_list_jenis_penyakit, viewGroup, false);
+                .inflate(R.layout.item_list_daftar_pelatih, viewGroup, false);
         HolderItem holderItem = new HolderItem(view);
         return holderItem;
     }
@@ -85,7 +85,7 @@ public class AdapterListJenisPenyakit extends
             super(v);
 
             cv_itemListJenisPenyakit = v.findViewById(R.id.cv_itemListJenisPenyakit);
-            tv_namaJenisPenyakit = v.findViewById(R.id.tv_namaJenisPenyakit);
+//            tv_namaJenisPenyakit = v.findViewById(R.id.tv_namaJenisPenyakit);
 
         }
     }

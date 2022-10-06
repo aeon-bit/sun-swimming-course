@@ -29,7 +29,7 @@ import com.nurul.swimmingcourse.ui.dashboard.DashboardFragment;
 import com.nurul.swimmingcourse.ui.history.HistoryFragment;
 import com.nurul.swimmingcourse.ui.chat.ChatFragment;
 import com.nurul.swimmingcourse.ui.tentang.TentangFragment;
-import com.nurul.swimmingcourse.ui.jenispenyakit.JenisPenyakitFragment;
+import com.nurul.swimmingcourse.ui.daftrapelatih.DaftarPelatihFragment;
 import com.nurul.swimmingcourse.ui.bookingjadwal.BookingJadwalFragment;
 import com.nurul.swimmingcourse.utils.ApiClient;
 import com.nurul.swimmingcourse.utils.ApiInterface;
@@ -197,36 +197,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (SessionManager.isLogin()) {
 
             switch (item.getItemId()) {
-                case R.id.nav_tes_kesehatan:
+                case R.id.nav_jadwal_latihan:
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
                             new JadwalLatihan()).commit();
-                    navigationView.setCheckedItem(R.id.nav_tes_kesehatan);
-                    getSupportActionBar().setTitle(R.string.menu_tes_kesehatan);
+                    navigationView.setCheckedItem(R.id.nav_jadwal_latihan);
+                    getSupportActionBar().setTitle(R.string.menu_jadwal_latihan);
                     break;
-                case R.id.nav_jenis_penyakit:
+                case R.id.nav_daftar_pelatih:
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
-                            new JenisPenyakitFragment()).commit();
-                    navigationView.setCheckedItem(R.id.nav_jenis_penyakit);
-                    getSupportActionBar().setTitle(R.string.menu_jenis_penyakit);
+                            new DaftarPelatihFragment()).commit();
+                    navigationView.setCheckedItem(R.id.nav_daftar_pelatih);
+                    getSupportActionBar().setTitle(R.string.menu_daftar_pelatih);
                     break;
-                case R.id.nav_booking_jadwal:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
-                            new BookingJadwalFragment()).commit();
-                    navigationView.setCheckedItem(R.id.nav_booking_jadwal);
-                    getSupportActionBar().setTitle(R.string.menu_booking_jadwal);
-                    break;
-                case R.id.nav_chat:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
-                            new ChatFragment()).commit();
-                    navigationView.setCheckedItem(R.id.nav_chat);
-                    getSupportActionBar().setTitle(R.string.menu_chat);
-                    break;
-                case R.id.nav_history:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
-                            new HistoryFragment()).commit();
-                    navigationView.setCheckedItem(R.id.nav_history);
-                    getSupportActionBar().setTitle(R.string.menu_history);
-                    break;
+
                 case R.id.nav_tentang:
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
                             new TentangFragment()).commit();
@@ -298,32 +281,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case 1:
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
                         new JadwalLatihan()).commit();
-                navigationView.setCheckedItem(R.id.nav_tes_kesehatan);
-                getSupportActionBar().setTitle(R.string.menu_tes_kesehatan);
+                navigationView.setCheckedItem(R.id.nav_jadwal_latihan);
+                getSupportActionBar().setTitle(R.string.menu_jadwal_latihan);
                 break;
             case 2:
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
-                        new JenisPenyakitFragment()).commit();
-                navigationView.setCheckedItem(R.id.nav_jenis_penyakit);
-                getSupportActionBar().setTitle(R.string.menu_jenis_penyakit);
-                break;
-            case 3:
-                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
-                        new BookingJadwalFragment()).commit();
-                navigationView.setCheckedItem(R.id.nav_booking_jadwal);
-                getSupportActionBar().setTitle(R.string.menu_booking_jadwal);
-                break;
-            case 4:
-                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
-                        new ChatFragment()).commit();
-                navigationView.setCheckedItem(R.id.nav_chat);
-                getSupportActionBar().setTitle(R.string.menu_chat);
-                break;
-            case 5:
-                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
-                        new HistoryFragment()).commit();
-                navigationView.setCheckedItem(R.id.nav_history);
-                getSupportActionBar().setTitle(R.string.menu_history);
+                        new DaftarPelatihFragment()).commit();
+                navigationView.setCheckedItem(R.id.nav_daftar_pelatih);
+                getSupportActionBar().setTitle(R.string.menu_daftar_pelatih);
                 break;
             case 6:
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,

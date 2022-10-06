@@ -18,12 +18,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
-            android:text="Apakah gejala sudah lengkap?"
-            android:fontFamily="@font/nunito_bold"
-            android:textSize="18dp"
+            android:text="Untuk menambah siswa baru, anda harus Logout"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="16dp"
             android:textAlignment="center"
-            android:textColor="@color/secondary"
-            android:layout_marginTop="36dp"
+            android:textColor="@color/text2"
+            android:layout_marginTop="52dp"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,36 +34,36 @@
             android:layout_marginBottom="24dp"
             android:paddingHorizontal="12dp">
             <LinearLayout
-                android:id="@+id/ly_btnConfirmTes"
+                android:id="@+id/ly_btnConfirmLogout"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
-                android:background="@drawable/xmlbg_btn_confirm"
+                android:background="@drawable/xmlbg_btn_confirm_dialog"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:fontFamily="@font/nunito_bold"
+                    android:fontFamily="@font/poppins_medium"
                     android:gravity="center"
                     android:textAlignment="center"
-                    android:text="Kirim"
+                    android:text="Logout"
                     android:textColor="@color/white" />
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/ly_btnBatalTes"
+                android:id="@+id/ly_btnBatalLogout"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
-                android:background="@drawable/xmlbg_btn_cancel"
+                android:background="@drawable/xmlbg_btn_cancel_dialog"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:fontFamily="@font/nunito_bold"
+                    android:fontFamily="@font/poppins_medium"
                     android:gravity="center"
                     android:textAlignment="center"
                     android:text="Batal"
-                    android:textColor="@color/accent" />
+                    android:textColor="@color/text" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

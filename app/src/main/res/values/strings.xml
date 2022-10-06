@@ -8,8 +8,8 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_dashboard">Dashboard</string>
-    <string name="menu_tes_kesehatan">Tes Kesehatan Kucing</string>
-    <string name="menu_jenis_penyakit">Jenis Penyakit</string>
+    <string name="menu_jadwal_latihan">Jadwal Latihan</string>
+    <string name="menu_daftar_pelatih">Daftar Pelatih</string>
     <string name="menu_booking_jadwal">Booking Jadwal</string>
     <string name="menu_chat">Chat Dokter</string>
     <string name="menu_history">Histori Periksa</string>
@@ -19,28 +19,48 @@
     <string name="pref_file">com.wisnu.preference_file</string>
     <string name="pref_login_status">com.wisnu.preference_login_status</string>
     <string name="pref_nama_user">com.wisnu.preference_nama_user</string>
+    <string name="pref_role">com.nurul.preference_role</string>
 
     <string name="add_pull_git">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
     </string>
-    <string name="warning_diagnosa">Hasil tes kesehatan kucing tidak 100% akurat.\n
-    Maka diperlukan pemeriksaan fisik serta penunjang lebih lanjut oleh dokter hewan.</string>
-    <string name="warning_booking">Booking jadwal pemeriksaan hanya bisa dilakukan sampe jam 8 malam.</string>
 
-    <string name="t_1">Buat jadwal dengan dokter di menu "Booking Jadwal Periksa"</string>
-    <string name="t_2">Pilih menu "Tes Kesehatan Kucing" dan masukkan data gejala yang diderita"</string>
-    <string name="t_3">Tekan tombol "Diagnosa" untuk mendapatkan hasil data diagnosa sementara.</string>
-    <string name="t_4">Tekan tombol "Chat Dokter" untuk melakukan konsultasi lebih lanjut.</string>
-    <string name="t_5">"Chat Dokter juga dapat langsung di akses melalui menu utama".</string>
+    <string-array name="hari">
+        <item>Minggu</item>
+        <item>Senin</item>
+        <item>Selasa</item>
+        <item>Rabu</item>
+        <item>Kamis</item>
+        <item>Jumat</item>
+        <item>Sabtu</item>
+    </string-array>
 
-    <string-array name="jenis_kucing">
-        <item>Domestik</item>
-        <item>Anggora</item>
-        <item>Persia</item>
-        <item>Maine Coon</item>
-        <item>Ragdoll</item>
-        <item>Siam</item>
+    <string-array name="jam">
+        <item>00:00</item>
+        <item>01:00</item>
+        <item>02:00</item>
+        <item>03:00</item>
+        <item>04:00</item>
+        <item>05:00</item>
+        <item>06:00</item>
+        <item>07:00</item>
+        <item>08:00</item>
+        <item>09:00</item>
+        <item>10:00</item>
+        <item>11:00</item>
+        <item>12:00</item>
+        <item>13:00</item>
+        <item>14:00</item>
+        <item>15:00</item>
+        <item>16:00</item>
+        <item>17:00</item>
+        <item>18:00</item>
+        <item>19:00</item>
+        <item>20:00</item>
+        <item>21:00</item>
+        <item>22:00</item>
+        <item>23:00</item>
     </string-array>
 
 </resources>
