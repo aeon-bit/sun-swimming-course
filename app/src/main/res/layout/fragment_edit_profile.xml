@@ -34,7 +34,7 @@
                 android:textAlignment="center"
                 android:layout_marginHorizontal="58dp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Daftar"
+                android:text="Ubah"
                 android:textColor="@color/secondary" />
 
 

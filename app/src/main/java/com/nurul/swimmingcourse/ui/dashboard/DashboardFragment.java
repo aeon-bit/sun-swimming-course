@@ -2,6 +2,7 @@ package com.nurul.swimmingcourse.ui.dashboard;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.LinearLayoutCompat;
@@ -52,6 +55,9 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+
+//        Log.d("artikel", "START TOKEN: " + SessionManager.getToken());
+//        Log.d("artikel", "START RULE: " + SessionManager.getRole());
 
         CardView cv_btnJadwalLatihan = root.findViewById(R.id.cv_btnJadwalLatihan);
         CardView cv_btnDaftarPelatih = root.findViewById(R.id.cv_btnDaftarPelatih);
@@ -118,6 +124,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                     public void onResponse(JSONObject response) {
                         Log.d("artikel", "Data artikel: " + response.toString());
                         Log.d("artikel", "RES TOKEN: " + SessionManager.getToken());
+                        Log.d("artikel", "RES RULE: " + SessionManager.getRole());
                         try {
                             JSONArray jsonArray = response.getJSONArray("data");
 
@@ -127,7 +134,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                                 //get key 1 by 1
                                 Artikels model = new Artikels();
 
-                                model.setId(artikel.getString("judul_artikel"));
+                                model.setId(artikel.getString("id"));
                                 model.setJudul_info(artikel.getString("judul_info"));
                                 model.setDetail_info(artikel.getString("detail_info"));
                                 model.setFoto(artikel.getString("foto"));
@@ -144,9 +151,9 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                Log.d("artikel", "No RES: " + error.getMessage());
-                Log.d("artikel", "No RES TOKEN: " + SessionManager.getToken());
-                Log.d("artikel", "No RES ROLE: " + SessionManager.getRole());
+//                Log.d("artikel", "No RES: " + error.getMessage());
+//                Log.d("artikel", "No RES TOKEN: " + SessionManager.getToken());
+//                Log.d("artikel", "No RES ROLE: " + SessionManager.getRole());
             }
         }) {
             @Override
@@ -155,7 +162,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Content-Type", "application/json");
                 params.put("Authorization", "Bearer " + SessionManager.getToken());
-//                params.put("Authorization", "Bearer 27|Sz7s6wAWaNGwkcef8v1HQ8JqFxEG9fmnckNJlCOc");
+//                params.put("Authorization", "Bearer 46|eatlS5ftHgLWvZOqNf8l5LrqEZASYS6ab5dyB2Rx");
                 return params;
             }
         };
@@ -165,30 +172,37 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
+        int frag = 0;
         switch (view.getId()) {
-            case R.id.cv_btnJadwalLatihan:
-                ((MainActivity) getActivity()).SwitchFrag(1);
 
+            case R.id.cv_btnJadwalLatihan:
+                frag = 1;
                 break;
             case R.id.cv_btnDaftarPelatih:
-                ((MainActivity) getActivity()).SwitchFrag(2);
+                frag = 2;
                 break;
             case R.id.cv_btnPendaftaran:
-//                if (SessionManager.isLogin()){
-//                    LogoutConfirm();
-//                }
-                ((MainActivity) getActivity()).SwitchFrag(8);
+                frag = 8;
                 break;
             case R.id.cv_btnTentang:
-                ((MainActivity) getActivity()).SwitchFrag(6);
+                frag = 6;
                 break;
-
             case R.id.cv_btnPerkembangan:
-                ((MainActivity) getActivity()).SwitchFrag(11);
+                frag = 11;
                 break;
             case R.id.cv_btnInputPerkembangan:
-                ((MainActivity) getActivity()).SwitchFrag(12);
+                frag = 12;
                 break;
+        }
+
+        if (frag == 6) {
+            ((MainActivity) getActivity()).SwitchFrag(frag);
+        } else {
+            if (SessionManager.isLogin()) {
+                ((MainActivity) getActivity()).SwitchFrag(frag);
+            } else {
+                callToast("Silakan login dahulu", 0);
+            }
         }
     }
 
@@ -216,5 +230,21 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         });
 
         dialogConfirmLogout.show();
+    }
+
+    private void callToast(String msg, int i) {
+        Toast toast = Toast.makeText(getContext(), msg, Toast.LENGTH_LONG);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+            View view = toast.getView();
+            view.setPadding(42, 12, 42, 12);
+            if (i == 1) {
+                view.setBackgroundResource(R.drawable.xmlbg_toast_success);
+            } else {
+                view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
+            }
+            TextView textView = view.findViewById(android.R.id.message);
+            textView.setTextColor(Color.WHITE);
+        }
+        toast.show();
     }
 }

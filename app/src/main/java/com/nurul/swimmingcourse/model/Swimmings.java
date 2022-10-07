@@ -2,12 +2,10 @@ package com.nurul.swimmingcourse.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Artikels {
-    @SerializedName("response")
-    private String response;
+public class Swimmings {
 
-//    @SerializedName("data")
-//    private Swimmings data;
+//    @SerializedName("response")
+//    private String Response;
 
     @SerializedName("id")
     private String id;
@@ -23,14 +21,6 @@ public class Artikels {
 
     @SerializedName("foto")
     private String foto;
-
-    public String getResponse() {
-        return response;
-    }
-
-    public void setResponse(String response) {
-        this.response = response;
-    }
 
     public String getId() {
         return id;

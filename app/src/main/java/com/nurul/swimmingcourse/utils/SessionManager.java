@@ -2,6 +2,7 @@ package com.nurul.swimmingcourse.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.nurul.swimmingcourse.model.Users;
 
@@ -9,8 +10,8 @@ import com.nurul.swimmingcourse.model.Users;
 public class SessionManager
 {
     private static final String USER_DATA = "UserData",
-                                USER_TOKEN = null,
-                                USER_ROLE = null,
+                                USER_TOKEN = "USER_TOKEN",
+                                USER_ROLE = "USER_ROLE",
                                 IS_LOGIN = "islogin";
 
     private static SharedPreferences sp;
@@ -33,6 +34,8 @@ public class SessionManager
 
     public static void login(Users s, String token, String role)
     {
+        Log.d("sessi", "TOKEN: " + token);
+        Log.d("sessi", "ROLE: " + role);
         editor.putString(USER_DATA, Gxon.toJsonObject(s)).commit();
         editor.putBoolean(IS_LOGIN, true).commit();
         editor.putString(USER_TOKEN, token).commit();

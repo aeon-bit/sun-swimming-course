@@ -36,8 +36,14 @@ public class ProfileFragment extends Fragment {
         CircleImageView icv_avatarProfile = root.findViewById(R.id.icv_avatarProfile);
         TextView tv_roleProfile = root.findViewById(R.id.tv_roleProfile);
 
+        Log.d("profil", ApiClient.IMAGE_URL + SessionManager.getUserData().getFoto());
+
         tv_roleProfile.setText(SessionManager.getRole());
-        Glide.with(getContext()).load(ApiClient.IMAGE_URL + SessionManager.getUserData().getFoto())
+//        if (SessionManager.getRole().equals("pemilik")) {
+//            Glide.with(getActivity()).load(ApiClient.IMAGE_URL + SessionManager.getUserData().getFoto())
+//                    .error(R.drawable.ic_avatar).centerCrop().into(icv_avatarProfile);
+//        }
+        Glide.with(getActivity()).load(ApiClient.IMAGE_URL + SessionManager.getUserData().getFoto())
                 .error(R.drawable.ic_avatar).centerCrop().into(icv_avatarProfile);
 
         Log.d("fotopp", "onCreateView: " + SessionManager.getUserData().getFoto());
@@ -61,7 +67,7 @@ public class ProfileFragment extends Fragment {
         LinearLayout ly_profileSiswa = root.findViewById(R.id.c1_profile); //siswa
         LinearLayout ly_profilePelatih = root.findViewById(R.id.c2_profile); //pelatih
 
-        if (SessionManager.getRole().equals("siswa")){
+        if (SessionManager.getRole().equals("siswa")) {
             ly_profileSiswa.setVisibility(View.VISIBLE);
             ly_profilePelatih.setVisibility(View.INVISIBLE);
 

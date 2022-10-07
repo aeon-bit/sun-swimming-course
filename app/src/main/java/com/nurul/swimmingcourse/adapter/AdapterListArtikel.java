@@ -54,8 +54,9 @@ public class AdapterListArtikel extends
 //        Log.d("images", "BASE_URL: " + ApiClient.IMAGE_URL + listArtikels.get(position).getGambar());
 
         holderItem.tv_judulItemArtikel.setText(artikels.getJudul_info());
-        Glide.with(context).load(ApiClient.IMAGE_URL + listArtikels.get(position)
+        Glide.with(context).load(ApiClient.IMAGE_URL_ARTIKEL + listArtikels.get(position)
         .getFoto()).error(R.drawable.ic_nopic).centerCrop().into(holderItem.iv_gambarItemArtikel);
+
         holderItem.cv_itemListArtikelHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

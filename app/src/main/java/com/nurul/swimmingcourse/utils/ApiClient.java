@@ -11,6 +11,7 @@ public class ApiClient {
 //    public static final String BASE_URL = "https://admin-page-diagnosis-penyakit-kucing.my.id/";
 
     public static final String IMAGE_URL = BASE_URL + "images/foto/";
+    public static final String IMAGE_URL_ARTIKEL = BASE_URL + "images/info/";
 
     public static final String API = BASE_URL + "api/";
 

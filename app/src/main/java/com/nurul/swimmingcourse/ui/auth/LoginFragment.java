@@ -97,7 +97,7 @@ public class LoginFragment extends Fragment {
         ly_btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getContext()).SwitchFrag(0);
+                ((MainActivity) getContext()).SwitchFrag(0);
             }
         });
 
@@ -116,7 +116,7 @@ public class LoginFragment extends Fragment {
     }
 
     private void performLogin() {
-        Log.d("login", "HIT LOGIN");
+//        Log.d("login", "HIT LOGIN");
         hideKeyboard();
 
         String sUsername = et_usernameLogin.getText().toString().trim();
@@ -131,19 +131,23 @@ public class LoginFragment extends Fragment {
 //                    SessionManager.login(response.body().getUser(),
 //                            response.body().getToken());
 //
-//                    loginFormActivityListener.performLogin(response.body().getUser().getEmail());
+                    loginFormActivityListener.performLogin(response.body().getUser().getUsername());
 //                }
 
                 if (response.body() != null) {
 //                    Log.d("login", "MSG: " + response.body().getMessage());
-//                    Log.d("login", "ROLE: " + response.body().getRole());
 //                    Log.d("login", "TOKEN: " + response.body().getToken());
+//                    Log.d("login", "ROLE: " + response.body().getRole());
                     if (response.isSuccessful()) {
                         if (response.body().getMessage().equals("sukses")) {
                             callToast("Login berhasil", 1);
-                            SessionManager.login(response.body().getUser(),
+                            SessionManager.login(
+                                    response.body().getUser(),
                                     response.body().getToken(),
                                     response.body().getRole());
+
+//                            Log.d("login", "TOKEN: " + SessionManager.getToken());
+//                            Log.d("login", "ROLE: " + SessionManager.getRole());
 
                             loginFormActivityListener.performLogin(response.body().getUser().getNama());
                         }
@@ -164,7 +168,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onFailure(Call<Logins> call, Throwable t) {
                 Log.d("login", t.getMessage());
-                if (t instanceof IOException){
+                if (t instanceof IOException) {
                     callToast("Terjadi Kesalahan Koneksi", 0);
                 } else {
                     callToast("Username / Password Salah", 0);
@@ -193,7 +197,7 @@ public class LoginFragment extends Fragment {
 
     private void callToast(String msg, int i) {
         Toast toast = Toast.makeText(getContext(), msg, Toast.LENGTH_LONG);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R){
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
             View view = toast.getView();
             view.setPadding(42, 12, 42, 12);
             if (i == 1) {

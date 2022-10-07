@@ -25,6 +25,7 @@ import androidx.fragment.app.Fragment;
 import com.nurul.swimmingcourse.R;
 import com.nurul.swimmingcourse.activity.MainActivity;
 import com.nurul.swimmingcourse.model.Registers;
+import com.nurul.swimmingcourse.model.UpdateProfiles;
 import com.nurul.swimmingcourse.utils.SessionManager;
 
 import java.io.IOException;
@@ -214,7 +215,8 @@ public class EditProfileFragment extends Fragment {
 //        Log.d("daftar", sUsername + "\n");
 //        Log.d("daftar", sPassword + "\n");
 
-        Call<Registers> call = MainActivity.apiInterface.performUbahProfile(
+        Call<UpdateProfiles> call = MainActivity.apiInterface.performUbahProfile(
+                "siswa/" + SessionManager.getUserData().getId() + "/update",
                 "Bearer " + SessionManager.getToken(),
                 SessionManager.getUserData().getId(), sNama, sTempatLahir, sTgl, sJk, sOrtu, sAlamat, sNoHp, sUsername, sPassword
 //                "nama tes",
@@ -229,9 +231,9 @@ public class EditProfileFragment extends Fragment {
         );
 //        Log.d("ubah", SessionManager.getUserData().getId() + "\n");
 
-        call.enqueue(new Callback<Registers>() {
+        call.enqueue(new Callback<UpdateProfiles>() {
             @Override
-            public void onResponse(Call<Registers> call, Response<Registers> response) {
+            public void onResponse(Call<UpdateProfiles> call, Response<UpdateProfiles> response) {
 
 //                if (response.body().getMessage().equals("register sukses")) {
 //
@@ -244,23 +246,23 @@ public class EditProfileFragment extends Fragment {
 //
 //                    ((MainActivity) getContext()).logoutPerform(); //restart actv
 //                }
-                if (response.isSuccessful()) {
-                    if (response.body().getMessage().equals("register sukses")) {
-                        callToast("Pendaftaran berhasil", 1);
+                if (response.body() != null) {
+                    if (response.isSuccessful()) {
+                        Log.d("update", "onResponse: " + response.body());
+                        if (response.body().getMesssage().equals("sukses")) {
+                            callToast("Ubah profil berhasil", 1);
 
-                        ((MainActivity) getContext()).logoutPerform(); //restart actv
+                            ((MainActivity) getContext()).logoutPerform(); //restart actv
+
+                        }
                     }
                 } else {
-//                    APIError error = ErrorUtils.parseError(response);
-//
-//                    callToast("Server Error", 0);
-//
-//                    Log.d("error message", error.message());
+                    callToast("NULL RESPONSE", 0);
                 }
             }
 
             @Override
-            public void onFailure(Call<Registers> call, Throwable t) {
+            public void onFailure(Call<UpdateProfiles> call, Throwable t) {
 
                 Log.d("register", t.getMessage());
                 if (t instanceof IOException) {

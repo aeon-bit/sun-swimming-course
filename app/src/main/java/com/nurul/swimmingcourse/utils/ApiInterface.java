@@ -8,6 +8,7 @@ import com.nurul.swimmingcourse.model.ResponseBookingJadwals;
 import com.nurul.swimmingcourse.model.ResponseDetailArtikel;
 import com.nurul.swimmingcourse.model.ResponseSpJadwals;
 import com.nurul.swimmingcourse.model.ResponseTesKesehatan;
+import com.nurul.swimmingcourse.model.UpdateProfiles;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,7 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Url;
 
 public interface ApiInterface {
 
@@ -45,8 +47,9 @@ public interface ApiInterface {
     );
 
     @FormUrlEncoded
-    @PUT("siswa/{id}/update")
-    Call <Registers> performUbahProfile(
+    @PUT
+    Call <UpdateProfiles> performUbahProfile(
+            @Url String url,
             @Header("Authorization") String token,
             @Field("id") String id,
             @Field("nama") String nama,
