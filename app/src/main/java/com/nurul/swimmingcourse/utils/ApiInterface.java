@@ -6,7 +6,7 @@ import com.nurul.swimmingcourse.model.Logins;
 import com.nurul.swimmingcourse.model.Registers;
 import com.nurul.swimmingcourse.model.ResponseBookingJadwals;
 import com.nurul.swimmingcourse.model.ResponseDetailArtikel;
-import com.nurul.swimmingcourse.model.ResponseSpJadwals;
+import com.nurul.swimmingcourse.model.ResponseSPPelatih;
 import com.nurul.swimmingcourse.model.ResponseTesKesehatan;
 import com.nurul.swimmingcourse.model.UpdateProfiles;
 
@@ -88,8 +88,8 @@ public interface ApiInterface {
             @Field("jenis_kucing") String jenis_kucing
     );
 
-    @GET("data-jadwal-periksa")
-    Call <ResponseSpJadwals> getSpJadwalPeriksa(
+    @GET("pelatih")
+    Call <ResponseSPPelatih> getSpAllPelatih(
             @Header("Authorization") String token
     );
 

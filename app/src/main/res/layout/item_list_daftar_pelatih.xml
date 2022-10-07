@@ -7,7 +7,7 @@
     android:paddingHorizontal="12dp">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv_itemListJenisPenyakit"
+        android:id="@+id/cv_itemListPelatih"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginVertical="12dp"

@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_bg"
+    android:background="@color/white"
     android:clickable="true"
     tools:context=".ui.daftrapelatih.DaftarPelatihFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_jenisPenyakit"
+        android:id="@+id/rv_daftarPelatih"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/item_list_daftar_pelatih"

@@ -19,8 +19,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.nurul.swimmingcourse.R;
-import com.nurul.swimmingcourse.adapter.AdapterListJenisPenyakit;
-import com.nurul.swimmingcourse.model.JenisPenyakits;
+import com.nurul.swimmingcourse.adapter.AdapterListPelatih;
+import com.nurul.swimmingcourse.model.Pelatihs;
 import com.nurul.swimmingcourse.utils.ApiClient;
 import com.nurul.swimmingcourse.utils.SessionManager;
 
@@ -35,39 +35,39 @@ import java.util.Map;
 
 public class DaftarPelatihFragment extends Fragment {
 
-    RecyclerView rv_jenisPenyakit;
+    RecyclerView rv_daftarPelatih;
     RecyclerView.Adapter rvAdapter;
     RecyclerView.LayoutManager rvLayoutManager;
     RequestQueue requestQueue;
-    List<JenisPenyakits> listJenis;
+    List<Pelatihs> listPelatih;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_daftar_pelatih, container, false);
 
-        rv_jenisPenyakit = root.findViewById(R.id.rv_jenisPenyakit);
+        rv_daftarPelatih = root.findViewById(R.id.rv_daftarPelatih);
         requestQueue = Volley.newRequestQueue(getContext());
-        listJenis = new ArrayList<>();
+        listPelatih = new ArrayList<>();
 
         requestAllPelatih();
 
         rvLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        rv_jenisPenyakit.setLayoutManager(rvLayoutManager);
-        rvAdapter = new AdapterListJenisPenyakit(listJenis, getContext());
-        rv_jenisPenyakit.setAdapter(rvAdapter);
+        rv_daftarPelatih.setLayoutManager(rvLayoutManager);
+        rvAdapter = new AdapterListPelatih(listPelatih, getContext());
+        rv_daftarPelatih.setAdapter(rvAdapter);
 
         return root;
     }
 
     private void requestAllPelatih() {
-        String apiUrl = ApiClient.API + "data-penyakit/";
+        String apiUrl = ApiClient.API + "pelatih/";
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, apiUrl, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d("respon", "Data jenis penyakit: " + response.toString());
+                        Log.d("respon", "Daftar Pelatih: " + response.toString());
                         try {
                             JSONArray jsonArray = response.getJSONArray("data");
 
@@ -75,15 +75,15 @@ public class DaftarPelatihFragment extends Fragment {
                                 JSONObject artikel = jsonArray.getJSONObject(i);
 
                                 //get key 1 by 1
-                                JenisPenyakits model = new JenisPenyakits();
+                                Pelatihs model = new Pelatihs();
 
                                 model.setId(artikel.getString("id"));
-                                model.setKode_penyakit(artikel.getString("kode_penyakit"));
-                                model.setNama_penyakit(artikel.getString("nama_penyakit"));
-                                model.setDeskripsi(artikel.getString("deskripsi"));
-                                model.setPengobatan(artikel.getString("pengobatan"));
+                                model.setNama(artikel.getString("nama"));
+                                model.setAlamat(artikel.getString("alamat"));
+                                model.setNo_telp(artikel.getString("no_telp"));
+                                model.setFoto(artikel.getString("foto"));
 
-                                listJenis.add(model);
+                                listPelatih.add(model);
 
                             }
                         } catch (JSONException e) {

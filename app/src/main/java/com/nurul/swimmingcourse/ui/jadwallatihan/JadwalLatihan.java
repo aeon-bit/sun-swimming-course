@@ -31,8 +31,8 @@ import com.android.volley.toolbox.Volley;
 import com.nurul.swimmingcourse.R;
 import com.nurul.swimmingcourse.activity.MainActivity;
 import com.nurul.swimmingcourse.model.Gejalas;
-import com.nurul.swimmingcourse.model.JadwalPeriksas;
-import com.nurul.swimmingcourse.model.ResponseSpJadwals;
+import com.nurul.swimmingcourse.model.Pelatihs;
+import com.nurul.swimmingcourse.model.ResponseSPPelatih;
 import com.nurul.swimmingcourse.model.ResponseTesKesehatan;
 import com.nurul.swimmingcourse.utils.ApiClient;
 import com.nurul.swimmingcourse.utils.SessionManager;
@@ -53,14 +53,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class JadwalLatihan extends Fragment {
-    Spinner sp_hariInJadwal, sp_jamInJadwal;
-    String selectedIdJadwalPeriksa, today;
+    Spinner sp_hariInJadwal, sp_jamInJadwal, sp_pelatihInJadwal;
+    String selectedIDPelatih, today;
 
     LinearLayout ly_cb;
     RequestQueue requestQueue;
     List<Gejalas> listGejalas;
 
-    List<JadwalPeriksas> listSpJadwalPeriksa;
+    ArrayList<Pelatihs> listSpAllPelatih;
 
     ArrayList<String> checkedGejala = new ArrayList<>();
 
@@ -74,16 +74,16 @@ public class JadwalLatihan extends Fragment {
         listGejalas = new ArrayList<>();
         requestQueue = Volley.newRequestQueue(getContext());
 //        getAllDiagnosa();
-//        getSpinnerAllPelatih();
         getCurrentDate();
 
 
         EditText et_namaInJadwal = root.findViewById(R.id.et_namaInJadwal);
         sp_hariInJadwal = root.findViewById(R.id.sp_hariInJadwal);
         sp_jamInJadwal = root.findViewById(R.id.sp_jamInJadwal);
-        Spinner sp_pelatihInJadwal = root.findViewById(R.id.sp_pelatihInJadwal);
+        sp_pelatihInJadwal = root.findViewById(R.id.sp_pelatihInJadwal);
         spinnerHari();
         spinnerJam();
+        getSpinnerAllPelatih();
 
         et_namaInJadwal.setText(SessionManager.getUserData().getNama());
 
@@ -162,34 +162,35 @@ public class JadwalLatihan extends Fragment {
     }
 
     private void getSpinnerAllPelatih() {
-        Call<ResponseSpJadwals> call = MainActivity.apiInterface.getSpJadwalPeriksa(
+        Call<ResponseSPPelatih> call = MainActivity.apiInterface.getSpAllPelatih(
                 "Bearer " + SessionManager.getToken()
         );
-        call.enqueue(new Callback<ResponseSpJadwals>() {
+        call.enqueue(new Callback<ResponseSPPelatih>() {
             @Override
-            public void onResponse(Call<ResponseSpJadwals> call, final retrofit2.Response<ResponseSpJadwals> response) {
-                listSpJadwalPeriksa = new ArrayList<>();
-                listSpJadwalPeriksa.addAll(response.body().getData());
-
+            public void onResponse(Call<ResponseSPPelatih> call, final retrofit2.Response<ResponseSPPelatih> response) {
+                listSpAllPelatih = new ArrayList<>();
                 Log.d("spinner", "onResponse: " + response.body());
+                listSpAllPelatih = response.body().getData();
+
+//                Log.d("spinner", "onResponse: " + response.body());
                 List<String> listTglSp = new ArrayList<>();
-                for (int i = 0; i < listSpJadwalPeriksa.size(); i++) {
-                    listTglSp.add(listSpJadwalPeriksa.get(i).getTanggal_periksa());
+                for (int i = 0; i < listSpAllPelatih.size(); i++) {
+                    listTglSp.add(listSpAllPelatih.get(i).getNama());
                 }
 
                 //set to spinner adapter
                 final ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, listTglSp);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                sp_hariInJadwal.setAdapter(adapter);
-                sp_hariInJadwal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                sp_pelatihInJadwal.setAdapter(adapter);
+                sp_pelatihInJadwal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                         //get selected string
-                        JadwalPeriksas jadwalPeriksas = listSpJadwalPeriksa.get(position);
-                        selectedIdJadwalPeriksa = jadwalPeriksas.getId();
+                        Pelatihs pelatihs = listSpAllPelatih.get(position);
+                        selectedIDPelatih = pelatihs.getId();
 
-                        Log.d("spinner", "SELECT " + selectedIdJadwalPeriksa);
+                        Log.d("spinner", "SELECT " + selectedIDPelatih);
                     }
 
                     @Override
@@ -201,7 +202,7 @@ public class JadwalLatihan extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ResponseSpJadwals> call, Throwable t) {
+            public void onFailure(Call<ResponseSPPelatih> call, Throwable t) {
 
             }
         });
