@@ -117,6 +117,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("artikel", "Data artikel: " + response.toString());
+                        Log.d("artikel", "RES TOKEN: " + SessionManager.getToken());
                         try {
                             JSONArray jsonArray = response.getJSONArray("data");
 
@@ -143,7 +144,9 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                Log.d("respon", "No RES: " + error.toString());
+                Log.d("artikel", "No RES: " + error.getMessage());
+                Log.d("artikel", "No RES TOKEN: " + SessionManager.getToken());
+                Log.d("artikel", "No RES ROLE: " + SessionManager.getRole());
             }
         }) {
             @Override
@@ -152,6 +155,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Content-Type", "application/json");
                 params.put("Authorization", "Bearer " + SessionManager.getToken());
+//                params.put("Authorization", "Bearer 27|Sz7s6wAWaNGwkcef8v1HQ8JqFxEG9fmnckNJlCOc");
                 return params;
             }
         };

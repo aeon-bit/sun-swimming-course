@@ -126,7 +126,6 @@ public class LoginFragment extends Fragment {
         call.enqueue(new Callback<Logins>() {
             @Override
             public void onResponse(Call<Logins> call, Response<Logins> response) {
-                Log.d("login", "onResponse: " + response.body().getMessage());
 //                if (response.body().getMessage().equals("sukses")){
 //                    callToast("Login berhasil", 1);
 //                    SessionManager.login(response.body().getUser(),
@@ -136,6 +135,9 @@ public class LoginFragment extends Fragment {
 //                }
 
                 if (response.body() != null) {
+//                    Log.d("login", "MSG: " + response.body().getMessage());
+//                    Log.d("login", "ROLE: " + response.body().getRole());
+//                    Log.d("login", "TOKEN: " + response.body().getToken());
                     if (response.isSuccessful()) {
                         if (response.body().getMessage().equals("sukses")) {
                             callToast("Login berhasil", 1);
@@ -153,6 +155,7 @@ public class LoginFragment extends Fragment {
 //
 //                    Log.d("error message", error.message());
                     }
+//                    Log.d("login", "SES_TOKEN: " + response.body().getToken());
                 } else {
                     callToast("Masalah koneksi, ulangi beberapa saat", 0);
                 }
