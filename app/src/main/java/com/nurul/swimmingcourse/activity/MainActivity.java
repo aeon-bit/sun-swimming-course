@@ -21,16 +21,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.nurul.swimmingcourse.R;
+import com.nurul.swimmingcourse.ui.auth.EditProfileFragment;
 import com.nurul.swimmingcourse.ui.jadwallatihan.JadwalLatihan;
 import com.nurul.swimmingcourse.ui.auth.LoginFragment;
 import com.nurul.swimmingcourse.ui.auth.ProfileFragment;
 import com.nurul.swimmingcourse.ui.auth.RegisterFragment;
 import com.nurul.swimmingcourse.ui.dashboard.DashboardFragment;
-import com.nurul.swimmingcourse.ui.history.HistoryFragment;
-import com.nurul.swimmingcourse.ui.chat.ChatFragment;
+import com.nurul.swimmingcourse.ui.perkembangan.InputPerkembanganFragment;
+import com.nurul.swimmingcourse.ui.perkembangan.PerkembanganFragment;
 import com.nurul.swimmingcourse.ui.tentang.TentangFragment;
 import com.nurul.swimmingcourse.ui.daftrapelatih.DaftarPelatihFragment;
-import com.nurul.swimmingcourse.ui.bookingjadwal.BookingJadwalFragment;
 import com.nurul.swimmingcourse.utils.ApiClient;
 import com.nurul.swimmingcourse.utils.ApiInterface;
 import com.nurul.swimmingcourse.utils.PrefConfig;
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    public void DashboardNoLogin(){
+    public void DashboardNoLogin() {
         getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
                 new DashboardFragment()).commit();
         navigationView.setCheckedItem(R.id.nav_dashboard);
@@ -307,6 +307,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         new RegisterFragment()).commit();
                 navigationView.setCheckedItem(R.id.nav_auth);
                 getSupportActionBar().setTitle("Register");
+                break;
+            case 9:
+                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
+                        new ProfileFragment()).commit();
+                navigationView.setCheckedItem(R.id.nav_auth);
+                getSupportActionBar().setTitle("Profile");
+                break;
+            case 10:
+                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
+                        new EditProfileFragment()).commit();
+                navigationView.setCheckedItem(R.id.nav_auth);
+                getSupportActionBar().setTitle("Profile");
+                break;
+                case 11:
+                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
+                        new PerkembanganFragment()).commit();
+                navigationView.setCheckedItem(R.id.nav_dashboard);
+                getSupportActionBar().setTitle("Perkembangan Siswa");
+                break;
+                case 12:
+                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
+                        new InputPerkembanganFragment()).commit();
+                navigationView.setCheckedItem(R.id.nav_dashboard);
+                getSupportActionBar().setTitle("Input Perkembangan Siswa");
                 break;
         }
     }

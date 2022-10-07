@@ -25,8 +25,7 @@ import androidx.fragment.app.Fragment;
 import com.nurul.swimmingcourse.R;
 import com.nurul.swimmingcourse.activity.MainActivity;
 import com.nurul.swimmingcourse.model.Registers;
-import com.nurul.swimmingcourse.utils.APIError;
-import com.nurul.swimmingcourse.utils.ErrorUtils;
+import com.nurul.swimmingcourse.utils.SessionManager;
 
 import java.io.IOException;
 
@@ -37,7 +36,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RegisterFragment extends Fragment {
+public class EditProfileFragment extends Fragment {
 
     private EditText et_nameRegisterForm, et_noTelpRegisterForm, et_tglLahirRegisterForm,
             et_tempatLahirRegisterForm, et_namaOrtuRegisterForm, et_namaKucingRegisterForm,
@@ -51,7 +50,7 @@ public class RegisterFragment extends Fragment {
     private ProgressBar pb_loading;
 
 
-    public RegisterFragment() {
+    public EditProfileFragment() {
         // Required empty public constructor
     }
 
@@ -59,7 +58,7 @@ public class RegisterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_register, container, false);
+        View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
 
         et_nameRegisterForm = view.findViewById(R.id.et_nameRegisterForm);
         et_tglLahirRegisterForm = view.findViewById(R.id.et_tglLahirRegisterForm);
@@ -72,6 +71,21 @@ public class RegisterFragment extends Fragment {
         et_usernameRegisterForm = view.findViewById(R.id.et_usernameRegisterForm);
         et_passwordRegisterForm = view.findViewById(R.id.et_passwordRegisterForm);
         et_cPasswordRegisterForm = view.findViewById(R.id.et_cPasswordRegisterForm);
+
+        if (SessionManager.getRole().equals("siswa")) {
+            et_nameRegisterForm.setText(SessionManager.getUserData().getNama());
+            et_tglLahirRegisterForm.setText(SessionManager.getUserData().getTanggal_lahir());
+            et_tempatLahirRegisterForm.setText(SessionManager.getUserData().getTempat_lahir());
+            if (SessionManager.getUserData().getJenis_kelamin().equals("laki-laki")) {
+                rb_laki.setChecked(true);
+            } else {
+                rb_perempuan.setChecked(true);
+            }
+            et_namaOrtuRegisterForm.setText(SessionManager.getUserData().getNama_ortu());
+            et_alamatRegisterForm.setText(SessionManager.getUserData().getAlamat());
+            et_noTelpRegisterForm.setText(SessionManager.getUserData().getNo_telp());
+            et_usernameRegisterForm.setText(SessionManager.getUserData().getUsername());
+        }
 
         pb_loading = view.findViewById(R.id.pb_loading);
         pb_loading.setVisibility(View.INVISIBLE);
@@ -117,7 +131,7 @@ public class RegisterFragment extends Fragment {
                 String sJk = "";
                 if (rb_laki.isChecked()) {
                     sJk = "laki-laki";
-                } else if (rb_perempuan.isChecked()){
+                } else if (rb_perempuan.isChecked()) {
                     sJk = "perempuan";
                 } else {
                     sJk = "laki-laki";
@@ -132,11 +146,11 @@ public class RegisterFragment extends Fragment {
                     et_alamatRegisterForm.setError("Masukkan alamat");
 //                } else if (!rb_laki.isChecked() && !rb_perempuan.isChecked()) {
 //                    rb_errorMsg.setError("isi jenis kelamin");
-                } else if (sTgl.equals("")){
+                } else if (sTgl.equals("")) {
                     et_tglLahirRegisterForm.setError("Masukkan tanggal lahir");
-                } else if (sTempatLahir.equals("")){
+                } else if (sTempatLahir.equals("")) {
                     et_tempatLahirRegisterForm.setError("Masukkan tempat lahir");
-                } else if (sOrtu.equals("")){
+                } else if (sOrtu.equals("")) {
                     et_namaOrtuRegisterForm.setError("Masukkan nama orang tua");
                 } else if (sUsername.equals("")) {
                     et_usernameRegisterForm.setError("Masukkan username");
@@ -153,8 +167,8 @@ public class RegisterFragment extends Fragment {
 //                } else if (!isValidEmail(sEmail)) {
 //                    et_emailRegisterForm.setError("Format Email salah");
                 } else {
-                    performRegistration(sNama, sTempatLahir, sTgl, sJk, sOrtu, sAlamat, sNoHp, sUsername, sPassword);
-                hideKeyboard();
+                    performUbahProfile(sNama, sTempatLahir, sTgl, sJk, sOrtu, sAlamat, sNoHp, sUsername, sPassword);
+                    hideKeyboard();
 //                    Log.d("daftar", sNama + "\n");
 //                    Log.d("daftar", sTempatLahir + "\n");
 //                    Log.d("daftar", sTgl + "\n");
@@ -165,7 +179,7 @@ public class RegisterFragment extends Fragment {
 //                    Log.d("daftar", sUsername + "\n");
 //                    Log.d("daftar", sPassword + "\n");
 //                    Log.d("daftar", sCPassword + "\n");
-                pb_loading.setVisibility(View.VISIBLE);
+                    pb_loading.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -188,7 +202,7 @@ public class RegisterFragment extends Fragment {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
-    public void performRegistration(String sNama, String sTempatLahir, String sTgl, String sJk, String sOrtu, String sAlamat, String sNoHp, String sUsername, String sPassword) {
+    public void performUbahProfile(String sNama, String sTempatLahir, String sTgl, String sJk, String sOrtu, String sAlamat, String sNoHp, String sUsername, String sPassword) {
 
 //        Log.d("daftar", sNama + "\n");
 //        Log.d("daftar", sTempatLahir + "\n");
@@ -200,8 +214,9 @@ public class RegisterFragment extends Fragment {
 //        Log.d("daftar", sUsername + "\n");
 //        Log.d("daftar", sPassword + "\n");
 
-        Call<Registers> call = MainActivity.apiInterface.performRegistration(
-                sNama, sTempatLahir, sTgl, sJk, sOrtu, sAlamat, sNoHp, sUsername, sPassword
+        Call<Registers> call = MainActivity.apiInterface.performUbahProfile(
+                "Bearer " + SessionManager.getToken(),
+                SessionManager.getUserData().getId(), sNama, sTempatLahir, sTgl, sJk, sOrtu, sAlamat, sNoHp, sUsername, sPassword
 //                "nama tes",
 //                "TL Test",
 //                "1990-01-02",
@@ -212,6 +227,8 @@ public class RegisterFragment extends Fragment {
 //                "user_test",
 //                "password"
         );
+//        Log.d("ubah", SessionManager.getUserData().getId() + "\n");
+
         call.enqueue(new Callback<Registers>() {
             @Override
             public void onResponse(Call<Registers> call, Response<Registers> response) {

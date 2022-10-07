@@ -53,24 +53,24 @@ public class AdapterListArtikel extends
 
 //        Log.d("images", "BASE_URL: " + ApiClient.IMAGE_URL + listArtikels.get(position).getGambar());
 
-        holderItem.tv_judulItemArtikel.setText(artikels.getJudul_artikel());
+        holderItem.tv_judulItemArtikel.setText(artikels.getJudul_info());
         Glide.with(context).load(ApiClient.IMAGE_URL + listArtikels.get(position)
-        .getGambar()).error(R.drawable.ic_nopic).centerCrop().into(holderItem.iv_gambarItemArtikel);
+        .getFoto()).error(R.drawable.ic_nopic).centerCrop().into(holderItem.iv_gambarItemArtikel);
         holderItem.cv_itemListArtikelHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment detailFragment = new DetailArtikel();
-                Bundle bundle = new Bundle();
-                bundle.putString("id", listArtikels.get(position).getId());
-                bundle.putString("judul_artikel", listArtikels.get(position).getJudul_artikel());
-                bundle.putString("deskripsi", listArtikels.get(position).getDeskripsi());
-                bundle.putString("gambar", listArtikels.get(position).getGambar());
+//                Fragment detailFragment = new DetailArtikel();
+//                Bundle bundle = new Bundle();
+//                bundle.putString("id", listArtikels.get(position).getId());
+//                bundle.putString("judul_artikel", listArtikels.get(position).getJudul_artikel());
+//                bundle.putString("deskripsi", listArtikels.get(position).getDeskripsi());
+//                bundle.putString("gambar", listArtikels.get(position).getGambar());
 
-                detailFragment.setArguments(bundle);
-                ((FragmentActivity)context).getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.nav_host_fragment_content_main, detailFragment).addToBackStack("fromDetailArtikel")
-                        .commit();
+//                detailFragment.setArguments(bundle);
+//                ((FragmentActivity)context).getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.nav_host_fragment_content_main, detailFragment).addToBackStack("fromDetailArtikel")
+//                        .commit();
             }
         });
     }
@@ -92,7 +92,7 @@ public class AdapterListArtikel extends
             super(v);
 
             cv_itemListArtikelHome = v.findViewById(R.id.cv_itemListArtikelHome);
-//            tv_judulItemArtikel = v.findViewById(R.id.tv_judulItemArtikel);
+            tv_judulItemArtikel = v.findViewById(R.id.tv_judulItemArtikel);
             iv_gambarItemArtikel = v.findViewById(R.id.iv_gambarItemArtikel);
 
         }

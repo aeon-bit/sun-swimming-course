@@ -1,4 +1,4 @@
-package com.nurul.swimmingcourse.ui.bookingjadwal;
+package com.nurul.swimmingcourse.ui.perkembangan;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -32,7 +32,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BookingJadwalFragment extends Fragment {
+public class PerkembanganFragment extends Fragment {
     DatePickerDialog datePickerDialog;
     TextView tv_dateSelected;
     //date
@@ -43,94 +43,79 @@ public class BookingJadwalFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_booking_jadwal, container, false);
+        View root = inflater.inflate(R.layout.fragment_perkembangan, container, false);
 
-        initDatePicker();
-
-        tv_dateSelected = root.findViewById(R.id.tv_dateSelected);
-        ImageView iv_openDatePicker = root.findViewById(R.id.iv_openDatePicker);
-        iv_openDatePicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openDatePicker();
-            }
-        });
-
-        EditText et_namaKucingBook = root.findViewById(R.id.et_namaKucingBook);
-        sp_jenisKucing = root.findViewById(R.id.sp_jenisKucing);
-        EditText et_usiaKucingBook = root.findViewById(R.id.et_usiaKucingBook);
-        EditText et_namaPemilikBook = root.findViewById(R.id.et_namaPemilikBook);
-        EditText et_noHpBook = root.findViewById(R.id.et_noHpBook);
-        EditText et_alamatBook = root.findViewById(R.id.et_alamatBook);
-//        EditText et_hasilDiagnosisBook = root.findViewById(R.id.et_hasilDiagnosisBook);
-        EditText et_tglBook = root.findViewById(R.id.et_tglBook);
-        CardView cv_btnPerformBuatJadwal = root.findViewById(R.id.cv_btnPerformBuatJadwal);
-
-//        et_namaKucingBook.setText(SessionManager.getUserData().getNama_kucing());
-//        et_jenisKucingKucingBook.setText(SessionManager.getUserData().getJenis_kucing());
-//        et_usiaKucingBook.setText(SessionManager.getUserData().());
-        et_namaPemilikBook.setText(SessionManager.getUserData().getNama());
-//        et_noHpBook.setText(SessionManager.getUserData().getNo_hp());
-        et_alamatBook.setText(SessionManager.getUserData().getAlamat());
-
-//        String sNamaKucing = et_namaKucingBook.getText().toString();
-//        String sJenis = et_jenisKucingKucingBook.getText().toString();
-//        String sUsia = et_usiaKucingBook.getText().toString();
-//        String sNamaPemilik = et_namaPemilikBook.getText().toString();
-//        String sNoHp = et_noHpBook.getText().toString().trim();
-//        String sAlamat = et_alamatBook.getText().toString();
-//        String sHasilD = et_hasilDiagnosisBook.getText().toString();
-//        String sTgl = tv_dateSelected.getText().toString();
-        spinnerJenisKucing();
-
-        cv_btnPerformBuatJadwal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (et_namaKucingBook.getText().toString().isEmpty()) {
-                    et_namaKucingBook.setError("Masukkan nama kucing");
-//                } else if (et_jenisKucingKucingBook.getText().toString().isEmpty()) {
-//                    et_jenisKucingKucingBook.setError("Masukkan jenis kucing");
-//                } else if (et_usiaKucingBook.getText().toString().isEmpty()) {
-//                    et_usiaKucingBook.setError("Masukkan usia kucing");
-//                } else if (et_namaPemilikBook.getText().toString().isEmpty()) {
-//                    et_namaPemilikBook.setError("Masukkan nama pemilik");
-//                } else if (et_noHpBook.getText().toString().isEmpty()) {
-//                    et_noHpBook.setError("Masukkan no hp");
-//                } else if (et_noHpBook.getText().length() < 11) {
-//                    et_noHpBook.setError("Format no hp salah");
-//                } else if (et_alamatBook.getText().toString().isEmpty()) {
-//                    et_alamatBook.setError("Masukkan alamat");
-//                } else if (et_hasilDiagnosisBook.getText().toString().isEmpty()) {
-//                    et_hasilDiagnosisBook.setError("Masukkan hasil diagnosis");
-//                } else if (tv_dateSelected.getText().toString().isEmpty()) {
-//                    et_tglBook.setError("Masukkan tanggal booking");
+//        initDatePicker();
+//
+//        tv_dateSelected = root.findViewById(R.id.tv_dateSelected);
+//        ImageView iv_openDatePicker = root.findViewById(R.id.iv_openDatePicker);
+//        iv_openDatePicker.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                openDatePicker();
+//            }
+//        });
+//
+//        EditText et_namaKucingBook = root.findViewById(R.id.et_namaKucingBook);
+//        sp_jenisKucing = root.findViewById(R.id.sp_jenisKucing);
+//        EditText et_usiaKucingBook = root.findViewById(R.id.et_usiaKucingBook);
+//        EditText et_namaPemilikBook = root.findViewById(R.id.et_namaPemilikBook);
+//        EditText et_noHpBook = root.findViewById(R.id.et_noHpBook);
+//        EditText et_alamatBook = root.findViewById(R.id.et_alamatBook);
+////        EditText et_hasilDiagnosisBook = root.findViewById(R.id.et_hasilDiagnosisBook);
+//        EditText et_tglBook = root.findViewById(R.id.et_tglBook);
+//        CardView cv_btnPerformBuatJadwal = root.findViewById(R.id.cv_btnPerformBuatJadwal);
+//
+//        spinnerJenisKucing();
+//
+//        cv_btnPerformBuatJadwal.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (et_namaKucingBook.getText().toString().isEmpty()) {
+//                    et_namaKucingBook.setError("Masukkan nama kucing");
+////                } else if (et_jenisKucingKucingBook.getText().toString().isEmpty()) {
+////                    et_jenisKucingKucingBook.setError("Masukkan jenis kucing");
+////                } else if (et_usiaKucingBook.getText().toString().isEmpty()) {
+////                    et_usiaKucingBook.setError("Masukkan usia kucing");
+////                } else if (et_namaPemilikBook.getText().toString().isEmpty()) {
+////                    et_namaPemilikBook.setError("Masukkan nama pemilik");
+////                } else if (et_noHpBook.getText().toString().isEmpty()) {
+////                    et_noHpBook.setError("Masukkan no hp");
+////                } else if (et_noHpBook.getText().length() < 11) {
+////                    et_noHpBook.setError("Format no hp salah");
+////                } else if (et_alamatBook.getText().toString().isEmpty()) {
+////                    et_alamatBook.setError("Masukkan alamat");
+////                } else if (et_hasilDiagnosisBook.getText().toString().isEmpty()) {
+////                    et_hasilDiagnosisBook.setError("Masukkan hasil diagnosis");
+////                } else if (tv_dateSelected.getText().toString().isEmpty()) {
+////                    et_tglBook.setError("Masukkan tanggal booking");
+////                } else {
+//                }
+//
+//                if (tv_dateSelected.getText().toString().isEmpty()) {
+//                    Toast toast = Toast.makeText(getActivity(), "Masukkan tanggal booking", Toast.LENGTH_LONG);
+//                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+//                        View view = toast.getView();
+//                        view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
+//                        TextView textView = view.findViewById(android.R.id.message);
+//                        textView.setTextColor(Color.WHITE);
+//                    }
+//                    toast.show();
 //                } else {
-                }
-
-                if (tv_dateSelected.getText().toString().isEmpty()) {
-                    Toast toast = Toast.makeText(getActivity(), "Masukkan tanggal booking", Toast.LENGTH_LONG);
-                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
-                        View view = toast.getView();
-                        view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
-                        TextView textView = view.findViewById(android.R.id.message);
-                        textView.setTextColor(Color.WHITE);
-                    }
-                    toast.show();
-                } else {
-//                    performBuatJadwal();
-                    performBuatJadwal(
-                            et_namaKucingBook.getText().toString(), sp_jenisKucing.getSelectedItem().toString()
-//                            et_jenisKucingKucingBook.getText().toString()
-//                            et_usiaKucingBook.getText().toString(),
-//                            et_namaPemilikBook.getText().toString(),
-//                            et_noHpBook.getText().toString().trim(),
-//                            et_alamatBook.getText().toString(),
-//                            et_hasilDiagnosisBook.getText().toString(),
-//                            dateToUp
-                    );
-                }
-            }
-        });
+////                    performBuatJadwal();
+//                    performBuatJadwal(
+//                            et_namaKucingBook.getText().toString(), sp_jenisKucing.getSelectedItem().toString()
+////                            et_jenisKucingKucingBook.getText().toString()
+////                            et_usiaKucingBook.getText().toString(),
+////                            et_namaPemilikBook.getText().toString(),
+////                            et_noHpBook.getText().toString().trim(),
+////                            et_alamatBook.getText().toString(),
+////                            et_hasilDiagnosisBook.getText().toString(),
+////                            dateToUp
+//                    );
+//                }
+//            }
+//        });
         return root;
     }
 

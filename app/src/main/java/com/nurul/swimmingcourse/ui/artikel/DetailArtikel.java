@@ -75,11 +75,11 @@ public class DetailArtikel extends Fragment {
             public void onResponse(Call<ResponseDetailArtikel> call, retrofit2.Response<ResponseDetailArtikel> response) {
                 Log.d("respon", "onResponse Detail Artikel: " + response.toString());
 
-                tv_JudulDetailArtikel.setText(response.body().getData().getJudul_artikel());
-                tv_deskripsiDetailArtikel.setText(response.body().getData().getDeskripsi());
-
-                Glide.with(getContext()).load(ApiClient.IMAGE_URL + response.body().getData().getGambar())
-                        .error(R.drawable.ic_nopic).centerCrop().into(iv_gambarDetailArtikel);
+//                tv_JudulDetailArtikel.setText(response.body().getData().getJudul_artikel());
+//                tv_deskripsiDetailArtikel.setText(response.body().getData().getDeskripsi());
+//
+//                Glide.with(getContext()).load(ApiClient.IMAGE_URL + response.body().getData().getGambar())
+//                        .error(R.drawable.ic_nopic).centerCrop().into(iv_gambarDetailArtikel);
             }
 
             @Override

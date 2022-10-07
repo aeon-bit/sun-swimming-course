@@ -10,6 +10,7 @@ public class SessionManager
 {
     private static final String USER_DATA = "UserData",
                                 USER_TOKEN = null,
+                                USER_ROLE = null,
                                 IS_LOGIN = "islogin";
 
     private static SharedPreferences sp;
@@ -30,11 +31,12 @@ public class SessionManager
         editor.putBoolean(IS_LOGIN, true).commit();
     }
 
-    public static void login(Users s, String token)
+    public static void login(Users s, String token, String role)
     {
         editor.putString(USER_DATA, Gxon.toJsonObject(s)).commit();
         editor.putBoolean(IS_LOGIN, true).commit();
         editor.putString(USER_TOKEN, token).commit();
+        editor.putString(USER_ROLE, role).commit();
     }
 
     public static boolean isLogin()
@@ -47,6 +49,7 @@ public class SessionManager
         editor.putString(USER_DATA, "").commit();
         editor.putBoolean(IS_LOGIN, false).commit();
         editor.putString(USER_TOKEN, "").commit();
+        editor.putString(USER_ROLE, "").commit();
     }
 
     // ------------  -_-_-_-  --------------
@@ -86,6 +89,11 @@ public class SessionManager
         return sp.getString(USER_TOKEN, "");
     }
 
+    public static String getRole()
+    {
+        return sp.getString(USER_ROLE, "");
+    }
+
     public static Users getUserData()
     {
         return Gxon.fromJsonObject(sp.getString(USER_DATA, ""), Users.class);
@@ -96,9 +104,10 @@ public class SessionManager
         editor.putString(USER_DATA, Gxon.toJsonObject(s)).commit();
     }
 
-    public static void setUserData(Users s, String token)
+    public static void setUserData(Users s, String token, String role)
     {
         editor.putString(USER_DATA, Gxon.toJsonObject(s)).commit();
         editor.putString(USER_TOKEN, token).commit();
+        editor.putString(USER_TOKEN, role).commit();
     }
 }

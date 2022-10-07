@@ -17,6 +17,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiInterface {
@@ -43,7 +44,23 @@ public interface ApiInterface {
             @Field("password") String password
     );
 
-    @GET("data-artikel")
+    @FormUrlEncoded
+    @PUT("siswa/{id}/update")
+    Call <Registers> performUbahProfile(
+            @Header("Authorization") String token,
+            @Field("id") String id,
+            @Field("nama") String nama,
+            @Field("tempat_lahir") String tempat_lahir,
+            @Field("tanggal_lahir") String tanggal_lahir,
+            @Field("jenis_kelamin") String jenis_kelamin,
+            @Field("nama_ortu") String nama_ortu,
+            @Field("alamat") String alamat,
+            @Field("no_telp") String no_telp,
+            @Field("username") String username,
+            @Field("password") String password
+    );
+
+    @GET("informasi")
     Call<Artikels> getAllArtikel(
             @Header("Authorization") String token
     );

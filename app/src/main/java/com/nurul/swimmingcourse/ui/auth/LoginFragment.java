@@ -135,21 +135,26 @@ public class LoginFragment extends Fragment {
 //                    loginFormActivityListener.performLogin(response.body().getUser().getEmail());
 //                }
 
-                if (response.isSuccessful()){
-                    if (response.body().getMessage().equals("sukses")){
-                        callToast("Login berhasil", 1);
-                        SessionManager.login(response.body().getUser(),
-                                response.body().getToken());
+                if (response.body() != null) {
+                    if (response.isSuccessful()) {
+                        if (response.body().getMessage().equals("sukses")) {
+                            callToast("Login berhasil", 1);
+                            SessionManager.login(response.body().getUser(),
+                                    response.body().getToken(),
+                                    response.body().getRole());
 
-                        loginFormActivityListener.performLogin(response.body().getUser().getNama());
-                    }
-                } else {
-                    callToast("Username / Password Salah", 0);
+                            loginFormActivityListener.performLogin(response.body().getUser().getNama());
+                        }
+                    } else {
+                        callToast("Username / Password Salah", 0);
 //                    APIError error = ErrorUtils.parseError(response);
 //
 //                    callToast("Server Error", 0);
 //
 //                    Log.d("error message", error.message());
+                    }
+                } else {
+                    callToast("Masalah koneksi, ulangi beberapa saat", 0);
                 }
             }
 

@@ -12,29 +12,14 @@ public class Artikels {
     @SerializedName("token")
     private String token;
 
-    @SerializedName("judul_artikel")
-    private String judul_artikel;
+    @SerializedName("judul_info")
+    private String judul_info;
 
-    @SerializedName("isi_artikel")
-    private String isi_artikel;
+    @SerializedName("detail_info")
+    private String detail_info;
 
-    @SerializedName("deskripsi")
-    private String deskripsi;
-
-    @SerializedName("gambar")
-    private String gambar;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getJudul_artikel() {
-        return judul_artikel;
-    }
+    @SerializedName("foto")
+    private String foto;
 
     public String getResponse() {
         return response;
@@ -42,6 +27,14 @@ public class Artikels {
 
     public void setResponse(String response) {
         this.response = response;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getToken() {
@@ -52,31 +45,27 @@ public class Artikels {
         this.token = token;
     }
 
-    public void setJudul_artikel(String judul_artikel) {
-        this.judul_artikel = judul_artikel;
+    public String getJudul_info() {
+        return judul_info;
     }
 
-    public String getIsi_artikel() {
-        return isi_artikel;
+    public void setJudul_info(String judul_info) {
+        this.judul_info = judul_info;
     }
 
-    public void setIsi_artikel(String isi_artikel) {
-        this.isi_artikel = isi_artikel;
+    public String getDetail_info() {
+        return detail_info;
     }
 
-    public String getGambar() {
-        return gambar;
+    public void setDetail_info(String detail_info) {
+        this.detail_info = detail_info;
     }
 
-    public void setGambar(String gambar) {
-        this.gambar = gambar;
+    public String getFoto() {
+        return foto;
     }
 
-    public String getDeskripsi() {
-        return deskripsi;
-    }
-
-    public void setDeskripsi(String deskripsi) {
-        this.deskripsi = deskripsi;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }

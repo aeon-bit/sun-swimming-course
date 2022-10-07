@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:clickable="true"
-    tools:context=".ui.bookingjadwal.BookingJadwalFragment">
+    tools:context=".ui.perkembangan.PerkembanganFragment">
 
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -33,14 +33,14 @@
 
 <!--    siswa-->
     <LinearLayout
-        android:id="@+id/c1"
+        android:id="@+id/c1_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
         android:layout_marginTop="46dp"
         android:orientation="horizontal"
         android:weightSum="100"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintTop_toBottomOf="@id/icv_avatarProfile">
 
         <!--            LEFT-->
@@ -234,7 +234,7 @@
     
 <!--    pelatih-->
     <LinearLayout
-        android:id="@+id/c2"
+        android:id="@+id/c2_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"

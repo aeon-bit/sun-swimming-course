@@ -7,9 +7,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -54,18 +56,50 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         CardView cv_btnJadwalLatihan = root.findViewById(R.id.cv_btnJadwalLatihan);
         CardView cv_btnDaftarPelatih = root.findViewById(R.id.cv_btnDaftarPelatih);
         CardView cv_btnPendaftaran = root.findViewById(R.id.cv_btnPendaftaran);
+        CardView cv_btnInputPerkembangan = root.findViewById(R.id.cv_btnInputPerkembangan);
         CardView cv_btnTentang = root.findViewById(R.id.cv_btnTentang);
+        CardView cv_perkembangan = root.findViewById(R.id.cv_btnPerkembangan);
+        ImageView iv_avatar = root.findViewById(R.id.iv_avatar);
+
+        LinearLayoutCompat ly_lineSiswa = root.findViewById(R.id.line1_s);
+        LinearLayoutCompat ly_linePelatih = root.findViewById(R.id.line1_p);
+        LinearLayoutCompat ly_line2 = root.findViewById(R.id.line2);
+
+        if (SessionManager.getRole().equals("pelatih")) {
+            ly_lineSiswa.setVisibility(View.INVISIBLE);
+            ly_linePelatih.setVisibility(View.VISIBLE);
+            ly_line2.setVisibility(View.INVISIBLE);
+        } else {
+            ly_lineSiswa.setVisibility(View.VISIBLE);
+            ly_linePelatih.setVisibility(View.INVISIBLE);
+        }
+
+
+        iv_avatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (SessionManager.isLogin()) {
+                    ((MainActivity) getActivity()).SwitchFrag(9);
+                } else {
+                    ((MainActivity) getActivity()).SwitchFrag(7);
+                }
+            }
+        });
 
         cv_btnJadwalLatihan.setOnClickListener(this);
         cv_btnDaftarPelatih.setOnClickListener(this);
         cv_btnPendaftaran.setOnClickListener(this);
         cv_btnTentang.setOnClickListener(this);
 
+        cv_perkembangan.setOnClickListener(this);
+        cv_btnInputPerkembangan.setOnClickListener(this);
+
+
         rv_arrtikelHome = root.findViewById(R.id.rv_arrtikelHome);
         requestQueue = Volley.newRequestQueue(getContext());
         listArtikels = new ArrayList<>();
 
-//        requestAllArtikels();
+        requestAllArtikels();
 
         rvLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rv_arrtikelHome.setLayoutManager(rvLayoutManager);
@@ -76,13 +110,13 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     }
 
     private void requestAllArtikels() {
-        String apiUrl = ApiClient.API + "data-artikel/";
+        String apiUrl = ApiClient.API + "informasi/";
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, apiUrl, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-//                        Log.d("respon", "Data artikel: " + response.toString());
+                        Log.d("artikel", "Data artikel: " + response.toString());
                         try {
                             JSONArray jsonArray = response.getJSONArray("data");
 
@@ -92,9 +126,10 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                                 //get key 1 by 1
                                 Artikels model = new Artikels();
 
-                                model.setJudul_artikel(artikel.getString("judul_artikel"));
-                                model.setDeskripsi(artikel.getString("deskripsi"));
-                                model.setGambar(artikel.getString("gambar"));
+                                model.setId(artikel.getString("judul_artikel"));
+                                model.setJudul_info(artikel.getString("judul_info"));
+                                model.setDetail_info(artikel.getString("detail_info"));
+                                model.setFoto(artikel.getString("foto"));
 
                                 listArtikels.add(model);
 
@@ -142,6 +177,13 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                 break;
             case R.id.cv_btnTentang:
                 ((MainActivity) getActivity()).SwitchFrag(6);
+                break;
+
+            case R.id.cv_btnPerkembangan:
+                ((MainActivity) getActivity()).SwitchFrag(11);
+                break;
+            case R.id.cv_btnInputPerkembangan:
+                ((MainActivity) getActivity()).SwitchFrag(12);
                 break;
         }
     }

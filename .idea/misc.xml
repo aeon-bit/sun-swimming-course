@@ -7,6 +7,7 @@
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/drawable/ic_logo_tentang.xml" value="0.2925" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/drawable/ic_logo_wa.xml" value="0.2925" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/drawable/ic_nopic.xml" value="0.1875" />
+        <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/drawable/ic_sic_perkembangan.xml" value="0.2365" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/drawable/xmlbg_black_gradient_title.xml" value="0.1875" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/drawable/xmlbg_btn_cancel.xml" value="0.2885" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/drawable/xmlbg_btn_confirm.xml" value="0.2885" />
@@ -17,9 +18,12 @@
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_daftar_pelatih.xml" value="0.26979166666666665" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_dashboard.xml" value="0.33" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_detail_history_periksa.xml" value="0.26510416666666664" />
+        <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_edit_profile.xml" value="0.28020833333333334" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_hasil_diagnosa.xml" value="0.19166666666666668" />
+        <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_input_perkembangan.xml" value="0.371875" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_jenis_penyakit.xml" value="0.371875" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_login.xml" value="0.33" />
+        <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_perkembangan.xml" value="0.33" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_pesan_jadwal.xml" value="0.33" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_register.xml" value="0.25" />

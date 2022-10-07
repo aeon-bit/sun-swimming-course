@@ -26,7 +26,7 @@ import com.nurul.swimmingcourse.adapter.AdapterListSaranDetailDiagnosis;
 import com.nurul.swimmingcourse.model.Gejalas;
 import com.nurul.swimmingcourse.model.HasilSarans;
 import com.nurul.swimmingcourse.model.ResponseTesKesehatan;
-import com.nurul.swimmingcourse.ui.bookingjadwal.BookingJadwalFragment;
+import com.nurul.swimmingcourse.ui.perkembangan.PerkembanganFragment;
 import com.nurul.swimmingcourse.utils.SessionManager;
 
 import java.util.ArrayList;
@@ -108,7 +108,7 @@ public class HasilDiagnosaFragment extends Fragment {
         cv_btnPerformBooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment booking = new BookingJadwalFragment();
+                Fragment booking = new PerkembanganFragment();
 
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.nav_host_fragment_content_main, booking).commit();

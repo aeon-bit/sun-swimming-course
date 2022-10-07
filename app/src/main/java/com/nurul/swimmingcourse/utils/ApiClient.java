@@ -10,7 +10,7 @@ public class ApiClient {
 //    public static final String BASE_URL = "http://swimming-course.test/";
 //    public static final String BASE_URL = "https://admin-page-diagnosis-penyakit-kucing.my.id/";
 
-    public static final String IMAGE_URL = BASE_URL + "storage/images/";
+    public static final String IMAGE_URL = BASE_URL + "images/foto/";
 
     public static final String API = BASE_URL + "api/";
 
