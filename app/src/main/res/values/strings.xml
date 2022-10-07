@@ -10,8 +10,8 @@
     <string name="menu_dashboard">Dashboard</string>
     <string name="menu_jadwal_latihan">Jadwal Latihan</string>
     <string name="menu_daftar_pelatih">Daftar Pelatih</string>
-    <string name="menu_booking_jadwal">Booking Jadwal</string>
-    <string name="menu_chat">Chat Dokter</string>
+    <string name="menu_pendaftaran">Pendaftaran</string>
+    <string name="menu_pembayaran">Pembayaran</string>
     <string name="menu_history">Histori Periksa</string>
     <string name="menu_tentang">Tentang Aplikasi</string>
     <string name="menu_auth">Login</string>

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
@@ -38,6 +39,8 @@ public class DetailArtikel extends Fragment {
         tv_JudulDetailArtikel = root.findViewById(R.id.tv_JudulDetailArtikel);
         tv_deskripsiDetailArtikel = root.findViewById(R.id.tv_deskripsiDetailArtikel);
 
+        ((MainActivity) getActivity()).setTitle("Detail Info Sun Swimming");
+
         catchValues(root);
 
         return root;
@@ -46,14 +49,14 @@ public class DetailArtikel extends Fragment {
     private void catchValues(View root) {
         if (getArguments() != null) {
             String sId = getArguments().getString("id");
-            String sJudul = getArguments().getString("judul_artikel");
-            String sDeskripsi = getArguments().getString("deskripsi");
-            String sGambar = getArguments().getString("gambar");
+            String sJudul = getArguments().getString("judul_info");
+            String sDeskripsi = getArguments().getString("detail_info");
+            String sGambar = getArguments().getString("foto");
 
             tv_JudulDetailArtikel.setText(sJudul);
             tv_deskripsiDetailArtikel.setText(sDeskripsi);
 
-            Glide.with(getContext()).load(ApiClient.IMAGE_URL + sGambar)
+            Glide.with(root).load(ApiClient.IMAGE_URL_ARTIKEL + sGambar)
                     .error(R.drawable.ic_nopic).centerCrop().into(iv_gambarDetailArtikel);
 //            requestDetailArtikeliById(sId);
 

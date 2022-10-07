@@ -31,10 +31,10 @@
             android:id="@+id/nav_pendaftaran"
             android:icon="@drawable/ic_pendaftaran"
             android:title="Pendaftaran" />
-<!--        <item-->
-<!--            android:id="@+id/nav_chat"-->
-<!--            android:icon="@drawable/ic_chat"-->
-<!--            android:title="Chat Dokter" />-->
+        <item
+            android:id="@+id/nav_pembayaran"
+            android:icon="@drawable/ic_sic_pembayaran"
+            android:title="Pembayaran" />
 <!--        <item-->
 <!--            android:id="@+id/nav_history"-->
 <!--            android:icon="@drawable/ic_history"-->

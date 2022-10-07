@@ -60,18 +60,18 @@ public class AdapterListArtikel extends
         holderItem.cv_itemListArtikelHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Fragment detailFragment = new DetailArtikel();
-//                Bundle bundle = new Bundle();
-//                bundle.putString("id", listArtikels.get(position).getId());
-//                bundle.putString("judul_artikel", listArtikels.get(position).getJudul_artikel());
-//                bundle.putString("deskripsi", listArtikels.get(position).getDeskripsi());
-//                bundle.putString("gambar", listArtikels.get(position).getGambar());
+                Fragment detailFragment = new DetailArtikel();
+                Bundle bundle = new Bundle();
+                bundle.putString("id", listArtikels.get(position).getId());
+                bundle.putString("judul_info", listArtikels.get(position).getJudul_info());
+                bundle.putString("detail_info", listArtikels.get(position).getDetail_info());
+                bundle.putString("foto", listArtikels.get(position).getFoto());
 
-//                detailFragment.setArguments(bundle);
-//                ((FragmentActivity)context).getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.nav_host_fragment_content_main, detailFragment).addToBackStack("fromDetailArtikel")
-//                        .commit();
+                detailFragment.setArguments(bundle);
+                ((FragmentActivity)context).getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.nav_host_fragment_content_main, detailFragment).addToBackStack("fromDetailArtikel")
+                        .commit();
             }
         });
     }

@@ -27,6 +27,7 @@ import com.nurul.swimmingcourse.ui.auth.LoginFragment;
 import com.nurul.swimmingcourse.ui.auth.ProfileFragment;
 import com.nurul.swimmingcourse.ui.auth.RegisterFragment;
 import com.nurul.swimmingcourse.ui.dashboard.DashboardFragment;
+import com.nurul.swimmingcourse.ui.pembayaran.Pembayaran;
 import com.nurul.swimmingcourse.ui.perkembangan.InputPerkembanganFragment;
 import com.nurul.swimmingcourse.ui.perkembangan.PerkembanganFragment;
 import com.nurul.swimmingcourse.ui.tentang.TentangFragment;
@@ -197,11 +198,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (SessionManager.isLogin()) {
 
             switch (item.getItemId()) {
+                case R.id.nav_dashboard:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
+                            new DashboardFragment()).commit();
+                    navigationView.setCheckedItem(R.id.nav_dashboard);
+                    getSupportActionBar().setTitle(R.string.menu_dashboard);
+                    break;
                 case R.id.nav_jadwal_latihan:
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
                             new JadwalLatihan()).commit();
                     navigationView.setCheckedItem(R.id.nav_jadwal_latihan);
                     getSupportActionBar().setTitle(R.string.menu_jadwal_latihan);
+                    break;
+                case R.id.nav_pendaftaran:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
+                            new RegisterFragment()).commit();
+                    navigationView.setCheckedItem(R.id.nav_pendaftaran);
+                    getSupportActionBar().setTitle(R.string.menu_pendaftaran);
                     break;
                 case R.id.nav_daftar_pelatih:
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
@@ -231,7 +244,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     break;
             }
             drawer.closeDrawer(GravityCompat.START, false);
-        } else {
+        } else { //not sign in
             if (item.getItemId() == R.id.nav_dashboard) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
                         new DashboardFragment()).commit();
@@ -252,6 +265,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         return false;
+    }
+
+    public void setTitle(String title) {
+        getSupportActionBar().setTitle(title);
     }
 
     private void callWarningToast(String s) {
@@ -320,17 +337,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 navigationView.setCheckedItem(R.id.nav_auth);
                 getSupportActionBar().setTitle("Profile");
                 break;
-                case 11:
+            case 11:
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
                         new PerkembanganFragment()).commit();
                 navigationView.setCheckedItem(R.id.nav_dashboard);
                 getSupportActionBar().setTitle("Perkembangan Siswa");
                 break;
-                case 12:
+            case 12:
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
                         new InputPerkembanganFragment()).commit();
                 navigationView.setCheckedItem(R.id.nav_dashboard);
                 getSupportActionBar().setTitle("Input Perkembangan Siswa");
+                break;
+            case 13:
+                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
+                        new Pembayaran()).commit();
+                navigationView.setCheckedItem(R.id.nav_pembayaran);
+                getSupportActionBar().setTitle("Pembayaran");
                 break;
         }
     }

@@ -110,9 +110,9 @@ public class HasilDiagnosaFragment extends Fragment {
             public void onClick(View v) {
                 Fragment booking = new PerkembanganFragment();
 
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.nav_host_fragment_content_main, booking).commit();
-                ((MainActivity)getActivity()).setActionBarTitle(R.string.menu_booking_jadwal);
+//                getActivity().getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.nav_host_fragment_content_main, booking).commit();
+//                ((MainActivity)getActivity()).setActionBarTitle(R.string.menu_booking_jadwal);
             }
         });
         return root;

@@ -86,7 +86,7 @@ public class AdapterListPelatih extends
                 LinearLayout ly_btnCloseDialog = dialogDetailPelatih.findViewById(R.id.ly_btnCloseDialog);
 
                 Glide.with(v).load(ApiClient.IMAGE_URL + listPelatihs.get(position).getFoto())
-                                .error(R.drawable.ic_avatar).into(icv_avatarDetailPelatih);
+                                .error(R.drawable.ic_avatar).centerCrop().into(icv_avatarDetailPelatih);
                 tv_namaPelatihProfil.setText(listPelatihs.get(position).getNama());
                 tv_alamatPelatihProfil.setText(listPelatihs.get(position).getAlamat());
                 tv_noHpPelatihProfil.setText(listPelatihs.get(position).getNo_telp());

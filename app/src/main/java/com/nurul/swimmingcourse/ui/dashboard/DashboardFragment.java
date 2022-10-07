@@ -62,6 +62,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         CardView cv_btnJadwalLatihan = root.findViewById(R.id.cv_btnJadwalLatihan);
         CardView cv_btnDaftarPelatih = root.findViewById(R.id.cv_btnDaftarPelatih);
         CardView cv_btnPendaftaran = root.findViewById(R.id.cv_btnPendaftaran);
+        CardView cv_btnPembayaran = root.findViewById(R.id.cv_btnPembayaran);
         CardView cv_btnInputPerkembangan = root.findViewById(R.id.cv_btnInputPerkembangan);
         CardView cv_btnTentang = root.findViewById(R.id.cv_btnTentang);
         CardView cv_perkembangan = root.findViewById(R.id.cv_btnPerkembangan);
@@ -70,14 +71,17 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         LinearLayoutCompat ly_lineSiswa = root.findViewById(R.id.line1_s);
         LinearLayoutCompat ly_linePelatih = root.findViewById(R.id.line1_p);
         LinearLayoutCompat ly_line2 = root.findViewById(R.id.line2);
+        LinearLayoutCompat ly_line3 = root.findViewById(R.id.line3);
 
         if (SessionManager.getRole().equals("pelatih")) {
             ly_lineSiswa.setVisibility(View.INVISIBLE);
             ly_linePelatih.setVisibility(View.VISIBLE);
             ly_line2.setVisibility(View.INVISIBLE);
+            ly_line3.setVisibility(View.INVISIBLE);
         } else {
             ly_lineSiswa.setVisibility(View.VISIBLE);
             ly_linePelatih.setVisibility(View.INVISIBLE);
+            ly_line3.setVisibility(View.VISIBLE);
         }
 
 
@@ -95,6 +99,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         cv_btnJadwalLatihan.setOnClickListener(this);
         cv_btnDaftarPelatih.setOnClickListener(this);
         cv_btnPendaftaran.setOnClickListener(this);
+        cv_btnPembayaran.setOnClickListener(this);
         cv_btnTentang.setOnClickListener(this);
 
         cv_perkembangan.setOnClickListener(this);
@@ -122,9 +127,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d("artikel", "Data artikel: " + response.toString());
-                        Log.d("artikel", "RES TOKEN: " + SessionManager.getToken());
-                        Log.d("artikel", "RES RULE: " + SessionManager.getRole());
                         try {
                             JSONArray jsonArray = response.getJSONArray("data");
 
@@ -187,6 +189,9 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             case R.id.cv_btnTentang:
                 frag = 6;
                 break;
+            case R.id.cv_btnPembayaran:
+                frag = 13;
+                break;
             case R.id.cv_btnPerkembangan:
                 frag = 11;
                 break;
@@ -195,7 +200,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                 break;
         }
 
-        if (frag == 6) {
+        if (frag == 6) { //tentang
             ((MainActivity) getActivity()).SwitchFrag(frag);
         } else {
             if (SessionManager.isLogin()) {
