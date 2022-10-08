@@ -78,15 +78,15 @@ public class Pembayaran extends Fragment {
         getCurrentDate();
 
 
-        EditText et_namaInJadwal = root.findViewById(R.id.et_namaInJadwal);
-        sp_hariInJadwal = root.findViewById(R.id.sp_hariInJadwal);
-        sp_jamInJadwal = root.findViewById(R.id.sp_jamInJadwal);
-        sp_pelatihInJadwal = root.findViewById(R.id.sp_pelatihInJadwal);
-        spinnerHari();
-        spinnerJam();
-        getSpinnerAllPelatih();
+//        EditText et_namaInJadwal = root.findViewById(R.id.et_namaInJadwal);
+//        sp_hariInJadwal = root.findViewById(R.id.sp_hariInJadwal);
+//        sp_jamInJadwal = root.findViewById(R.id.sp_jamInJadwal);
+//        sp_pelatihInJadwal = root.findViewById(R.id.sp_pelatihInJadwal);
+//        spinnerHari();
+//        spinnerJam();
+//        getSpinnerAllPelatih();
 
-        et_namaInJadwal.setText(SessionManager.getUserData().getNama());
+//        et_namaInJadwal.setText(SessionManager.getUserData().getNama());
 
 
 
@@ -141,17 +141,17 @@ public class Pembayaran extends Fragment {
     }
 
     private void spinnerJam() {
-        ArrayAdapter<CharSequence> adapterJam = ArrayAdapter.createFromResource(getContext(), R.array.jam, android.R.layout.simple_spinner_item);
-        adapterJam.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sp_jamInJadwal.setAdapter(adapterJam);
-        sp_jamInJadwal.setOnItemSelectedListener(sp_jamInJadwal.getOnItemSelectedListener());
+//        ArrayAdapter<CharSequence> adapterJam = ArrayAdapter.createFromResource(getContext(), R.array.jam, android.R.layout.simple_spinner_item);
+//        adapterJam.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        sp_jamInJadwal.setAdapter(adapterJam);
+//        sp_jamInJadwal.setOnItemSelectedListener(sp_jamInJadwal.getOnItemSelectedListener());
     }
 
     private void spinnerHari() {
-        ArrayAdapter<CharSequence> adapterHari = ArrayAdapter.createFromResource(getContext(), R.array.hari, android.R.layout.simple_spinner_item);
-        adapterHari.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sp_hariInJadwal.setAdapter(adapterHari);
-        sp_hariInJadwal.setOnItemSelectedListener(sp_hariInJadwal.getOnItemSelectedListener());
+//        ArrayAdapter<CharSequence> adapterHari = ArrayAdapter.createFromResource(getContext(), R.array.hari, android.R.layout.simple_spinner_item);
+//        adapterHari.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        sp_hariInJadwal.setAdapter(adapterHari);
+//        sp_hariInJadwal.setOnItemSelectedListener(sp_hariInJadwal.getOnItemSelectedListener());
     }
 
     private void getCurrentDate() {
@@ -260,7 +260,7 @@ public class Pembayaran extends Fragment {
 
     }
 
-    private void performDiagnosa(String sNamaKucing, String sJenis) {
+    private void PerformBayar(String sNamaKucing, String sJenis) {
         Call<ResponseTesKesehatan> call = MainActivity.apiInterface.performTesKesehatan(
                 "Bearer " + SessionManager.getToken(),
                 sNamaKucing,
@@ -269,9 +269,6 @@ public class Pembayaran extends Fragment {
                 checkedGejala
         );
 
-        Log.d("perform", "NAMA: "+sNamaKucing);
-        Log.d("perform", "JENIS: "+sJenis);
-        Log.d("perform", "TANGGAL: "+today);
 
         Fragment self = this;
         call.enqueue(new Callback<ResponseTesKesehatan>() {

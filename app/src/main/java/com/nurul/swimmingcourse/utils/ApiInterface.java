@@ -6,7 +6,9 @@ import com.nurul.swimmingcourse.model.Logins;
 import com.nurul.swimmingcourse.model.Registers;
 import com.nurul.swimmingcourse.model.ResponseBookingJadwals;
 import com.nurul.swimmingcourse.model.ResponseDetailArtikel;
+import com.nurul.swimmingcourse.model.ResponseInfoPerkembangan;
 import com.nurul.swimmingcourse.model.ResponseSPPelatih;
+import com.nurul.swimmingcourse.model.ResponseSPSiswa;
 import com.nurul.swimmingcourse.model.ResponseTesKesehatan;
 import com.nurul.swimmingcourse.model.UpdateProfiles;
 
@@ -90,6 +92,16 @@ public interface ApiInterface {
 
     @GET("pelatih")
     Call <ResponseSPPelatih> getSpAllPelatih(
+            @Header("Authorization") String token
+    );
+
+    @GET("siswa")
+    Call <ResponseSPSiswa> getSpAllSiswa(
+            @Header("Authorization") String token
+    );
+
+    @GET("perkembangan-siswa")
+    Call <ResponseInfoPerkembangan> getAllPerkembangan(
             @Header("Authorization") String token
     );
 

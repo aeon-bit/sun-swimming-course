@@ -61,26 +61,32 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
         CardView cv_btnJadwalLatihan = root.findViewById(R.id.cv_btnJadwalLatihan);
         CardView cv_btnDaftarPelatih = root.findViewById(R.id.cv_btnDaftarPelatih);
+        CardView cv_btnDaftarPelatih_p = root.findViewById(R.id.cv_btnDaftarPelatih_P);
         CardView cv_btnPendaftaran = root.findViewById(R.id.cv_btnPendaftaran);
         CardView cv_btnPembayaran = root.findViewById(R.id.cv_btnPembayaran);
         CardView cv_btnInputPerkembangan = root.findViewById(R.id.cv_btnInputPerkembangan);
         CardView cv_btnTentang = root.findViewById(R.id.cv_btnTentang);
+        CardView cv_btnTentang_p = root.findViewById(R.id.cv_btnTentang_p);
         CardView cv_perkembangan = root.findViewById(R.id.cv_btnPerkembangan);
         ImageView iv_avatar = root.findViewById(R.id.iv_avatar);
 
         LinearLayoutCompat ly_lineSiswa = root.findViewById(R.id.line1_s);
         LinearLayoutCompat ly_linePelatih = root.findViewById(R.id.line1_p);
         LinearLayoutCompat ly_line2 = root.findViewById(R.id.line2);
+        LinearLayoutCompat ly_line2_p = root.findViewById(R.id.line2_p);
         LinearLayoutCompat ly_line3 = root.findViewById(R.id.line3);
 
         if (SessionManager.getRole().equals("pelatih")) {
             ly_lineSiswa.setVisibility(View.INVISIBLE);
             ly_linePelatih.setVisibility(View.VISIBLE);
             ly_line2.setVisibility(View.INVISIBLE);
+            ly_line2_p.setVisibility(View.VISIBLE);
             ly_line3.setVisibility(View.INVISIBLE);
         } else {
             ly_lineSiswa.setVisibility(View.VISIBLE);
             ly_linePelatih.setVisibility(View.INVISIBLE);
+            ly_line2.setVisibility(View.VISIBLE);
+            ly_line2_p.setVisibility(View.INVISIBLE);
             ly_line3.setVisibility(View.VISIBLE);
         }
 
@@ -98,9 +104,11 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
         cv_btnJadwalLatihan.setOnClickListener(this);
         cv_btnDaftarPelatih.setOnClickListener(this);
+        cv_btnDaftarPelatih_p.setOnClickListener(this);
         cv_btnPendaftaran.setOnClickListener(this);
         cv_btnPembayaran.setOnClickListener(this);
         cv_btnTentang.setOnClickListener(this);
+        cv_btnTentang_p.setOnClickListener(this);
 
         cv_perkembangan.setOnClickListener(this);
         cv_btnInputPerkembangan.setOnClickListener(this);
@@ -181,12 +189,14 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                 frag = 1;
                 break;
             case R.id.cv_btnDaftarPelatih:
+            case R.id.cv_btnDaftarPelatih_P:
                 frag = 2;
                 break;
             case R.id.cv_btnPendaftaran:
                 frag = 8;
                 break;
             case R.id.cv_btnTentang:
+            case R.id.cv_btnTentang_p:
                 frag = 6;
                 break;
             case R.id.cv_btnPembayaran:

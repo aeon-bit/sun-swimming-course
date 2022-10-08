@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -23,10 +24,20 @@ import androidx.fragment.app.Fragment;
 
 import com.nurul.swimmingcourse.R;
 import com.nurul.swimmingcourse.activity.MainActivity;
+import com.nurul.swimmingcourse.model.Pelatihs;
+import com.nurul.swimmingcourse.model.Perkembangans;
+import com.nurul.swimmingcourse.model.ResponseInfoPerkembangan;
+import com.nurul.swimmingcourse.model.ResponseSPPelatih;
+import com.nurul.swimmingcourse.model.Siswas;
 import com.nurul.swimmingcourse.model.ResponseBookingJadwals;
+import com.nurul.swimmingcourse.model.ResponseSPSiswa;
+import com.nurul.swimmingcourse.model.ResponseSPSiswa;
+import com.nurul.swimmingcourse.model.Siswas;
 import com.nurul.swimmingcourse.utils.SessionManager;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,157 +46,117 @@ import retrofit2.Response;
 public class PerkembanganFragment extends Fragment {
     DatePickerDialog datePickerDialog;
     TextView tv_dateSelected;
+    String selectedIDSiswa;
     //date
     int bulan;
     String selectedDate, selectedDateShow, dateToUp;
-    Spinner sp_jenisKucing;
+    Spinner sp_namaPerkembangan, sp_latihankePerkembangan;
+    TextView tv_infoPerkembangan;
 
+    ArrayList<Siswas> listSpAllSiswa;
+    ArrayList<Perkembangans> listAllPerkembangan;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_perkembangan, container, false);
 
-//        initDatePicker();
-//
-//        tv_dateSelected = root.findViewById(R.id.tv_dateSelected);
-//        ImageView iv_openDatePicker = root.findViewById(R.id.iv_openDatePicker);
-//        iv_openDatePicker.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                openDatePicker();
-//            }
-//        });
-//
-//        EditText et_namaKucingBook = root.findViewById(R.id.et_namaKucingBook);
-//        sp_jenisKucing = root.findViewById(R.id.sp_jenisKucing);
-//        EditText et_usiaKucingBook = root.findViewById(R.id.et_usiaKucingBook);
-//        EditText et_namaPemilikBook = root.findViewById(R.id.et_namaPemilikBook);
-//        EditText et_noHpBook = root.findViewById(R.id.et_noHpBook);
-//        EditText et_alamatBook = root.findViewById(R.id.et_alamatBook);
-////        EditText et_hasilDiagnosisBook = root.findViewById(R.id.et_hasilDiagnosisBook);
-//        EditText et_tglBook = root.findViewById(R.id.et_tglBook);
-//        CardView cv_btnPerformBuatJadwal = root.findViewById(R.id.cv_btnPerformBuatJadwal);
-//
-//        spinnerJenisKucing();
-//
-//        cv_btnPerformBuatJadwal.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (et_namaKucingBook.getText().toString().isEmpty()) {
-//                    et_namaKucingBook.setError("Masukkan nama kucing");
-////                } else if (et_jenisKucingKucingBook.getText().toString().isEmpty()) {
-////                    et_jenisKucingKucingBook.setError("Masukkan jenis kucing");
-////                } else if (et_usiaKucingBook.getText().toString().isEmpty()) {
-////                    et_usiaKucingBook.setError("Masukkan usia kucing");
-////                } else if (et_namaPemilikBook.getText().toString().isEmpty()) {
-////                    et_namaPemilikBook.setError("Masukkan nama pemilik");
-////                } else if (et_noHpBook.getText().toString().isEmpty()) {
-////                    et_noHpBook.setError("Masukkan no hp");
-////                } else if (et_noHpBook.getText().length() < 11) {
-////                    et_noHpBook.setError("Format no hp salah");
-////                } else if (et_alamatBook.getText().toString().isEmpty()) {
-////                    et_alamatBook.setError("Masukkan alamat");
-////                } else if (et_hasilDiagnosisBook.getText().toString().isEmpty()) {
-////                    et_hasilDiagnosisBook.setError("Masukkan hasil diagnosis");
-////                } else if (tv_dateSelected.getText().toString().isEmpty()) {
-////                    et_tglBook.setError("Masukkan tanggal booking");
-////                } else {
-//                }
-//
-//                if (tv_dateSelected.getText().toString().isEmpty()) {
-//                    Toast toast = Toast.makeText(getActivity(), "Masukkan tanggal booking", Toast.LENGTH_LONG);
-//                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
-//                        View view = toast.getView();
-//                        view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
-//                        TextView textView = view.findViewById(android.R.id.message);
-//                        textView.setTextColor(Color.WHITE);
-//                    }
-//                    toast.show();
-//                } else {
-////                    performBuatJadwal();
-//                    performBuatJadwal(
-//                            et_namaKucingBook.getText().toString(), sp_jenisKucing.getSelectedItem().toString()
-////                            et_jenisKucingKucingBook.getText().toString()
-////                            et_usiaKucingBook.getText().toString(),
-////                            et_namaPemilikBook.getText().toString(),
-////                            et_noHpBook.getText().toString().trim(),
-////                            et_alamatBook.getText().toString(),
-////                            et_hasilDiagnosisBook.getText().toString(),
-////                            dateToUp
-//                    );
-//                }
-//            }
-//        });
+        sp_namaPerkembangan = root.findViewById(R.id.sp_namaPerkembangan);
+        sp_latihankePerkembangan = root.findViewById(R.id.sp_latihankePerkembangan);
+        tv_infoPerkembangan = root.findViewById(R.id.tv_infoPerkembangan);
+        CardView cv_btnTampilPerkembangan = root.findViewById(R.id.cv_btnTampilPerkembangan);
+        getSpinnerAllSiswa();
+        spinnerHariKe();
+
+        cv_btnTampilPerkembangan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tampilDataPerkembangan();
+            }
+        });
+
         return root;
     }
 
-    private void spinnerJenisKucing() {
-        //spinner jam
-        ArrayAdapter<CharSequence> adapterJam = ArrayAdapter.createFromResource(getContext(), R.array.hari, android.R.layout.simple_spinner_item);
-        adapterJam.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sp_jenisKucing.setAdapter(adapterJam);
-        sp_jenisKucing.setOnItemSelectedListener(sp_jenisKucing.getOnItemSelectedListener());
-    }
-
-    //        private void performBuatJadwal(String sNamaKucing, String sJenis, String sUsia, String sNamaPemilik, String sNoHp, String sAlamat, String sHasilD, String dateToUp) {
-    private void performBuatJadwal(String sNamaKucing, String sJenis) {
-//                    Log.d("performup", "nama kucing: " + sNamaKucing);
-//                    Log.d("performup", "jenis: " + sJenis);
-//                    Log.d("performup", "usia: " + sUsia);
-//                    Log.d("performup", "pemilik: " + sNamaPemilik);
-//                    Log.d("performup", "nohp: " + sNoHp);
-//                    Log.d("performup", "alamat: " + sAlamat);
-//                    Log.d("performup", "hasilk: " + sHasilD);
-//        Log.d("performup", "date: " + selectedDate);
-        Call<ResponseBookingJadwals> call = MainActivity.apiInterface.performBookingJadwal(
-                "Bearer " + SessionManager.getToken(),
-                selectedDate,
-                sNamaKucing,
-                sJenis
+    private void tampilDataPerkembangan() {
+        Call<ResponseInfoPerkembangan> call = MainActivity.apiInterface.getAllPerkembangan(
+                "Bearer " + SessionManager.getToken()
         );
-
-        Fragment self = this;
-        call.enqueue(new Callback<ResponseBookingJadwals>() {
+        call.enqueue(new Callback<ResponseInfoPerkembangan>() {
             @Override
-            public void onResponse(Call<ResponseBookingJadwals> call, Response<ResponseBookingJadwals> response) {
-                if (response.body() != null) {
+            public void onResponse(Call<ResponseInfoPerkembangan> call, final retrofit2.Response<ResponseInfoPerkembangan> response) {
+                listAllPerkembangan = new ArrayList<>();
+                Log.d("spinner", "onResponse: " + response.body());
+                listAllPerkembangan = response.body().getData();
 
-                    Log.d("respon", "onResponse Booking: " + response.toString());
-
-                    if (response.body().getStatus().equals("success")) {
-
-                        Toast toast = Toast.makeText(getActivity(), "Booking Jadwal Berhasil", Toast.LENGTH_LONG);
-                        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
-                            View view = toast.getView();
-                            view.setBackgroundResource(R.drawable.xmlbg_toast_success);
-                            TextView textView = view.findViewById(android.R.id.message);
-                            textView.setTextColor(Color.WHITE);
-                        }
-                        toast.show();
-
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .remove(self).commit();
-                    }
-                } else {
-                    Log.d("respon", "onResponse Booking: NULL");
+//                Log.d("spinner", "onResponse: " + response.body());
+                List<String> listTglSp = new ArrayList<>();
+                for (int i = 0; i < listAllPerkembangan.size(); i++) {
+                    listTglSp.add(listAllPerkembangan.get(i).getId());
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBookingJadwals> call, Throwable t) {
+            public void onFailure(Call<ResponseInfoPerkembangan> call, Throwable t) {
 
-                Log.d("daftar", "onFaillure: " + t.toString());
-                Toast toast = Toast.makeText(getActivity(), "Terjadi Kesalahan", Toast.LENGTH_LONG);
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
-                    View view = toast.getView();
-                    view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
-                    TextView textView = view.findViewById(android.R.id.message);
-                    textView.setTextColor(Color.WHITE);
-                }
-                toast.show();
             }
         });
     }
+
+    private void getSpinnerAllSiswa() {
+        Call<ResponseSPSiswa> call = MainActivity.apiInterface.getSpAllSiswa(
+                "Bearer " + SessionManager.getToken()
+        );
+        call.enqueue(new Callback<ResponseSPSiswa>() {
+            @Override
+            public void onResponse(Call<ResponseSPSiswa> call, final retrofit2.Response<ResponseSPSiswa> response) {
+                listSpAllSiswa = new ArrayList<>();
+                Log.d("spinner", "onResponse: " + response.body());
+                listSpAllSiswa = response.body().getData();
+
+//                Log.d("spinner", "onResponse: " + response.body());
+                List<String> listTglSp = new ArrayList<>();
+                for (int i = 0; i < listSpAllSiswa.size(); i++) {
+                    listTglSp.add(listSpAllSiswa.get(i).getNama());
+                }
+
+                //set to spinner adapter
+                final ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, listTglSp);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                sp_namaPerkembangan.setAdapter(adapter);
+                sp_namaPerkembangan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                        //get selected string
+                        Siswas siswas = listSpAllSiswa.get(position);
+                        selectedIDSiswa = siswas.getId();
+
+                        Log.d("spinner", "SELECT " + selectedIDSiswa);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+//                        Log.d("select", "UNSELECT");
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Call<ResponseSPSiswa> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void spinnerHariKe() {
+        //spinner hari ke
+        ArrayAdapter<CharSequence> adapterJam = ArrayAdapter.createFromResource(getContext(), R.array.hari_ke, android.R.layout.simple_spinner_item);
+        adapterJam.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp_latihankePerkembangan.setAdapter(adapterJam);
+        sp_latihankePerkembangan.setOnItemSelectedListener(sp_latihankePerkembangan.getOnItemSelectedListener());
+    }
+
 
     private void openDatePicker() {
         datePickerDialog.show();

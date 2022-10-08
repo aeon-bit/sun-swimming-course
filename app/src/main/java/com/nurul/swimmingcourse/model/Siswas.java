@@ -7,6 +7,9 @@ public class Siswas {
 //    @SerializedName("response")
 //    private String Response;
 
+    @SerializedName("id")
+    private String id;
+
     @SerializedName("nama")
     private String nama;
 
@@ -34,6 +37,14 @@ public class Siswas {
     @SerializedName("password")
     private String password;
 
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getNama() {
         return nama;

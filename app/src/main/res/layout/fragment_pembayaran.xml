@@ -55,6 +55,7 @@
                 android:focusableInTouchMode="false"
                 android:fontFamily="@font/poppins_regular"
                 android:maxLines="1"
+                android:text="Siswa 1"
                 android:paddingHorizontal="12dp"
                 android:textColor="@color/text"
                 android:textSize="14dp" />
@@ -85,6 +86,7 @@
                 android:focusableInTouchMode="false"
                 android:fontFamily="@font/poppins_regular"
                 android:maxLines="1"
+                android:text="2022-09-08"
                 android:paddingHorizontal="12dp"
                 android:textColor="@color/text"
                 android:textSize="14dp" />
@@ -117,7 +119,8 @@
                 android:maxLines="1"
                 android:paddingHorizontal="12dp"
                 android:textColor="@color/text"
-                android:textSize="14dp" />
+                android:textSize="14dp"
+                android:text="Rp. 250.000,-"/>
         </LinearLayout>
 
         <LinearLayout
@@ -151,7 +154,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="400dp">
+                android:layout_height="350dp">
 
                 <ImageView
                     android:id="@+id/iv_buktiBayar"

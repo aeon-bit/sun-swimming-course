@@ -53,7 +53,7 @@
                 android:layout_weight="60">
 
                 <Spinner
-                    android:id="@+id/sp_hariInJadwal"
+                    android:id="@+id/sp_namaInputPerkembangan"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="60"
@@ -97,7 +97,7 @@
                 android:layout_weight="60">
 
                 <Spinner
-                    android:id="@+id/sp_pelatihInJadwal"
+                    android:id="@+id/sp_hariKeInputPerkembangan"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="60"
@@ -144,9 +144,9 @@
                 android:layout_weight="60">
 
                 <EditText
-                    android:id="@+id/tv_infoPerkembangan"
+                    android:id="@+id/et_inputPerkembangan"
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
+                    android:layout_height="350dp"
                     android:background="@drawable/xmlbg_input_outline"
                     android:fontFamily="@font/poppins_regular"
                     android:padding="6dp"
