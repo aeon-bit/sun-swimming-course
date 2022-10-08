@@ -126,16 +126,16 @@ public class DetailHistoriPeriksa extends Fragment {
                 "Bearer " + SessionManager.getToken(), sId
         );
 
-        Fragment self = this;
-        call.enqueue(new Callback<ResponseTesKesehatan>() {
-            @Override
-            public void onResponse(Call<ResponseTesKesehatan> call, retrofit2.Response<ResponseTesKesehatan> response) {
-                Log.d("respon", "onResponse Diagnosis: " + response.toString());
+//        Fragment self = this;
+//        call.enqueue(new Callback<ResponseTesKesehatan>() {
+//            @Override
+//            public void onResponse(Call<ResponseTesKesehatan> call, retrofit2.Response<ResponseTesKesehatan> response) {
+//                Log.d("respon", "onResponse Diagnosis: " + response.toString());
 
-                tv_namaKucingDetailHistory.setText(response.body().getData().getNama_kucing());
-                tv_jenisKucingDetailHistory.setText(response.body().getData().getJenis_kucing());
-                tv_namaPemilikDetailHistory.setText(response.body().getData().getNama_pemilik());
-                tv_tglPeriksaDetailHistory.setText(response.body().getData().getTanggal());
+//                tv_namaKucingDetailHistory.setText(response.body().getData().getNama_kucing());
+//                tv_jenisKucingDetailHistory.setText(response.body().getData().getJenis_kucing());
+//                tv_namaPemilikDetailHistory.setText(response.body().getData().getNama_pemilik());
+//                tv_tglPeriksaDetailHistory.setText(response.body().getData().getTanggal());
 //                tv_hasilDiagnosaDetailHistory.setText(response.body().getData().getHasil_diagnosa() + "\n ");
 //                tv_saranDetailHistory.setText(response.body().getData().getSaran_pengobatan() + "\n ");
 
@@ -151,41 +151,41 @@ public class DetailHistoriPeriksa extends Fragment {
 //                rvAdapter.notifyDataSetChanged();
 
 
-                ArrayList<Gejalas> arrayListGejalas = response.body().getData().getGejala();
-                for (int i = 0; i<arrayListGejalas.size(); i++){
-                    listGejalas.add(arrayListGejalas.get(i));
-                }
-                rvAdapter.notifyDataSetChanged();
-
-                //hasil
-                ArrayList<HasilSarans> arrayListHasils = response.body().getData().getHasil_diagnosa();
-                for (int i = 0; i < arrayListHasils.size(); i++) {
-                    listHasils.add(arrayListHasils.get(i));
-                }
-                rvAdapterHasilDetail.notifyDataSetChanged();
-
-                //saran
-                ArrayList<HasilSarans> arrayListSarans = response.body().getData().getSaran_pengobatan();
-                for (int i = 0; i < arrayListSarans.size(); i++) {
-                    listSarans.add(arrayListSarans.get(i));
-                }
-                rvAdapterSaranDetail.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailure(Call<ResponseTesKesehatan> call, Throwable t) {
-
-                Log.d("daftar", "onFaillure: " + t.toString());
-                Toast toast = Toast.makeText(getActivity(), "Terjadi Kesalahan", Toast.LENGTH_LONG);
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
-                    View view = toast.getView();
-                    view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
-                    TextView textView = view.findViewById(android.R.id.message);
-                    textView.setTextColor(Color.WHITE);
-                }
-                toast.show();
-            }
-        });
+//                ArrayList<Gejalas> arrayListGejalas = response.body().getData().getGejala();
+//                for (int i = 0; i<arrayListGejalas.size(); i++){
+//                    listGejalas.add(arrayListGejalas.get(i));
+//                }
+//                rvAdapter.notifyDataSetChanged();
+//
+//                //hasil
+//                ArrayList<HasilSarans> arrayListHasils = response.body().getData().getHasil_diagnosa();
+//                for (int i = 0; i < arrayListHasils.size(); i++) {
+//                    listHasils.add(arrayListHasils.get(i));
+//                }
+//                rvAdapterHasilDetail.notifyDataSetChanged();
+//
+//                //saran
+//                ArrayList<HasilSarans> arrayListSarans = response.body().getData().getSaran_pengobatan();
+//                for (int i = 0; i < arrayListSarans.size(); i++) {
+//                    listSarans.add(arrayListSarans.get(i));
+//                }
+//                rvAdapterSaranDetail.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseTesKesehatan> call, Throwable t) {
+//
+//                Log.d("daftar", "onFaillure: " + t.toString());
+//                Toast toast = Toast.makeText(getActivity(), "Terjadi Kesalahan", Toast.LENGTH_LONG);
+//                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+//                    View view = toast.getView();
+//                    view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
+//                    TextView textView = view.findViewById(android.R.id.message);
+//                    textView.setTextColor(Color.WHITE);
+//                }
+//                toast.show();
+//            }
+//        });
     }
 
 //    private void requestDetailHistoriById(String sId) {

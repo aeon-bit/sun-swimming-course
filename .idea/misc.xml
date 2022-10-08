@@ -11,7 +11,10 @@
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/drawable/xmlbg_black_gradient_title.xml" value="0.1875" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/drawable/xmlbg_btn_cancel.xml" value="0.2885" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/drawable/xmlbg_btn_confirm.xml" value="0.2885" />
+        <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/drawable/xmlbg_btn_confirm_dialog_primary.xml" value="0.19" />
+        <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/drawable/xmlbg_confirm.xml" value="0.19" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/drawable/xmlbg_input_outline.xml" value="0.1875" />
+        <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/drawable/xmlbg_warning_diagnosa.xml" value="0.19" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/activity_main.xml" value="0.371875" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/activity_splashscreen.xml" value="0.30462962962962964" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_booking_jadwal.xml" value="0.23541666666666666" />
@@ -37,6 +40,7 @@
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/item_list_jenis_penyakit.xml" value="0.371875" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/layout_dialog_confirm_tes.xml" value="0.33" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/layout_dialog_detail_pelatih.xml" value="0.371875" />
+        <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/layout_dialog_menu_penjadwalan.xml" value="0.371875" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/menu/activity_main_drawer.xml" value="0.371875" />
         <entry key="..\:/TmpProjects/Yasinta/KesehatanKucing/app/src/main/res/drawable/xmlbg_btn_cancel.xml" value="0.2795" />
         <entry key="..\:/TmpProjects/Yasinta/KesehatanKucing/app/src/main/res/drawable/xmlbg_btn_confirm.xml" value="0.2795" />

@@ -37,7 +37,7 @@
                 android:id="@+id/ly_btnConfirmLogout"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
-                android:background="@drawable/xmlbg_btn_confirm_dialog"
+                android:background="@drawable/xmlbg_btn_confirm_dialog_warning"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent">
                 <TextView

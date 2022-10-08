@@ -2,13 +2,12 @@ package com.nurul.swimmingcourse.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseTesKesehatan {
+public class ResponsePesanJadwal {
     @SerializedName("data")
     private PesanJadwals data;
 
-    @SerializedName("status")
-    private String status;
-
+    @SerializedName("message")
+    private String message;
 
     public PesanJadwals getData() {
         return data;
@@ -18,11 +17,11 @@ public class ResponseTesKesehatan {
         this.data = data;
     }
 
-    public String getStatus() {
-        return status;
+    public String getMessage() {
+        return message;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

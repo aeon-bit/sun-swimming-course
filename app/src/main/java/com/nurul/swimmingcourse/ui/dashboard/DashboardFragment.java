@@ -31,6 +31,7 @@ import com.nurul.swimmingcourse.R;
 import com.nurul.swimmingcourse.activity.MainActivity;
 import com.nurul.swimmingcourse.adapter.AdapterListArtikel;
 import com.nurul.swimmingcourse.dialog.DialogConfirmLogout;
+import com.nurul.swimmingcourse.dialog.DialogMenuPenjadwalan;
 import com.nurul.swimmingcourse.model.Artikels;
 import com.nurul.swimmingcourse.utils.ApiClient;
 import com.nurul.swimmingcourse.utils.SessionManager;
@@ -186,7 +187,24 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         switch (view.getId()) {
 
             case R.id.cv_btnJadwalLatihan:
-                frag = 1;
+                DialogMenuPenjadwalan dialogMenuPenjadwalan = new DialogMenuPenjadwalan(getContext());
+                dialogMenuPenjadwalan.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                LinearLayout ly_btnPesanJadwalDialog = dialogMenuPenjadwalan.findViewById(R.id.ly_btnPesanJadwalDialog);
+                LinearLayout ly_btnLihatJadwalDialog = dialogMenuPenjadwalan.findViewById(R.id.ly_btnLihatJadwalDialog);
+                LinearLayout ly_btnCloseDialog = dialogMenuPenjadwalan.findViewById(R.id.ly_btnCloseDialog);
+
+
+                ly_btnPesanJadwalDialog.setOnClickListener(v -> {
+//                        frag = 1;
+                    ((MainActivity) getActivity()).SwitchFrag(1);
+                });
+
+                ly_btnCloseDialog.setOnClickListener(v -> {
+                    dialogMenuPenjadwalan.dismiss();
+                });
+
+                dialogMenuPenjadwalan.show();
                 break;
             case R.id.cv_btnDaftarPelatih:
             case R.id.cv_btnDaftarPelatih_P:
