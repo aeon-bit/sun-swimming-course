@@ -60,22 +60,16 @@ public class JadwalLatihan extends Fragment {
 
     LinearLayout ly_cb;
     RequestQueue requestQueue;
-    List<Gejalas> listGejalas;
 
     ArrayList<Pelatihs> listSpAllPelatih;
 
-    ArrayList<String> checkedGejala = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_pesan_jadwal, container, false);
 
-//        rg_gejala = root.findViewById(R.id.rg_gejala);
-//        ly_cb = root.findViewById(R.id.ly_cb);
-        listGejalas = new ArrayList<>();
         requestQueue = Volley.newRequestQueue(getContext());
-//        getAllDiagnosa();
         getCurrentDate();
 
 
@@ -248,37 +242,4 @@ public class JadwalLatihan extends Fragment {
         toast.show();
     }
 
-    private void createCheckBox() {
-//        final CheckBox[] cb = new CheckBox[10];
-        Log.d("ischeck", "SIZE: " + listGejalas.size());
-
-        for (int i = 0; i < listGejalas.size(); i++) {
-            CheckBox cb = new CheckBox(getContext());
-            cb.setButtonTintList(ColorStateList.valueOf(getResources().getColor(R.color.secondary)));
-            cb.setText(listGejalas.get(i).getNama_gejala());
-            cb.setTextColor(Color.parseColor("#034743"));
-            cb.setId(i);
-            cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    Log.d("ischeck", "isChecked: " + isChecked);
-                    Log.d("ischeck", "buttonV: " + buttonView.getId());
-
-                    Gejalas g = listGejalas.get(buttonView.getId());
-                    if (isChecked) {
-                        checkedGejala.add(g.getKode_gejala());
-                    } else {
-                        if (checkedGejala.contains(g.getKode_gejala())) {
-                            checkedGejala.remove(g.getKode_gejala());
-                        }
-                    }
-
-                    Log.d("ischeck", "CHECKED: " + Arrays.toString(checkedGejala.toArray()));
-                }
-            });
-            ly_cb.addView(cb);
-        }
-//        ly_rg.addView(rg);//you add the whole RadioGroup to the layout
-
-    }
 }

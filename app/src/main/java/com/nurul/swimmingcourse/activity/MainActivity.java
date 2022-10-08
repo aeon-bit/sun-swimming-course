@@ -27,6 +27,7 @@ import com.nurul.swimmingcourse.ui.auth.LoginFragment;
 import com.nurul.swimmingcourse.ui.auth.ProfileFragment;
 import com.nurul.swimmingcourse.ui.auth.RegisterFragment;
 import com.nurul.swimmingcourse.ui.dashboard.DashboardFragment;
+import com.nurul.swimmingcourse.ui.jadwallatihan.LihatJadwalLatihan;
 import com.nurul.swimmingcourse.ui.pembayaran.Pembayaran;
 import com.nurul.swimmingcourse.ui.perkembangan.InputPerkembanganFragment;
 import com.nurul.swimmingcourse.ui.perkembangan.PerkembanganFragment;
@@ -398,6 +399,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         new Pembayaran()).commit();
                 navigationView.setCheckedItem(R.id.nav_pembayaran);
                 getSupportActionBar().setTitle("Pembayaran");
+                break;
+                case 14:
+                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
+                        new LihatJadwalLatihan()).commit();
+                navigationView.setCheckedItem(R.id.nav_jadwal_latihan);
+                getSupportActionBar().setTitle("Semua Jadwal Latihan");
                 break;
         }
     }

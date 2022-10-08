@@ -27,6 +27,7 @@
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_hasil_diagnosa.xml" value="0.19166666666666668" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_input_perkembangan.xml" value="0.371875" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_jenis_penyakit.xml" value="0.371875" />
+        <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_lihat_jadwal.xml" value="0.371875" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_login.xml" value="0.33" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_pembayaran.xml" value="0.25" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_perkembangan.xml" value="0.33" />
@@ -36,9 +37,11 @@
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_tentang.xml" value="0.371875" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/fragment_ubah_profile.xml" value="0.371875" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/item_list_artikel_home.xml" value="0.33" />
+        <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/item_list_daftar_jadwal_latihan.xml" value="0.371875" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/item_list_daftar_pelatih.xml" value="0.371875" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/item_list_jenis_penyakit.xml" value="0.371875" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/layout_dialog_confirm_tes.xml" value="0.33" />
+        <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/layout_dialog_detail_jadwal_latihan.xml" value="0.371875" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/layout_dialog_detail_pelatih.xml" value="0.371875" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/layout/layout_dialog_menu_penjadwalan.xml" value="0.371875" />
         <entry key="..\:/TmpProjects/SwimmingCourse/SwimmingCourse/app/src/main/res/menu/activity_main_drawer.xml" value="0.371875" />

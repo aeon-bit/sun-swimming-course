@@ -187,24 +187,8 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         switch (view.getId()) {
 
             case R.id.cv_btnJadwalLatihan:
-                DialogMenuPenjadwalan dialogMenuPenjadwalan = new DialogMenuPenjadwalan(getContext());
-                dialogMenuPenjadwalan.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-                LinearLayout ly_btnPesanJadwalDialog = dialogMenuPenjadwalan.findViewById(R.id.ly_btnPesanJadwalDialog);
-                LinearLayout ly_btnLihatJadwalDialog = dialogMenuPenjadwalan.findViewById(R.id.ly_btnLihatJadwalDialog);
-                LinearLayout ly_btnCloseDialog = dialogMenuPenjadwalan.findViewById(R.id.ly_btnCloseDialog);
-
-
-                ly_btnPesanJadwalDialog.setOnClickListener(v -> {
-//                        frag = 1;
-                    ((MainActivity) getActivity()).SwitchFrag(1);
-                });
-
-                ly_btnCloseDialog.setOnClickListener(v -> {
-                    dialogMenuPenjadwalan.dismiss();
-                });
-
-                dialogMenuPenjadwalan.show();
+//                openDialogPenjadwalan();
+                frag = 1;
                 break;
             case R.id.cv_btnDaftarPelatih:
             case R.id.cv_btnDaftarPelatih_P:
@@ -228,7 +212,9 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                 break;
         }
 
-        if (frag == 6) { //tentang
+        if (frag == 1){
+            openDialogPenjadwalan();
+        } else if (frag == 6) { //tentang
             ((MainActivity) getActivity()).SwitchFrag(frag);
         } else {
             if (SessionManager.isLogin()) {
@@ -237,6 +223,33 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                 callToast("Silakan login dahulu", 0);
             }
         }
+    }
+
+    private void openDialogPenjadwalan() {
+
+        DialogMenuPenjadwalan dialogMenuPenjadwalan = new DialogMenuPenjadwalan(getContext());
+        dialogMenuPenjadwalan.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        LinearLayout ly_btnPesanJadwalDialog = dialogMenuPenjadwalan.findViewById(R.id.ly_btnPesanJadwalDialog);
+        LinearLayout ly_btnLihatJadwalDialog = dialogMenuPenjadwalan.findViewById(R.id.ly_btnLihatJadwalDialog);
+        LinearLayout ly_btnCloseDialog = dialogMenuPenjadwalan.findViewById(R.id.ly_btnCloseDialog);
+
+        ly_btnPesanJadwalDialog.setOnClickListener(v -> {
+            ((MainActivity) getActivity()).SwitchFrag(1);
+
+            dialogMenuPenjadwalan.dismiss();
+        });
+
+        ly_btnLihatJadwalDialog.setOnClickListener(v -> {
+            ((MainActivity) getActivity()).SwitchFrag(14);
+            dialogMenuPenjadwalan.dismiss();
+        });
+
+        ly_btnCloseDialog.setOnClickListener(v -> {
+            dialogMenuPenjadwalan.dismiss();
+        });
+
+        dialogMenuPenjadwalan.show();
     }
 
     private void LogoutConfirm() {
