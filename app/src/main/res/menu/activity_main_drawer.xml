@@ -24,6 +24,14 @@
             android:icon="@drawable/ic_jadwal_latihan"
             android:title="Jadwal Latihan" />
         <item
+            android:id="@+id/nav_perkembangan"
+            android:icon="@drawable/ic_sic_perkembangan"
+            android:title="Perkembangan" />
+        <item
+            android:id="@+id/nav_input_perkembangan"
+            android:icon="@drawable/ic_sic_perkembangan"
+            android:title="Input Perkembangan" />
+        <item
             android:id="@+id/nav_daftar_pelatih"
             android:icon="@drawable/ic_daftar_pelatih"
             android:title="Daftar Pelatih" />
@@ -31,6 +39,10 @@
             android:id="@+id/nav_pendaftaran"
             android:icon="@drawable/ic_pendaftaran"
             android:title="Pendaftaran" />
+        <item
+            android:id="@+id/nav_tentang"
+            android:icon="@drawable/ic_tentang"
+            android:title="Tentang" />
         <item
             android:id="@+id/nav_pembayaran"
             android:icon="@drawable/ic_sic_pembayaran"

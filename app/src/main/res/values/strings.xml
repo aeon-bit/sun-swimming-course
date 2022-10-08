@@ -9,6 +9,8 @@
 
     <string name="menu_dashboard">Dashboard</string>
     <string name="menu_jadwal_latihan">Jadwal Latihan</string>
+    <string name="menu_perkembangan_siswa">Perkembangan Siswa</string>
+    <string name="menu_input_perkembangan_siswa">Input Perkembangan Siswa</string>
     <string name="menu_daftar_pelatih">Daftar Pelatih</string>
     <string name="menu_pendaftaran">Pendaftaran</string>
     <string name="menu_pembayaran">Pembayaran</string>

@@ -108,6 +108,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (SessionManager.isLogin()) {
             tv_namaPenggunaHeader.setText(SessionManager.getUserData().getNama());
             navigationView.getMenu().findItem(R.id.nav_auth).setTitle("Logout");
+            if (SessionManager.getRole().equals("siswa")){
+                navigationView.getMenu().findItem(R.id.nav_jadwal_latihan).setVisible(true);
+                navigationView.getMenu().findItem(R.id.nav_daftar_pelatih).setVisible(true);
+                navigationView.getMenu().findItem(R.id.nav_pendaftaran).setVisible(true);
+                navigationView.getMenu().findItem(R.id.nav_pembayaran).setVisible(true);
+
+                navigationView.getMenu().findItem(R.id.nav_perkembangan).setVisible(false);
+                navigationView.getMenu().findItem(R.id.nav_input_perkembangan).setVisible(false);
+            } else if (SessionManager.getRole().equals("pelatih")){
+                navigationView.getMenu().findItem(R.id.nav_jadwal_latihan).setVisible(false);
+                navigationView.getMenu().findItem(R.id.nav_daftar_pelatih).setVisible(true);
+                navigationView.getMenu().findItem(R.id.nav_pendaftaran).setVisible(false);
+                navigationView.getMenu().findItem(R.id.nav_pembayaran).setVisible(false);
+
+                navigationView.getMenu().findItem(R.id.nav_perkembangan).setVisible(true);
+                navigationView.getMenu().findItem(R.id.nav_input_perkembangan).setVisible(true);
+            } else {
+                navigationView.getMenu().findItem(R.id.nav_jadwal_latihan).setVisible(true);
+                navigationView.getMenu().findItem(R.id.nav_daftar_pelatih).setVisible(true);
+                navigationView.getMenu().findItem(R.id.nav_pendaftaran).setVisible(true);
+                navigationView.getMenu().findItem(R.id.nav_pembayaran).setVisible(true);
+                navigationView.getMenu().findItem(R.id.nav_tentang).setVisible(true);
+
+                navigationView.getMenu().findItem(R.id.nav_perkembangan).setVisible(true);
+                navigationView.getMenu().findItem(R.id.nav_input_perkembangan).setVisible(true);
+            }
         } else {
             navigationView.getMenu().findItem(R.id.nav_auth).setTitle("Login");
             tv_namaPenggunaHeader.setText("______");
@@ -210,11 +236,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     navigationView.setCheckedItem(R.id.nav_jadwal_latihan);
                     getSupportActionBar().setTitle(R.string.menu_jadwal_latihan);
                     break;
+                case R.id.nav_perkembangan:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
+                            new PerkembanganFragment()).commit();
+                    navigationView.setCheckedItem(R.id.nav_perkembangan);
+                    getSupportActionBar().setTitle(R.string.menu_perkembangan_siswa);
+                    break;
+                case R.id.nav_input_perkembangan:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
+                            new InputPerkembanganFragment()).commit();
+                    navigationView.setCheckedItem(R.id.nav_input_perkembangan);
+                    getSupportActionBar().setTitle(R.string.menu_input_perkembangan_siswa);
+                    break;
                 case R.id.nav_pendaftaran:
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
                             new RegisterFragment()).commit();
                     navigationView.setCheckedItem(R.id.nav_pendaftaran);
                     getSupportActionBar().setTitle(R.string.menu_pendaftaran);
+                    break;
+                    case R.id.nav_pembayaran:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
+                            new Pembayaran()).commit();
+                    navigationView.setCheckedItem(R.id.nav_pembayaran);
+                    getSupportActionBar().setTitle(R.string.menu_pembayaran);
                     break;
                 case R.id.nav_daftar_pelatih:
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
