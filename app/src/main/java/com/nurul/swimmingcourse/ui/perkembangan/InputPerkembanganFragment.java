@@ -26,11 +26,15 @@ import com.nurul.swimmingcourse.activity.MainActivity;
 import com.nurul.swimmingcourse.model.Perkembangans;
 import com.nurul.swimmingcourse.model.ResponseBookingJadwals;
 import com.nurul.swimmingcourse.model.ResponseInfoPerkembangan;
+import com.nurul.swimmingcourse.model.ResponseInputPerkembangan;
+import com.nurul.swimmingcourse.model.ResponsePesanJadwal;
 import com.nurul.swimmingcourse.model.ResponseSPSiswa;
 import com.nurul.swimmingcourse.model.Siswas;
 import com.nurul.swimmingcourse.utils.SessionManager;
 
 import java.lang.reflect.Array;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -42,8 +46,8 @@ import retrofit2.Response;
 public class InputPerkembanganFragment extends Fragment {
 
     Spinner sp_namaInputPerkembangan, sp_hariKeInputPerkembangan;
-    EditText et_inputPerkembangan;
-    String selectedIDSiswa;
+    EditText et_todayInputPerkembangan, et_inputPerkembangan, et_lokasiInputPerkembangan;
+    String selectedIDSiswa, today;
 
     ArrayList<Siswas> listSpAllSiswa;
 
@@ -52,24 +56,94 @@ public class InputPerkembanganFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_input_perkembangan, container, false);
 
         sp_namaInputPerkembangan = root.findViewById(R.id.sp_namaInputPerkembangan);
-        sp_hariKeInputPerkembangan = root.findViewById(R.id.sp_hariKeInputPerkembangan);
+//        sp_hariKeInputPerkembangan = root.findViewById(R.id.sp_hariKeInputPerkembangan);
+        et_todayInputPerkembangan = root.findViewById(R.id.et_todayInputPerkembangan);
+        et_lokasiInputPerkembangan = root.findViewById(R.id.et_lokasiInputPerkembangan);
         et_inputPerkembangan = root.findViewById(R.id.et_inputPerkembangan);
 
         CardView cv_btnSimpanPerkembangan = root.findViewById(R.id.cv_btnSimpanPerkembangan);
         getSpinnerAllSiswa();
-        spinnerHariKe();
+//        spinnerHariKe();
+        getCurrentDate();
 
         cv_btnSimpanPerkembangan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                kirimDataPerkembangan();
+                if (et_lokasiInputPerkembangan.getText().toString().equals("")) {
+                    et_lokasiInputPerkembangan.setError("Masukkan lokasi latihan");
+                } else if (et_inputPerkembangan.getText().toString().equals("")) {
+                    et_inputPerkembangan.setError("Masukkan keterangan perkembangan");
+                } else {
+                    kirimDataPerkembangan(
+                            et_todayInputPerkembangan.getText().toString(),
+                            et_lokasiInputPerkembangan.getText().toString(),
+                            et_inputPerkembangan.getText().toString()
+                    );
+                }
             }
         });
 
         return root;
     }
 
-    private void kirimDataPerkembangan() {
+    private void getCurrentDate() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime now = LocalDateTime.now();
+        today = dtf.format(now);
+
+        et_todayInputPerkembangan.setText(today);
+
+//        Log.d("tanggal", "getCurrentDate: " + dtf.format(now));
+    }
+
+    private void kirimDataPerkembangan(String sTglLatihan, String sLokasi, String sKetPerkembangan) {
+        Log.d("perkem", "ID SISWA: " + selectedIDSiswa);
+        Log.d("perkem", "TGL: " + sTglLatihan);
+        Log.d("perkem", "LOKASI: " + sLokasi);
+        Log.d("perkem", "KET: " + sKetPerkembangan);
+        Call<ResponseInputPerkembangan> call = MainActivity.apiInterface.performInputPerkembangan(
+                "Bearer " + SessionManager.getToken(),
+                SessionManager.getUserData().getId(),
+                selectedIDSiswa,
+                sTglLatihan,
+                sLokasi,
+                sKetPerkembangan
+        );
+
+//        Fragment self = this;
+        call.enqueue(new Callback<ResponseInputPerkembangan>() {
+            @Override
+            public void onResponse(Call<ResponseInputPerkembangan> call, retrofit2.Response<ResponseInputPerkembangan> response) {
+
+//                Log.d("respon", "onResponse Diagnosis: " + response.body().getData().getTanggal());
+//                Log.d("respon", "onResponse Diagnosis: " + response.errorBody().toString());
+                if (response.body() != null) {
+                    if (response.body().getMessage().equals("sukses")) {
+
+                        callToast("Berhasil input perkembangan", 1);
+
+                        ((MainActivity) getContext()).SwitchFrag(0); //restart actv
+//                        Fragment detailDiagnosa = new HasilDiagnosaFragment();
+//
+//                        Bundle bundle = new Bundle();
+//                        bundle.putString("id", response.body().getData().getId());
+//                        detailDiagnosa.setArguments(bundle);
+//
+//                        getActivity().getSupportFragmentManager().beginTransaction()
+//                                .replace(R.id.nav_host_fragment_content_main, detailDiagnosa).commit();
+                    }
+                } else {
+                    callToast("Gagal. Ulangi beberapa saat", 0);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseInputPerkembangan> call, Throwable t) {
+
+                Log.d("daftar", "onFaillure: " + t);
+                callToast("Koneksi bermasalah", 0);
+            }
+        });
 
     }
 
@@ -120,13 +194,29 @@ public class InputPerkembanganFragment extends Fragment {
         });
     }
 
-    private void spinnerHariKe() {
-        //spinner hari ke
-        ArrayAdapter<CharSequence> adapterJam = ArrayAdapter.createFromResource(getContext(), R.array.hari_ke, android.R.layout.simple_spinner_item);
-        adapterJam.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sp_hariKeInputPerkembangan.setAdapter(adapterJam);
-        sp_hariKeInputPerkembangan.setOnItemSelectedListener(sp_hariKeInputPerkembangan.getOnItemSelectedListener());
+    private void callToast(String msg, int i) {
+        Toast toast = Toast.makeText(getContext(), msg, Toast.LENGTH_LONG);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+            View view = toast.getView();
+            view.setPadding(42, 12, 42, 12);
+            if (i == 1) {
+                view.setBackgroundResource(R.drawable.xmlbg_toast_success);
+            } else {
+                view.setBackgroundResource(R.drawable.xmlbg_toast_warning);
+            }
+            TextView textView = view.findViewById(android.R.id.message);
+            textView.setTextColor(Color.WHITE);
+        }
+        toast.show();
     }
+
+//    private void spinnerHariKe() {
+//        //spinner hari ke
+//        ArrayAdapter<CharSequence> adapterJam = ArrayAdapter.createFromResource(getContext(), R.array.hari_ke, android.R.layout.simple_spinner_item);
+//        adapterJam.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        sp_hariKeInputPerkembangan.setAdapter(adapterJam);
+//        sp_hariKeInputPerkembangan.setOnItemSelectedListener(sp_hariKeInputPerkembangan.getOnItemSelectedListener());
+//    }
 
 
 }

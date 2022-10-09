@@ -2,8 +2,6 @@ package com.nurul.swimmingcourse.ui.perkembangan;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,11 +10,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -24,15 +19,10 @@ import androidx.fragment.app.Fragment;
 
 import com.nurul.swimmingcourse.R;
 import com.nurul.swimmingcourse.activity.MainActivity;
-import com.nurul.swimmingcourse.model.Pelatihs;
 import com.nurul.swimmingcourse.model.Perkembangans;
 import com.nurul.swimmingcourse.model.ResponseInfoPerkembangan;
-import com.nurul.swimmingcourse.model.ResponseSPPelatih;
 import com.nurul.swimmingcourse.model.Siswas;
-import com.nurul.swimmingcourse.model.ResponseBookingJadwals;
 import com.nurul.swimmingcourse.model.ResponseSPSiswa;
-import com.nurul.swimmingcourse.model.ResponseSPSiswa;
-import com.nurul.swimmingcourse.model.Siswas;
 import com.nurul.swimmingcourse.utils.SessionManager;
 
 import java.util.ArrayList;
@@ -41,12 +31,11 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
 
 public class PerkembanganFragment extends Fragment {
     DatePickerDialog datePickerDialog;
     TextView tv_dateSelected;
-    String selectedIDSiswa;
+    String selectedIDSiswa, selectedTglPerkembangan;
     //date
     int bulan;
     String selectedDate, selectedDateShow, dateToUp;
@@ -54,45 +43,68 @@ public class PerkembanganFragment extends Fragment {
     TextView tv_infoPerkembangan;
 
     ArrayList<Siswas> listSpAllSiswa;
-    ArrayList<Perkembangans> listAllPerkembangan;
+    ArrayList<Perkembangans> listSpAllTglPerkembangan;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_perkembangan, container, false);
 
-        sp_namaPerkembangan = root.findViewById(R.id.sp_namaPerkembangan);
+        sp_namaPerkembangan = root.findViewById(R.id.sp_namaSiswaPerkembangan);
         sp_latihankePerkembangan = root.findViewById(R.id.sp_latihankePerkembangan);
         tv_infoPerkembangan = root.findViewById(R.id.tv_infoPerkembangan);
         CardView cv_btnTampilPerkembangan = root.findViewById(R.id.cv_btnTampilPerkembangan);
         getSpinnerAllSiswa();
-        spinnerHariKe();
+        getSpinnerAllTanggal();
+//        spinnerHariKe();
 
         cv_btnTampilPerkembangan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tampilDataPerkembangan();
+//                tampilDataPerkembangan();
             }
         });
 
         return root;
     }
 
-    private void tampilDataPerkembangan() {
+    private void getSpinnerAllTanggal(){
         Call<ResponseInfoPerkembangan> call = MainActivity.apiInterface.getAllPerkembangan(
                 "Bearer " + SessionManager.getToken()
         );
         call.enqueue(new Callback<ResponseInfoPerkembangan>() {
             @Override
             public void onResponse(Call<ResponseInfoPerkembangan> call, final retrofit2.Response<ResponseInfoPerkembangan> response) {
-                listAllPerkembangan = new ArrayList<>();
+                listSpAllSiswa = new ArrayList<>();
                 Log.d("spinner", "onResponse: " + response.body());
-                listAllPerkembangan = response.body().getData();
+                listSpAllTglPerkembangan = response.body().getData();
 
 //                Log.d("spinner", "onResponse: " + response.body());
                 List<String> listTglSp = new ArrayList<>();
-                for (int i = 0; i < listAllPerkembangan.size(); i++) {
-                    listTglSp.add(listAllPerkembangan.get(i).getId());
+                for (int i = 0; i < listSpAllTglPerkembangan.size(); i++) {
+                    listTglSp.add(listSpAllTglPerkembangan.get(i).getTanggal_latihan());
                 }
+
+                //set to spinner adapter
+                final ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, listTglSp);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                sp_latihankePerkembangan.setAdapter(adapter);
+                sp_latihankePerkembangan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                        //get selected string
+                        Perkembangans perkembangans = listSpAllTglPerkembangan.get(position);
+                        selectedTglPerkembangan = perkembangans.getTanggal_latihan();
+
+                        Log.d("spinner", "SELECT " + selectedTglPerkembangan);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+//                        Log.d("select", "UNSELECT");
+                    }
+                });
             }
 
             @Override
@@ -149,13 +161,13 @@ public class PerkembanganFragment extends Fragment {
         });
     }
 
-    private void spinnerHariKe() {
-        //spinner hari ke
-        ArrayAdapter<CharSequence> adapterJam = ArrayAdapter.createFromResource(getContext(), R.array.hari_ke, android.R.layout.simple_spinner_item);
-        adapterJam.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sp_latihankePerkembangan.setAdapter(adapterJam);
-        sp_latihankePerkembangan.setOnItemSelectedListener(sp_latihankePerkembangan.getOnItemSelectedListener());
-    }
+//    private void spinnerHariKe() {
+//        //spinner hari ke
+//        ArrayAdapter<CharSequence> adapterJam = ArrayAdapter.createFromResource(getContext(), R.array.hari_ke, android.R.layout.simple_spinner_item);
+//        adapterJam.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        sp_latihankePerkembangan.setAdapter(adapterJam);
+//        sp_latihankePerkembangan.setOnItemSelectedListener(sp_latihankePerkembangan.getOnItemSelectedListener());
+//    }
 
 
     private void openDatePicker() {

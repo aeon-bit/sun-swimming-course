@@ -10,6 +10,9 @@ public class Perkembangans {
     @SerializedName("id")
     private String id;
 
+    @SerializedName("siswa")
+    private String siswa;
+
     @SerializedName("pelatih")
     private String pelatih;
 
@@ -28,6 +31,14 @@ public class Perkembangans {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getSiswa() {
+        return siswa;
+    }
+
+    public void setSiswa(String siswa) {
+        this.siswa = siswa;
     }
 
     public String getPelatih() {

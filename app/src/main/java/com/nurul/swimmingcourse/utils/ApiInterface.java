@@ -7,6 +7,7 @@ import com.nurul.swimmingcourse.model.Registers;
 import com.nurul.swimmingcourse.model.ResponseBookingJadwals;
 import com.nurul.swimmingcourse.model.ResponseDetailArtikel;
 import com.nurul.swimmingcourse.model.ResponseInfoPerkembangan;
+import com.nurul.swimmingcourse.model.ResponseInputPerkembangan;
 import com.nurul.swimmingcourse.model.ResponsePesanJadwal;
 import com.nurul.swimmingcourse.model.ResponseSPPelatih;
 import com.nurul.swimmingcourse.model.ResponseSPSiswa;
@@ -79,6 +80,17 @@ public interface ApiInterface {
             @Field("hari") String hari,
             @Field("jam") String jam,
             @Field("lokasi") String lokasi
+    );
+
+    @FormUrlEncoded
+    @POST("perkembangan-siswa")
+    Call <ResponseInputPerkembangan> performInputPerkembangan(
+            @Header("Authorization") String token,
+            @Field("pelatih_id") String pelatih_id,
+            @Field("siswa_id") String siswa_id,
+            @Field("tanggal_latihan") String tanggal_latihan,
+            @Field("lokasi") String lokasi,
+            @Field("keterangan") String keterangan
     );
 
     @FormUrlEncoded
