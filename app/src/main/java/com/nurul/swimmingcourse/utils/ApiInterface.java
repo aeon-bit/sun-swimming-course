@@ -8,6 +8,7 @@ import com.nurul.swimmingcourse.model.ResponseBookingJadwals;
 import com.nurul.swimmingcourse.model.ResponseDetailArtikel;
 import com.nurul.swimmingcourse.model.ResponseInfoPerkembangan;
 import com.nurul.swimmingcourse.model.ResponseInputPerkembangan;
+import com.nurul.swimmingcourse.model.ResponsePembayarans;
 import com.nurul.swimmingcourse.model.ResponsePesanJadwal;
 import com.nurul.swimmingcourse.model.ResponseSPPelatih;
 import com.nurul.swimmingcourse.model.ResponseSPSiswa;
@@ -102,6 +103,16 @@ public interface ApiInterface {
             @Field("tanggal") String today,
             @Field("gejala[]") ArrayList<String> gejala
 //            @Field("data_jadwal_periksa_id") String data_jadwal_periksa_id
+    );
+
+    @FormUrlEncoded
+    @POST("pembayaran")
+    Call <ResponsePembayarans> performBayar(
+            @Header("Authorization") String token,
+            @Field("siswa_id") String siswa_id,
+            @Field("tanggal_bayar") String tanggal_bayar,
+            @Field("jumlah_bayar") String jumlah_bayar,
+            @Field("bukti_pembayaran") String bukti_pembayaran
     );
 
     @FormUrlEncoded

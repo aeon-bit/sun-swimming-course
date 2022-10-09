@@ -33,6 +33,7 @@
     <orderEntry type="jdk" jdkName="Android API 31 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Sun_Swimming_Course.app.main" scope="TEST" />
+    <orderEntry type="library" scope="TEST" name="Gradle: F./TmpProjects/SwimmingCourse/SwimmingCourse/app/libs/PhotoUtil.jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: junit:junit:4.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-integration:1.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-library:1.3" level="project" />

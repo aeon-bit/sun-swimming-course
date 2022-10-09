@@ -97,10 +97,10 @@ public class InputPerkembanganFragment extends Fragment {
     }
 
     private void kirimDataPerkembangan(String sTglLatihan, String sLokasi, String sKetPerkembangan) {
-        Log.d("perkem", "ID SISWA: " + selectedIDSiswa);
-        Log.d("perkem", "TGL: " + sTglLatihan);
-        Log.d("perkem", "LOKASI: " + sLokasi);
-        Log.d("perkem", "KET: " + sKetPerkembangan);
+//        Log.d("perkem", "ID SISWA: " + selectedIDSiswa);
+//        Log.d("perkem", "TGL: " + sTglLatihan);
+//        Log.d("perkem", "LOKASI: " + sLokasi);
+//        Log.d("perkem", "KET: " + sKetPerkembangan);
         Call<ResponseInputPerkembangan> call = MainActivity.apiInterface.performInputPerkembangan(
                 "Bearer " + SessionManager.getToken(),
                 SessionManager.getUserData().getId(),
@@ -123,14 +123,7 @@ public class InputPerkembanganFragment extends Fragment {
                         callToast("Berhasil input perkembangan", 1);
 
                         ((MainActivity) getContext()).SwitchFrag(0); //restart actv
-//                        Fragment detailDiagnosa = new HasilDiagnosaFragment();
-//
-//                        Bundle bundle = new Bundle();
-//                        bundle.putString("id", response.body().getData().getId());
-//                        detailDiagnosa.setArguments(bundle);
-//
-//                        getActivity().getSupportFragmentManager().beginTransaction()
-//                                .replace(R.id.nav_host_fragment_content_main, detailDiagnosa).commit();
+
                     }
                 } else {
                     callToast("Gagal. Ulangi beberapa saat", 0);
