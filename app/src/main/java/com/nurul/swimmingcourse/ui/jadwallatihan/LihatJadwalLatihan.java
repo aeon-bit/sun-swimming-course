@@ -62,6 +62,8 @@ public class LihatJadwalLatihan extends Fragment {
     RequestQueue requestQueue;
     List<JadwalLatihans> listJadwalLatihan;
 
+    TextView tv_noData;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -78,6 +80,9 @@ public class LihatJadwalLatihan extends Fragment {
         rvAdapter = new AdapterListJadwalLatihan(listJadwalLatihan, getContext());
         rv_daftarJadwalLatihan.setAdapter(rvAdapter);
 
+        tv_noData = root.findViewById(R.id.tv_noData);
+        tv_noData.setVisibility(View.VISIBLE);
+
         return root;
     }
 
@@ -93,19 +98,24 @@ public class LihatJadwalLatihan extends Fragment {
                             JSONArray jsonArray = response.getJSONArray("data");
 
                             for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject artikel = jsonArray.getJSONObject(i);
+                                JSONObject jadwal = jsonArray.getJSONObject(i);
 
                                 //get key 1 by 1
                                 JadwalLatihans model = new JadwalLatihans();
 
-                                model.setId(artikel.getString("id"));
-                                model.setPelatih(artikel.getString("pelatih"));
-                                model.setHari(artikel.getString("hari"));
-                                model.setJam(artikel.getString("jam"));
-                                model.setLokasi(artikel.getString("lokasi"));
+                                model.setId(jadwal.getString("id"));
+                                model.setPelatih(jadwal.getString("pelatih"));
+                                model.setSiswa_id(jadwal.getString("siswa_id"));
+                                model.setHari(jadwal.getString("hari"));
+                                model.setJam(jadwal.getString("jam"));
+                                model.setLokasi(jadwal.getString("lokasi"));
 
-                                listJadwalLatihan.add(model);
-
+                                if (jadwal.getString("siswa_id").equals(SessionManager.getUserData().getId())) {
+                                    listJadwalLatihan.add(model);
+                                }
+                            }
+                            if (!listJadwalLatihan.isEmpty()) {
+                                tv_noData.setVisibility(View.INVISIBLE);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

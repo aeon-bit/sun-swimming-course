@@ -17,13 +17,17 @@ import com.nurul.swimmingcourse.model.UpdateProfiles;
 
 import java.util.ArrayList;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Url;
 
@@ -78,6 +82,7 @@ public interface ApiInterface {
     Call <ResponsePesanJadwal> performPesanJadwal(
             @Header("Authorization") String token,
             @Field("pelatih_id") String pelatih_id,
+            @Field("siswa_id") String siswa_id,
             @Field("hari") String hari,
             @Field("jam") String jam,
             @Field("lokasi") String lokasi
@@ -105,14 +110,14 @@ public interface ApiInterface {
 //            @Field("data_jadwal_periksa_id") String data_jadwal_periksa_id
     );
 
-    @FormUrlEncoded
+    @Multipart
     @POST("pembayaran")
     Call <ResponsePembayarans> performBayar(
             @Header("Authorization") String token,
-            @Field("siswa_id") String siswa_id,
-            @Field("tanggal_bayar") String tanggal_bayar,
-            @Field("jumlah_bayar") String jumlah_bayar,
-            @Field("bukti_pembayaran") String bukti_pembayaran
+            @Part("siswa_id") RequestBody siswa_id,
+            @Part("tanggal_bayar") RequestBody tanggal_bayar,
+            @Part("jumlah_bayar") RequestBody jumlah_bayar,
+            @Part MultipartBody.Part bukti_pembayaran
     );
 
     @FormUrlEncoded

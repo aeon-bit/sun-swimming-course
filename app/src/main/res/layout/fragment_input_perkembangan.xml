@@ -103,9 +103,9 @@
                     android:layout_weight="60"
                     android:background="@drawable/xmlbg_input_outline"
                     android:ellipsize="end"
-                    android:focusableInTouchMode="false"
                     android:fontFamily="@font/poppins_regular"
                     android:maxLines="1"
+                    android:hint="yyyy-mm-dd"
                     android:paddingHorizontal="12dp"
                     android:textColor="@color/text"
                     android:textSize="14dp" />

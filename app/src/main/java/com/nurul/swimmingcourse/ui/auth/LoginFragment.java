@@ -81,7 +81,11 @@ public class LoginFragment extends Fragment {
 //                } else if (!isValidEmail(et_usernameLogin.getText().toString())) {
 //                    et_usernameLogin.setError("Format Email salah");
                 } else {
-                    performLogin();
+                    if (et_usernameLogin.getText().toString().trim().equals("admin")) {
+                        callToast("Admin silakan login melalui Website", 0);
+                    } else {
+                        performLogin();
+                    }
                     pb_loading.setVisibility(View.VISIBLE);
                 }
             }
@@ -131,7 +135,7 @@ public class LoginFragment extends Fragment {
 //                    SessionManager.login(response.body().getUser(),
 //                            response.body().getToken());
 //
-                    loginFormActivityListener.performLogin(response.body().getUser().getUsername());
+                loginFormActivityListener.performLogin(response.body().getUser().getUsername());
 //                }
 
                 if (response.body() != null) {
@@ -175,7 +179,6 @@ public class LoginFragment extends Fragment {
                 }
 
                 pb_loading.setVisibility(View.GONE);
-
             }
         });
 

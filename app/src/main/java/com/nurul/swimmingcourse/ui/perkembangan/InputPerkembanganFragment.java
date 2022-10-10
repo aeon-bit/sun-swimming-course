@@ -64,7 +64,7 @@ public class InputPerkembanganFragment extends Fragment {
         CardView cv_btnSimpanPerkembangan = root.findViewById(R.id.cv_btnSimpanPerkembangan);
         getSpinnerAllSiswa();
 //        spinnerHariKe();
-        getCurrentDate();
+//        getCurrentDate();
 
         cv_btnSimpanPerkembangan.setOnClickListener(new View.OnClickListener() {
             @Override

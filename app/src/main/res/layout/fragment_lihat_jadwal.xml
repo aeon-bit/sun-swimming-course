@@ -27,4 +27,18 @@
         android:layout_height="wrap_content"
         tools:listitem="@layout/item_list_daftar_jadwal_latihan"
         app:layout_constraintTop_toBottomOf="@id/c0"/>
+
+    <TextView
+        android:id="@+id/tv_noData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Belum ada jadwal"
+        android:visibility="visible"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/text_hint"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

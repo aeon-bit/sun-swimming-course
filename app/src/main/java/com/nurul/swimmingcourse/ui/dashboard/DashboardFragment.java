@@ -212,8 +212,11 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                 break;
         }
 
-        if (frag == 1){
-            openDialogPenjadwalan();
+        if (frag == 1) {
+            if (SessionManager.isLogin())
+                openDialogPenjadwalan();
+            else
+                callToast("Silakan login dahulu", 0);
         } else if (frag == 6) { //tentang
             ((MainActivity) getActivity()).SwitchFrag(frag);
         } else {

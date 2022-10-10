@@ -13,6 +13,9 @@ public class JadwalLatihans {
     @SerializedName("pelatih")
     private String pelatih;
 
+    @SerializedName("siswa_id")
+    private String siswa_id;
+
     @SerializedName("hari")
     private String hari;
 
@@ -60,5 +63,13 @@ public class JadwalLatihans {
 
     public void setLokasi(String lokasi) {
         this.lokasi = lokasi;
+    }
+
+    public String getSiswa_id() {
+        return siswa_id;
+    }
+
+    public void setSiswa_id(String siswa_id) {
+        this.siswa_id = siswa_id;
     }
 }

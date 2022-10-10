@@ -179,6 +179,7 @@ public class JadwalLatihan extends Fragment {
         Call<ResponsePesanJadwal> call = MainActivity.apiInterface.performPesanJadwal(
                 "Bearer " + SessionManager.getToken(),
                 selectedIDPelatih,
+                SessionManager.getUserData().getId(),
                 sHari,
                 sJam,
                 sLokasi

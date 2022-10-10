@@ -8,8 +8,11 @@ public class PesanJadwals {
     @SerializedName("id")
     private String id;
 
-    @SerializedName("pelatih")
-    private String pelatih;
+    @SerializedName("pelatih_id")
+    private String pelatih_id;
+
+    @SerializedName("siswa_id")
+    private String siswa_id;
 
     @SerializedName("hari")
     private String hari;
@@ -28,12 +31,20 @@ public class PesanJadwals {
         this.id = id;
     }
 
-    public String getPelatih() {
-        return pelatih;
+    public String getPelatih_id() {
+        return pelatih_id;
     }
 
-    public void setPelatih(String pelatih) {
-        this.pelatih = pelatih;
+    public void setPelatih_id(String pelatih_id) {
+        this.pelatih_id = pelatih_id;
+    }
+
+    public String getSiswa_id() {
+        return siswa_id;
+    }
+
+    public void setSiswa_id(String siswa_id) {
+        this.siswa_id = siswa_id;
     }
 
     public String getHari() {

@@ -122,7 +122,7 @@ public class PerkembanganFragment extends Fragment {
             @Override
             public void onResponse(Call<ResponseSPSiswa> call, final retrofit2.Response<ResponseSPSiswa> response) {
                 listSpAllSiswa = new ArrayList<>();
-                Log.d("spinner", "onResponse: " + response.body());
+                Log.d("spinner", "onResponse: " + response.body().toString());
                 listSpAllSiswa = response.body().getData();
 
 //                Log.d("spinner", "onResponse: " + response.body());
