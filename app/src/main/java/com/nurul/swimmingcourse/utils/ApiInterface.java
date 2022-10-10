@@ -144,6 +144,12 @@ public interface ApiInterface {
             @Header("Authorization") String token
     );
 
+    @GET("perkembangan-siswa/{id}")
+    Call <ResponseInfoPerkembangan> getAllPerkembanganByIdSiswa(
+            @Header("Authorization") String token,
+            @Path("id") String id
+    );
+
     @GET("data-riwayat-diagnosa/{id}/show")
     Call <ResponseTesKesehatan> getDetailDiagnosa(
             @Header("Authorization") String token,

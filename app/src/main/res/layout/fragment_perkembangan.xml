@@ -182,7 +182,7 @@
                     android:background="@drawable/xmlbg_input_outline"
                     android:fontFamily="@font/poppins_regular"
                     android:padding="6dp"
-                    android:text="@string/add_pull_git"
+                    android:hint="Tidak ada info perkembangan"
                     android:textColor="@color/text"
                     app:layout_constraintTop_toTopOf="parent" />
             </ScrollView>
