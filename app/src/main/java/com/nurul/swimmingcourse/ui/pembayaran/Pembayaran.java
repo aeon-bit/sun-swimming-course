@@ -3,9 +3,13 @@ package com.nurul.swimmingcourse.ui.pembayaran;
 import static android.app.Activity.RESULT_OK;
 import static android.os.Environment.getExternalStoragePublicDirectory;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -35,6 +39,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
@@ -55,6 +61,7 @@ import com.nurul.swimmingcourse.model.ResponseSPPelatih;
 import com.nurul.swimmingcourse.model.ResponseTesKesehatan;
 import com.nurul.swimmingcourse.ui.jadwallatihan.HasilDiagnosaFragment;
 import com.nurul.swimmingcourse.utils.ApiClient;
+import com.nurul.swimmingcourse.utils.RealPathUtil;
 import com.nurul.swimmingcourse.utils.SessionManager;
 
 import org.json.JSONArray;
@@ -92,6 +99,8 @@ public class Pembayaran extends Fragment {
 
     EditText et_tglBayarPembayaran, et_jmlBayarPembayaran;
 
+    String path;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -127,74 +136,31 @@ public class Pembayaran extends Fragment {
     }
 
     private void pilihFotoFromGallery() {
-        callToast("Gunakan Foto Orientasi Portrait", 3);
+//        callToast("Gunakan Foto Orientasi Portrait", 3);
 
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, 3);
-        photoFile = null;
-        photoFile = createPhotoFile();
-
-        if (photoFile != null) {
-            pathToFile = photoFile.getAbsolutePath();
-            Uri photoUri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".fileprovider", photoFile);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-
-            gambar = new File(pathToFile);
-            RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), gambar);
-            fileToSend = MultipartBody.Part.createFormData("bukti_pembayaran", gambar.getName(), requestBody);
-
-            startActivityForResult(intent, 3);
+        if (ContextCompat.checkSelfPermission(getContext(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(intent, 10);
+        } else {
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
         }
-    }
-
-    private File createPhotoFile() {
-
-        @SuppressLint("SimpleDateFormat") String name = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File storageDir = getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        File image = null;
-        try {
-            image = File.createTempFile(name, ".jpg", storageDir);
-            //File compressedFile = new Compressor(this).compressToFile(image);
-        } catch (IOException e) {
-//            Log.d("mylog", "Exception : " + e.toString());
-        }
-        return image;
-        //return compressedFile;
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && data != null) {
-            Uri selectedImage = data.getData();
-            iv_buktiBayar.setImageURI(selectedImage);
+        if (requestCode == 10 && resultCode == Activity.RESULT_OK) {
+            Uri uri = data.getData();
+            Context context = getContext();
+            path = RealPathUtil.getRealPath(context, uri);
+            Bitmap bitmap = BitmapFactory.decodeFile(path);
+//            iv_buktiBayar.setImageBitmap(bitmap);
+            iv_buktiBayar.setImageURI(uri);
         }
-//        if (resultCode == RESULT_OK && data != null) {
-//            if (requestCode == 3) {
-//                Uri selectedImage = data.getData();
-//                Bitmap bitmap = null;
-//                try {
-//                    bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), selectedImage);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//
-////                ImageView iv_gambarInput = findViewById(R.id.iv_gambarInput);
-//                iv_buktiBayar.setImageBitmap(bitmap);
-//
-//
-//                BitmapFactory.Options options = new BitmapFactory.Options();
-//                options.inSampleSize = 2;
-//                options.inJustDecodeBounds = false;
-//
-////                Bitmap bitmapReady = BitmapFactory.decodeFile(bitmap, options);
-//                Bitmap scaledImage = Bitmap.createScaledBitmap(bitmap, 540, 900, true);
-//                encodeImage = ImageBase64.encode(scaledImage);
-////
-////                Log.d("mylog", "encode image: " + encodeImage);
-////                Log.d("mylog", "PATH File: " + pathToFile);
-//            }
-//        }
     }
 
     private void getCurrentDate() {
@@ -209,12 +175,18 @@ public class Pembayaran extends Fragment {
 
 
     private void PerformBayar(String sJmlBayar) {
+        File file = new File(path);
+        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+
+        MultipartBody.Part body = MultipartBody.Part.createFormData("bukti_pembayaran", file.getName(), requestFile);
+
+        RequestBody idSiswa = RequestBody.create(MediaType.parse("multipart/form-data"), SessionManager.getUserData().getId());
+        RequestBody tglBayar = RequestBody.create(MediaType.parse("multipart/form-data"), et_tglBayarPembayaran.getText().toString());
+        RequestBody jmlBayar = RequestBody.create(MediaType.parse("multipart/form-data"), sJmlBayar);
+
         Call<ResponsePembayarans> call = MainActivity.apiInterface.performBayar(
                 "Bearer " + SessionManager.getToken(),
-                RequestBody.create(MediaType.parse("multipart/form-data"), SessionManager.getUserData().getId()),
-                RequestBody.create(MediaType.parse("multipart/form-data"), et_tglBayarPembayaran.getText().toString()),
-                RequestBody.create(MediaType.parse("multipart/form-data"), sJmlBayar),
-                fileToSend
+                body, idSiswa, tglBayar, jmlBayar
         );
         call.enqueue(new Callback<ResponsePembayarans>() {
             @Override
@@ -223,14 +195,17 @@ public class Pembayaran extends Fragment {
 //                Log.d("respon", "onResponse Diagnosis: " + response.body().getData().getTanggal());
 //                Log.d("respon", "onResponse Diagnosis: " + response.errorBody().toString());
                 if (response.body() != null) {
-                    Log.d("respon", "onResponse ID: " + response.body().getSiswa_id());
-                    Log.d("respon", "onResponse TGL: " + response.body().getTanggal_bayar());
-                    Log.d("respon", "onResponse JML: " + response.body().getJumlah_bayar());
-                    if (response.body().getId() == null) {
+//                    Log.d("respon", "onResponse ID: " + response.body().getSiswa_id());
+//                    Log.d("respon", "onResponse TGL: " + response.body().getTanggal_bayar());
+//                    Log.d("respon", "onResponse JML: " + response.body().getJumlah_bayar());
+                    if (response.body().getSiswa_id() == null) {
                         callToast("Isi Form Salah", 2);
+                    } else {
+                        callToast("Berhasil mengunggah data", 1);
+                        ((MainActivity) getActivity()).SwitchFrag(0);
                     }
                 } else {
-                    callToast("Berhasil mengirim data", 1);
+                    callToast("Ulangi lagi", 2);
                 }
             }
 

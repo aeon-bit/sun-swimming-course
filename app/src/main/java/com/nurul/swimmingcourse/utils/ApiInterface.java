@@ -114,10 +114,10 @@ public interface ApiInterface {
     @POST("pembayaran")
     Call <ResponsePembayarans> performBayar(
             @Header("Authorization") String token,
+            @Part MultipartBody.Part bukti_pembayaran,
             @Part("siswa_id") RequestBody siswa_id,
             @Part("tanggal_bayar") RequestBody tanggal_bayar,
-            @Part("jumlah_bayar") RequestBody jumlah_bayar,
-            @Part MultipartBody.Part bukti_pembayaran
+            @Part("jumlah_bayar") RequestBody jumlah_bayar
     );
 
     @FormUrlEncoded
