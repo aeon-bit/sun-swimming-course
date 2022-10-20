@@ -1,86 +1,42 @@
 package com.nurul.swimmingcourse.ui.pembayaran;
 
-import static android.app.Activity.RESULT_OK;
-import static android.os.Environment.getExternalStoragePublicDirectory;
-
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.nurul.swimmingcourse.BuildConfig;
 import com.nurul.swimmingcourse.R;
 import com.nurul.swimmingcourse.activity.MainActivity;
-import com.nurul.swimmingcourse.model.Gejalas;
-import com.nurul.swimmingcourse.model.Pelatihs;
 import com.nurul.swimmingcourse.model.ResponsePembayarans;
-import com.nurul.swimmingcourse.model.ResponseSPPelatih;
-import com.nurul.swimmingcourse.model.ResponseTesKesehatan;
-import com.nurul.swimmingcourse.ui.jadwallatihan.HasilDiagnosaFragment;
-import com.nurul.swimmingcourse.utils.ApiClient;
 import com.nurul.swimmingcourse.utils.RealPathUtil;
 import com.nurul.swimmingcourse.utils.SessionManager;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.kosalgeek.android.photoutil.ImageBase64;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -96,6 +52,9 @@ public class Pembayaran extends Fragment {
     ProgressBar progressBar;
     MultipartBody.Part fileToSend;
     File photoFile, gambar;
+
+    String selectedDate, selectedDateShow;
+    int bulan;
 
     EditText et_tglBayarPembayaran, et_jmlBayarPembayaran;
 
@@ -168,9 +127,56 @@ public class Pembayaran extends Fragment {
         LocalDateTime now = LocalDateTime.now();
         today = dtf.format(now);
 
-        et_tglBayarPembayaran.setText(today);
-
+        int y = Integer.parseInt(today.substring(0, 4));
+        int m = Integer.parseInt(today.substring(5, 7));
+        int d = Integer.parseInt(today.substring(8, 10));
+//        Log.d("intdate", y + "-" + m + "-" + d);
+        makeDateString(d, m, y);
 //        Log.d("tanggal", "getCurrentDate: " + dtf.format(now));
+    }
+
+    private String makeDateString(int day, int month, int year) {
+        selectedDate = year + "-" + month + "-" + day;
+//        dateToUp = day + "-" + month + "-" + year;
+
+//        Log.d("selecteddate", "makeDateString: " + dateToUp);
+
+//        requestJamByIdLapToday();
+        selectedDateShow = day + " " + getMonthFormat(month) + " " + year;
+        et_tglBayarPembayaran.setText(selectedDateShow);
+        return day + " " + getMonthFormat(month) + " " + year;
+    }
+
+    private String getMonthFormat(int month) {
+        if (month == 1)
+            return "Januari";
+        if (month == 2)
+            return "Februari";
+        if (month == 3)
+            return "Maret";
+        if (month == 4)
+            return "April";
+        if (month == 5)
+            return "Mei";
+        if (month == 6)
+            return "Juni";
+        if (month == 7)
+            return "Juli";
+        if (month == 8)
+            return "Agustus";
+        if (month == 9)
+            return "September";
+        if (month == 10)
+            return "Oktober";
+        if (month == 11)
+            return "November";
+        if (month == 12)
+            return "Desember";
+
+        //save mont in int
+        bulan = month;
+        //default should never happen
+        return "Januari";
     }
 
 

@@ -63,7 +63,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         CardView cv_btnJadwalLatihan = root.findViewById(R.id.cv_btnJadwalLatihan);
         CardView cv_btnDaftarPelatih = root.findViewById(R.id.cv_btnDaftarPelatih);
         CardView cv_btnDaftarPelatih_p = root.findViewById(R.id.cv_btnDaftarPelatih_P);
-        CardView cv_btnPendaftaran = root.findViewById(R.id.cv_btnPendaftaran);
+//        CardView cv_btnPendaftaran = root.findViewById(R.id.cv_btnPendaftaran);
         CardView cv_btnPembayaran = root.findViewById(R.id.cv_btnPembayaran);
         CardView cv_btnInputPerkembangan = root.findViewById(R.id.cv_btnInputPerkembangan);
         CardView cv_btnTentang = root.findViewById(R.id.cv_btnTentang);
@@ -75,20 +75,20 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         LinearLayoutCompat ly_linePelatih = root.findViewById(R.id.line1_p);
         LinearLayoutCompat ly_line2 = root.findViewById(R.id.line2);
         LinearLayoutCompat ly_line2_p = root.findViewById(R.id.line2_p);
-        LinearLayoutCompat ly_line3 = root.findViewById(R.id.line3);
+//        LinearLayoutCompat ly_line3 = root.findViewById(R.id.line3);
 
         if (SessionManager.getRole().equals("pelatih")) {
             ly_lineSiswa.setVisibility(View.INVISIBLE);
             ly_linePelatih.setVisibility(View.VISIBLE);
             ly_line2.setVisibility(View.INVISIBLE);
             ly_line2_p.setVisibility(View.VISIBLE);
-            ly_line3.setVisibility(View.INVISIBLE);
+//            ly_line3.setVisibility(View.INVISIBLE);
         } else {
             ly_lineSiswa.setVisibility(View.VISIBLE);
             ly_linePelatih.setVisibility(View.INVISIBLE);
             ly_line2.setVisibility(View.VISIBLE);
             ly_line2_p.setVisibility(View.INVISIBLE);
-            ly_line3.setVisibility(View.VISIBLE);
+//            ly_line3.setVisibility(View.VISIBLE);
         }
 
 
@@ -106,7 +106,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         cv_btnJadwalLatihan.setOnClickListener(this);
         cv_btnDaftarPelatih.setOnClickListener(this);
         cv_btnDaftarPelatih_p.setOnClickListener(this);
-        cv_btnPendaftaran.setOnClickListener(this);
+//        cv_btnPendaftaran.setOnClickListener(this);
         cv_btnPembayaran.setOnClickListener(this);
         cv_btnTentang.setOnClickListener(this);
         cv_btnTentang_p.setOnClickListener(this);
@@ -194,9 +194,9 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             case R.id.cv_btnDaftarPelatih_P:
                 frag = 2;
                 break;
-            case R.id.cv_btnPendaftaran:
-                frag = 8;
-                break;
+//            case R.id.cv_btnPendaftaran:
+//                frag = 8;
+//                break;
             case R.id.cv_btnTentang:
             case R.id.cv_btnTentang_p:
                 frag = 6;
@@ -212,7 +212,9 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                 break;
         }
 
-        if (frag == 1) {
+        if (frag == 2) {
+            ((MainActivity) getActivity()).SwitchFrag(frag);
+        } else if (frag == 1) {
             if (SessionManager.isLogin())
                 openDialogPenjadwalan();
             else

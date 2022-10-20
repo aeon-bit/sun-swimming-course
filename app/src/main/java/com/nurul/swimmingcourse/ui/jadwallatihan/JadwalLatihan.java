@@ -1,5 +1,7 @@
 package com.nurul.swimmingcourse.ui.jadwallatihan;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
@@ -11,7 +13,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -47,6 +51,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,13 +61,17 @@ import retrofit2.Callback;
 
 public class JadwalLatihan extends Fragment {
     Spinner sp_hariInJadwal, sp_jamInJadwal, sp_pelatihInJadwal;
-    String selectedIDPelatih, today;
+    String selectedIDPelatih, today, selectedDate, selectedDateShow;
+    TextView tv_hariInJadwal;
+    ImageView iv_btnCallendarInJadwal;
+    int bulan;
 
     LinearLayout ly_cb;
     RequestQueue requestQueue;
 
     ArrayList<Pelatihs> listSpAllPelatih;
 
+    DatePickerDialog datePickerDialog;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -71,11 +80,12 @@ public class JadwalLatihan extends Fragment {
 
         requestQueue = Volley.newRequestQueue(getContext());
         getCurrentDate();
-
+        initDatePicker();
 
         EditText et_namaInJadwal = root.findViewById(R.id.et_namaInJadwal);
         EditText et_lokasiInJadwal = root.findViewById(R.id.et_lokasiInJadwal);
-        EditText et_hariInJadwal = root.findViewById(R.id.et_hariInJadwal);
+        tv_hariInJadwal = root.findViewById(R.id.tv_hariInJadwal);
+        iv_btnCallendarInJadwal = root.findViewById(R.id.iv_btnCallendarInJadwal);
 //        sp_hariInJadwal = root.findViewById(R.id.sp_hariInJadwal);
         sp_jamInJadwal = root.findViewById(R.id.sp_jamInJadwal);
         sp_pelatihInJadwal = root.findViewById(R.id.sp_pelatihInJadwal);
@@ -85,17 +95,20 @@ public class JadwalLatihan extends Fragment {
 
         et_namaInJadwal.setText(SessionManager.getUserData().getNama());
 
+        iv_btnCallendarInJadwal.setOnClickListener((v -> {
+            openDatePicker();
+        }));
         CardView cv_btnKirimJadwal = root.findViewById(R.id.cv_btnKirimJadwal);
         cv_btnKirimJadwal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (et_lokasiInJadwal.getText().toString().equals("")) {
                     et_lokasiInJadwal.setError("Masukkan lokasi latihan");
-                } else if (et_hariInJadwal.getText().toString().equals("")) {
-                    et_lokasiInJadwal.setError("Masukkan tanggal");
+                } else if (tv_hariInJadwal.getText().toString().equals("")) {
+                    tv_hariInJadwal.setError("Masukkan tanggal");
                 } else {
                     performPesanJadwal(
-                            et_hariInJadwal.getText().toString(),
+                            selectedDate,
                             (String) sp_jamInJadwal.getSelectedItem(),
                             et_lokasiInJadwal.getText().toString()
                     );
@@ -225,6 +238,73 @@ public class JadwalLatihan extends Fragment {
             }
         });
 
+    }
+
+    private void openDatePicker() {
+        datePickerDialog.show();
+    }
+
+    private void initDatePicker() {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String date = makeDateString(day, month, year);
+                tv_hariInJadwal.setText(date);
+            }
+        };
+
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        int style = AlertDialog.THEME_HOLO_LIGHT;
+
+        datePickerDialog = new DatePickerDialog(getContext(), style, dateSetListener, year, month, day);
+    }
+
+    private String makeDateString(int day, int month, int year) {
+        selectedDate = year + "-" + month + "-" + day;
+//        dateToUp = day + "-" + month + "-" + year;
+
+//        Log.d("selecteddate", "makeDateString: " + dateToUp);
+
+//        requestJamByIdLapToday();
+        selectedDateShow = day + " " + getMonthFormat(month) + " " + year;
+        return day + " " + getMonthFormat(month) + " " + year;
+    }
+
+    private String getMonthFormat(int month) {
+        if (month == 1)
+            return "Januari";
+        if (month == 2)
+            return "Februari";
+        if (month == 3)
+            return "Maret";
+        if (month == 4)
+            return "April";
+        if (month == 5)
+            return "Mei";
+        if (month == 6)
+            return "Juni";
+        if (month == 7)
+            return "Juli";
+        if (month == 8)
+            return "Agustus";
+        if (month == 9)
+            return "September";
+        if (month == 10)
+            return "Oktober";
+        if (month == 11)
+            return "November";
+        if (month == 12)
+            return "Desember";
+
+        //save mont in int
+        bulan = month;
+        //default should never happen
+        return "Januari";
     }
 
     private void callToast(String msg, int i) {

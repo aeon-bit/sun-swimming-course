@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (SessionManager.getRole().equals("siswa")){
                 navigationView.getMenu().findItem(R.id.nav_jadwal_latihan).setVisible(true);
                 navigationView.getMenu().findItem(R.id.nav_daftar_pelatih).setVisible(true);
-                navigationView.getMenu().findItem(R.id.nav_pendaftaran).setVisible(true);
+//                navigationView.getMenu().findItem(R.id.nav_pendaftaran).setVisible(true);
                 navigationView.getMenu().findItem(R.id.nav_pembayaran).setVisible(true);
 
                 navigationView.getMenu().findItem(R.id.nav_perkembangan).setVisible(false);
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             } else if (SessionManager.getRole().equals("pelatih")){
                 navigationView.getMenu().findItem(R.id.nav_jadwal_latihan).setVisible(false);
                 navigationView.getMenu().findItem(R.id.nav_daftar_pelatih).setVisible(true);
-                navigationView.getMenu().findItem(R.id.nav_pendaftaran).setVisible(false);
+//                navigationView.getMenu().findItem(R.id.nav_pendaftaran).setVisible(false);
                 navigationView.getMenu().findItem(R.id.nav_pembayaran).setVisible(false);
 
                 navigationView.getMenu().findItem(R.id.nav_perkembangan).setVisible(true);
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             } else {
                 navigationView.getMenu().findItem(R.id.nav_jadwal_latihan).setVisible(true);
                 navigationView.getMenu().findItem(R.id.nav_daftar_pelatih).setVisible(true);
-                navigationView.getMenu().findItem(R.id.nav_pendaftaran).setVisible(true);
+//                navigationView.getMenu().findItem(R.id.nav_pendaftaran).setVisible(true);
                 navigationView.getMenu().findItem(R.id.nav_pembayaran).setVisible(true);
                 navigationView.getMenu().findItem(R.id.nav_tentang).setVisible(true);
 
@@ -298,7 +298,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 drawer.closeDrawer(GravityCompat.START, false);
 
-            } else if (item.getItemId() == R.id.nav_auth) {
+            } else if (item.getItemId() == R.id.nav_daftar_pelatih) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
+                        new DaftarPelatihFragment()).commit();
+                navigationView.setCheckedItem(R.id.nav_daftar_pelatih);
+                getSupportActionBar().setTitle("Daftar Pelatih");
+                drawer.closeDrawer(GravityCompat.START, false);
+
+            }else if (item.getItemId() == R.id.nav_tentang) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
+                        new TentangFragment()).commit();
+                navigationView.setCheckedItem(R.id.nav_tentang);
+                getSupportActionBar().setTitle("Tentang");
+                drawer.closeDrawer(GravityCompat.START, false);
+
+            }else if (item.getItemId() == R.id.nav_auth) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main,
                         new LoginFragment()).commit();
                 navigationView.setCheckedItem(R.id.nav_auth);

@@ -20,9 +20,6 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.MyTheme.NoActionBar">
         <activity
-            android:name="com.nurul.swimmingcourse.activity.DetailJenisPenyakit"
-            android:exported="false" />
-        <activity
             android:name="com.nurul.swimmingcourse.activity.MainActivity"
             android:theme="@style/Theme.MyTheme.NoActionBar" />
         <activity

@@ -2,6 +2,8 @@ package com.nurul.swimmingcourse.ui.auth;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -29,6 +32,7 @@ import com.nurul.swimmingcourse.model.UpdateProfiles;
 import com.nurul.swimmingcourse.utils.SessionManager;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,6 +53,10 @@ public class EditProfileFragment extends Fragment {
     private EditText rb_errorMsg;
 
     private ProgressBar pb_loading;
+
+    DatePickerDialog datePickerDialog;
+    private int bulan;
+    private  String selectedDate, selectedDateShow;
 
 
     public EditProfileFragment() {
@@ -73,9 +81,11 @@ public class EditProfileFragment extends Fragment {
         et_passwordRegisterForm = view.findViewById(R.id.et_passwordRegisterForm);
         et_cPasswordRegisterForm = view.findViewById(R.id.et_cPasswordRegisterForm);
 
+        initDatePicker();
+
         if (SessionManager.getRole().equals("siswa")) {
             et_nameRegisterForm.setText(SessionManager.getUserData().getNama());
-            et_tglLahirRegisterForm.setText(SessionManager.getUserData().getTanggal_lahir());
+            et_tglLahirRegisterForm.setText(changeShowDateFormat(SessionManager.getUserData().getTanggal_lahir()));
             et_tempatLahirRegisterForm.setText(SessionManager.getUserData().getTempat_lahir());
             if (SessionManager.getUserData().getJenis_kelamin().equals("laki-laki")) {
                 rb_laki.setChecked(true);
@@ -96,6 +106,9 @@ public class EditProfileFragment extends Fragment {
 //        rb_laki = view.findViewById(R.id.rb_laki);
 //        rb_perempuan = view.findViewById(R.id.rb_perempuan);
 //        rb_errorMsg = view.findViewById(R.id.rb_errorMsg);
+        et_tglLahirRegisterForm.setOnClickListener(v -> {
+            datePickerDialog.show();
+        });
 
         tv_btnLoginNow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,7 +181,7 @@ public class EditProfileFragment extends Fragment {
 //                } else if (!isValidEmail(sEmail)) {
 //                    et_emailRegisterForm.setError("Format Email salah");
                 } else {
-                    performUbahProfile(sNama, sTempatLahir, sTgl, sJk, sOrtu, sAlamat, sNoHp, sUsername, sPassword);
+                    performUbahProfile(sNama, sTempatLahir, selectedDate, sJk, sOrtu, sAlamat, sNoHp, sUsername, sPassword);
                     hideKeyboard();
 //                    Log.d("daftar", sNama + "\n");
 //                    Log.d("daftar", sTempatLahir + "\n");
@@ -186,6 +199,80 @@ public class EditProfileFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void initDatePicker() {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String date = makeDateString(day, month, year);
+                et_tglLahirRegisterForm.setText(date);
+            }
+        };
+
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        int style = AlertDialog.THEME_HOLO_LIGHT;
+
+        datePickerDialog = new DatePickerDialog(getContext(), style, dateSetListener, year, month, day);
+    }
+
+    private String changeShowDateFormat(String date){
+        String newFormat;
+        int y = Integer.parseInt(date.substring(0, 4));
+        int m = Integer.parseInt(date.substring(5, 7));
+        int d = Integer.parseInt(date.substring(8, 10));
+
+        newFormat = d + " " + getMonthFormat(m) + " " + y;
+
+        return newFormat;
+    }
+
+    private String makeDateString(int day, int month, int year) {
+        selectedDate = year + "-" + month + "-" + day;
+//        dateToUp = day + "-" + month + "-" + year;
+
+//        Log.d("selecteddate", "makeDateString: " + dateToUp);
+
+//        requestJamByIdLapToday();
+        selectedDateShow = day + " " + getMonthFormat(month) + " " + year;
+        return day + " " + getMonthFormat(month) + " " + year;
+    }
+
+    private String getMonthFormat(int month) {
+        if (month == 1)
+            return "Januari";
+        if (month == 2)
+            return "Februari";
+        if (month == 3)
+            return "Maret";
+        if (month == 4)
+            return "April";
+        if (month == 5)
+            return "Mei";
+        if (month == 6)
+            return "Juni";
+        if (month == 7)
+            return "Juli";
+        if (month == 8)
+            return "Agustus";
+        if (month == 9)
+            return "September";
+        if (month == 10)
+            return "Oktober";
+        if (month == 11)
+            return "November";
+        if (month == 12)
+            return "Desember";
+
+        //save mont in int
+        bulan = month;
+        //default should never happen
+        return "Januari";
     }
 
     private void hideKeyboard() {

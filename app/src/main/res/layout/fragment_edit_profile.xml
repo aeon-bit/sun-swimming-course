@@ -78,6 +78,7 @@
                 android:background="@drawable/xmlbg_input_outline"
                 android:fontFamily="@font/nunitto_semibold"
                 android:hint="yyyy-mm-dd"
+                android:focusableInTouchMode="false"
                 android:textColorHint="@color/text_hint"
                 android:paddingHorizontal="10dp"
                 android:singleLine="true"
